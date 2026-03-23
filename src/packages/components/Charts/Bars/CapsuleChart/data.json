@@ -1,0 +1,10 @@
+{
+  "dimensions": ["name", "value"],
+  "source": [
+    { "name": "Hạ Môn", "value": 20 },
+    { "name": "Nam Dương", "value": 40 },
+    { "name": "Bắc Kinh", "value": 60 },
+    { "name": "Thượng Hải", "value": 80 },
+    { "name": "Tân Cương", "value": 100 }
+  ]
+}

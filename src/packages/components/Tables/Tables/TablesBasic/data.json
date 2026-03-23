@@ -1,0 +1,60 @@
+{
+  "dimensions": [
+    {
+      "title": "Tên sản phẩm",
+      "key": "productName"
+    },
+    {
+      "title": "Doanh số sản phẩm (10.000)",
+      "key": "totalSum"
+    },
+    {
+      "title": "Doanh số (10.000)",
+      "key": "totalAmount"
+    }
+  ],
+  "source": [
+    {
+      "key": 0,
+      "productName": "sản phẩmA1",
+      "totalSum": 10,
+      "totalAmount": 10
+    },
+    {
+      "key": 1,
+      "productName": "sản phẩmB1",
+      "totalSum": 10,
+      "totalAmount": 10
+    },
+    {
+      "key": 2,
+      "productName": "sản phẩmC1",
+      "totalSum": 10,
+      "totalAmount": 10
+    },
+    {
+      "key": 3,
+      "productName": "sản phẩmD1",
+      "totalSum": 10,
+      "totalAmount": 10
+    },
+    {
+      "key": 4,
+      "productName": "sản phẩmA2",
+      "totalSum": 10,
+      "totalAmount": 10
+    },
+    {
+      "key": 5,
+      "productName": "sản phẩmD2",
+      "totalSum": 10,
+      "totalAmount": 10
+    },
+    {
+      "key": 6,
+      "productName": "sản phẩmA3",
+      "totalSum": 10,
+      "totalAmount": 10
+    }
+  ]
+}

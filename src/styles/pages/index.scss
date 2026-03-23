@@ -1,0 +1,15 @@
+// Kiểu toàn cầu của trang
+// Xóa Amap logo
+.amap-logo {
+  display: none !important;
+  opacity: 0 !important;
+}
+.amap-copyright {
+  opacity: 0 !important;
+}
+
+[data-theme='dark'] {
+  body {
+    background-color: #18181c;
+  }
+}

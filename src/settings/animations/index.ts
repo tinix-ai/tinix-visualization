@@ -1,0 +1,57 @@
+export const animations = [
+  {
+    label: (typeof window !== 'undefined' && window['$t'] ? window['$t']('phase7.auto_52') : 'hoạt hình nhấn mạnh'),
+    children: [
+      { label: (typeof window !== 'undefined' && window['$t'] ? window['$t']('phase7.auto_443') : 'tung lên'), value: 'bounce' },
+      { label: (typeof window !== 'undefined' && window['$t'] ? window['$t']('phase7.auto_463') : 'nhấp nháy'), value: 'flash' },
+      { label: (typeof window !== 'undefined' && window['$t'] ? window['$t']('phase7.auto_129') : 'Phóng to hoặc thu nhỏ'), value: 'pulse' },
+      { label: (typeof window !== 'undefined' && window['$t'] ? window['$t']('phase7.auto_116') : 'Phóng to và thu nhỏ mùa xuân'), value: 'rubberBand' },
+      { label: (typeof window !== 'undefined' && window['$t'] ? window['$t']('phase7.auto_92') : 'Lắc trái và phải'), value: 'headShake' },
+      { label: (typeof window !== 'undefined' && window['$t'] ? window['$t']('phase7.auto_473') : 'Xích đu hình quạt trái và phải'), value: 'swing' },
+      { label: (typeof window !== 'undefined' && window['$t'] ? window['$t']('phase7.auto_79') : 'Phóng to, lắc, thu nhỏ'), value: 'tada' },
+      { label: (typeof window !== 'undefined' && window['$t'] ? window['$t']('phase7.auto_445') : 'quạt'), value: 'wobble' },
+      { label: (typeof window !== 'undefined' && window['$t'] ? window['$t']('phase7.auto_167') : 'Lắc trái và phải lên xuống'), value: 'jello' },
+    ]
+  },
+  {
+    label: (typeof window !== 'undefined' && window['$t'] ? window['$t']('phase7.auto_370') : 'di chuyển trong hoạt hình'),
+    children: [
+      { label: (typeof window !== 'undefined' && window['$t'] ? window['$t']('phase7.auto_320') : 'mờ dần trong'), value: 'fadeIn' },
+      { label: (typeof window !== 'undefined' && window['$t'] ? window['$t']('phase7.auto_179') : 'Nhập đúng'), value: 'fadeInLeft' },
+      { label: (typeof window !== 'undefined' && window['$t'] ? window['$t']('phase7.auto_171') : 'Nhập trái'), value: 'fadeInRight' },
+      { label: (typeof window !== 'undefined' && window['$t'] ? window['$t']('phase7.auto_9') : 'đi lên trên'), value: 'fadeInUp' },
+      { label: (typeof window !== 'undefined' && window['$t'] ? window['$t']('phase7.auto_120') : 'nhập xuống'), value: 'fadeInDown' },
+      { label: (typeof window !== 'undefined' && window['$t'] ? window['$t']('phase7.auto_358') : 'Nhập dài phải'), value: 'fadeInLeftBig' },
+      { label: (typeof window !== 'undefined' && window['$t'] ? window['$t']('phase7.auto_428') : 'Nhập dài bên trái'), value: 'fadeInRightBig' },
+      { label: (typeof window !== 'undefined' && window['$t'] ? window['$t']('phase7.auto_86') : 'Nhập khoảng cách xa trở lên'), value: 'fadeInUpBig' },
+      { label: (typeof window !== 'undefined' && window['$t'] ? window['$t']('phase7.auto_41') : 'Nhập khoảng cách dài xuống'), value: 'fadeInDownBig' },
+      { label: (typeof window !== 'undefined' && window['$t'] ? window['$t']('phase7.auto_515') : 'Quay vào'), value: 'rotateIn' },
+      { label: (typeof window !== 'undefined' && window['$t'] ? window['$t']('phase7.auto_127') : 'xoay trái theo chiều kim đồng hồ'), value: 'rotateInDownLeft' },
+      { label: (typeof window !== 'undefined' && window['$t'] ? window['$t']('phase7.auto_470') : 'Xoay phải ngược chiều kim đồng hồ'), value: 'rotateInDownRight' },
+      { label: (typeof window !== 'undefined' && window['$t'] ? window['$t']('phase7.auto_72') : 'Xoay trái ngược chiều kim đồng hồ'), value: 'rotateInUpLeft' },
+      { label: (typeof window !== 'undefined' && window['$t'] ? window['$t']('phase7.auto_470') : 'Xoay phải ngược chiều kim đồng hồ'), value: 'rotateInUpRight' },
+      { label: (typeof window !== 'undefined' && window['$t'] ? window['$t']('phase7.auto_164') : 'nhảy vào'), value: 'bounceIn' },
+      { label: (typeof window !== 'undefined' && window['$t'] ? window['$t']('phase7.auto_157') : 'bật sang phải'), value: 'bounceInLeft' },
+      { label: (typeof window !== 'undefined' && window['$t'] ? window['$t']('phase7.auto_381') : 'Bật sang trái'), value: 'bounceInRight' },
+      { label: (typeof window !== 'undefined' && window['$t'] ? window['$t']('phase7.auto_165') : 'bật lên'), value: 'bounceInUp' },
+      { label: (typeof window !== 'undefined' && window['$t'] ? window['$t']('phase7.auto_446') : 'bật xuống'), value: 'bounceInDown' },
+      { label: (typeof window !== 'undefined' && window['$t'] ? window['$t']('phase7.auto_500') : 'Tốc độ ánh sáng đi vào từ bên phải'), value: 'lightSpeedInRight' },
+      { label: (typeof window !== 'undefined' && window['$t'] ? window['$t']('phase7.auto_140') : 'Tốc độ ánh sáng đi vào từ bên trái'), value: 'lightSpeedInLeft' },
+      { label: (typeof window !== 'undefined' && window['$t'] ? window['$t']('phase7.auto_405') : 'Tốc độ ánh sáng thoát ra từ bên phải'), value: 'lightSpeedOutRight' },
+      { label: (typeof window !== 'undefined' && window['$t'] ? window['$t']('phase7.auto_269') : 'Tốc độ ánh sáng thoát ra từ bên trái'), value: 'lightSpeedOutLeft' },
+      { label: (typeof window !== 'undefined' && window['$t'] ? window['$t']('phase7.auto_273') : 'Xoay trục Y'), value: 'flip' },
+      { label: (typeof window !== 'undefined' && window['$t'] ? window['$t']('phase7.auto_28') : 'Xoay trục trung tâm X'), value: 'flipInX' },
+      { label: (typeof window !== 'undefined' && window['$t'] ? window['$t']('phase7.auto_281') : 'Xoay trục trung tâm Y'), value: 'flipInY' },
+      { label: (typeof window !== 'undefined' && window['$t'] ? window['$t']('phase7.auto_418') : 'Xoay bán kính dài bên trái'), value: 'rollIn' },
+      { label: (typeof window !== 'undefined' && window['$t'] ? window['$t']('phase7.auto_380') : 'Nhập từ nhỏ đến lớn'), value: 'zoomIn' },
+      { label: (typeof window !== 'undefined' && window['$t'] ? window['$t']('phase7.auto_108') : 'Rẽ trái để vào'), value: 'zoomInLeft' },
+      { label: (typeof window !== 'undefined' && window['$t'] ? window['$t']('phase7.auto_286') : 'Phóng to quyền nhập'), value: 'zoomInRight' },
+      { label: (typeof window !== 'undefined' && window['$t'] ? window['$t']('phase7.auto_462') : 'Đi lên và lớn hơn và đi vào'), value: 'zoomInUp' },
+      { label: (typeof window !== 'undefined' && window['$t'] ? window['$t']('phase7.auto_415') : 'Trở nên lớn hơn và đi vào'), value: 'zoomInDown' },
+      { label: (typeof window !== 'undefined' && window['$t'] ? window['$t']('phase7.auto_82') : 'Trượt sang phải để mở rộng'), value: 'slideInLeft' },
+      { label: (typeof window !== 'undefined' && window['$t'] ? window['$t']('phase7.auto_59') : 'Trượt sang trái để mở rộng'), value: 'slideInRight' },
+      { label: (typeof window !== 'undefined' && window['$t'] ? window['$t']('phase7.auto_460') : 'Trượt lên để mở rộng'), value: 'slideInUp' },
+      { label: (typeof window !== 'undefined' && window['$t'] ? window['$t']('phase7.auto_256') : 'Trượt xuống để mở rộng'), value: 'slideInDown' }
+    ]
+  }
+]

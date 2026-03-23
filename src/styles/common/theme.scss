@@ -1,0 +1,10 @@
+@import './mixins/config.scss';
+@import './_dark.scss';
+@import './_light.scss';
+
+$themes: (
+  // trắng sáng
+  #{$theme-light}: $light,
+  // tối tăm
+  #{$theme-dark}: $dark
+);

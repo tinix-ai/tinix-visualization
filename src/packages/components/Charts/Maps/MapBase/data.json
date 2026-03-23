@@ -1,0 +1,105 @@
+{
+  "point": [
+    {
+      "name": "Bắc Kinh",
+      "value": [116.405285, 39.904989, 200]
+    },
+    {
+      "name": "Trịnh Châu",
+      "value": [113.665412, 34.757975, 888]
+    },
+    {
+      "name": "Thanh Hải",
+      "value": [101.778916, 36.623178, 666]
+    },
+    {
+      "name": "Khu tự trị Ninh Hạ Hồi",
+      "value": [106.278179, 38.46637, 66]
+    },
+    {
+      "name": "Thành phố Cáp Nhĩ Tân",
+      "value": [126.642464, 45.756967, 101]
+    }
+  ],
+  "line": [
+    {
+      "coords": [
+        [113.665412, 34.757975],
+        [116.405285, 39.904989]
+      ]
+    },
+    {
+      "coords": [
+        [101.778916, 36.623178],
+        [116.405285, 39.904989]
+      ]
+    },
+    {
+      "coords": [
+        [106.278179, 38.46637],
+        [116.405285, 39.904989]
+      ]
+    },
+    {
+      "coords": [
+        [126.642464, 45.756967],
+        [116.405285, 39.904989]
+      ]
+    }
+  ],
+  "map": [
+    {
+      "name": "Bắc Kinh",
+      "value": 666
+    },
+    {
+      "name": "tỉnh Hà Bắc",
+      "value": 98
+    },
+
+    {
+      "name": "Tỉnh Giang Tô",
+      "value": 300
+    },
+    {
+      "name": "Tỉnh Phúc Kiến",
+      "value": 1199
+    },
+    {
+      "name": "Tỉnh Sơn Đông",
+      "value": 86
+    },
+    {
+      "name": "Tỉnh Hà Nam",
+      "value": 850
+    },
+    {
+      "name": "tỉnh hồ bắc",
+      "value": 84
+    },
+    {
+      "name": "Khu tự trị dân tộc Choang Quảng Tây",
+      "value": 81
+    },
+    {
+      "name": "tỉnh Hải Nam",
+      "value": 900
+    },
+    {
+      "name": "Tỉnh Thanh Hải",
+      "value": 800
+    },
+    {
+      "name": "Khu tự trị Duy Ngô Nhĩ Tân Cương",
+      "value": 7
+    }
+  ],
+  "pieces": [
+    { "gte": 1000, "label": ">1000" },
+    { "gte": 600, "lte": 999, "label": "600-999" },
+    { "gte": 200, "lte": 599, "label": "200-599" },
+    { "gte": 50, "lte": 199, "label": "49-199" },
+    { "gte": 10, "lte": 49, "label": "10-49" },
+    { "lte": 9, "label": "<9" }
+  ]
+}

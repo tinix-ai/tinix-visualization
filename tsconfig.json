@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "strict": true,
+    "jsx": "preserve",
+    "baseUrl": ".",
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "lib": ["es6", "ESNext", "dom"],
+    "types": ["vite/client"],
+    "paths": {
+      "@/*": ["src/*"],
+      "/#/*": ["types/*"]
+    },
+    "noImplicitAny": true, //Không được phépany
+    // "strictNullChecks": true, //Không được phépnull
+    "noImplicitThis": true //Không được phép đithisThuộc tính treo phía trên
+  },
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "types/**/*", "src/api/mock/vchart/bar.js"],
+  "exclude": ["node_modules", "dist", "**/*.js"]
+}

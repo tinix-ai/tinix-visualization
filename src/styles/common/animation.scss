@@ -1,0 +1,68 @@
+// nhấp nháy
+.go-animation-twinkle {
+  animation: twinkle 2s ease;
+  animation-iteration-count: infinite;
+  opacity: 1;
+}
+@keyframes twinkle {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+// Dần dần trong và ngoài
+.v-modal-enter {
+  animation: v-modal-in 0.2s ease;
+}
+
+.v-modal-leave {
+  animation: v-modal-out 0.2s ease forwards;
+}
+
+@keyframes v-modal-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes v-modal-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+// Độ dốc
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity .2s ease;
+}
+
+// hoạt hình chuyển động
+.list-complete-item {
+  transition: all 1s;
+}
+.list-complete-enter-from,
+.list-complete-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
+}
+.list-complete-leave-active {
+  position: absolute;
+}

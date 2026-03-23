@@ -1,0 +1,87 @@
+// màu sắc
+$--color-red: #fc625d;
+$--color-warn: #fcbc40;
+$--color-success: #34c749;
+
+// Từ
+$--color-text: #1d2129;
+$--color-text-1: #4e5969;
+$--color-text-2: #86909c;
+$--color-text-3: #c9cdd4;
+$--color-text-4: #f2f3f5;
+
+//.mt-1 => margin top
+//spacing
+$spacing-base-size: 1em;
+
+$spacing-types: (
+  m: margin,
+  p: padding,
+);
+
+$spacing-directions: (
+  t: top,
+  r: right,
+  b: bottom,
+  l: left,
+);
+
+$spacing-sizes: (
+  0: 0,
+  1: 0.25,
+  2: 0.5,
+  3: 1,
+  4: 1.5,
+  5: 2.5,
+);
+
+// Giá trị làm sáng
+$--light-shalow: 2%;
+
+// Trắng
+$--color-light-bg: #fff;
+$--color-light-bg-1: #fafafc;
+$--color-light-bg-1-shallow: lighten($--color-light-bg-1, $--light-shalow);
+$--color-light-bg-2: #f2f3f5;
+$--color-light-bg-2-shallow: lighten($--color-light-bg-2, $--light-shalow);
+$--color-light-bg-3: #e5e6eb;
+$--color-light-bg-3-shallow: lighten($--color-light-bg-3, $--light-shalow);
+$--color-light-bg-4: #e3e3e4;
+$--color-light-bg-4-shallow: lighten($--color-light-bg-4, $--light-shalow);
+$--color-light-bg-5: #bebebe;
+$--color-light-bg-5-shallow: lighten($--color-light-bg-5, $--light-shalow);
+
+// giá trị làm tối
+$--dark-shalow: 2%;
+
+// đen
+$--color-dark-black: #000;
+$--color-dark-bg-1: #18181c;
+$--color-dark-bg-1-shallow: darken($--color-dark-bg-1, $--dark-shalow);
+$--color-dark-bg-2: #232324;
+$--color-dark-bg-2-shallow: darken($--color-dark-bg-2, $--dark-shalow);
+$--color-dark-bg-3: #2a2a2b;
+$--color-dark-bg-3-shallow: darken($--color-dark-bg-3, $--dark-shalow);
+$--color-dark-bg-4: #313132;
+$--color-dark-bg-4-shallow: darken($--color-dark-bg-4, $--dark-shalow);
+$--color-dark-bg-5: #373739;
+$--color-dark-bg-5-shallow: darken($--color-dark-bg-5, $--dark-shalow);
+
+// chiều rộng tối đa
+$--max-width: 1920px;
+// khoảng cách hàng đầu
+$--header-height: 60px;
+// khoảng cách đáy
+$--footer-height: 50px;
+// mơ hồ
+$--filter-blur-base: blur(20px);
+// kính mờ
+$--filter-color-login-dark: rgba(35,35,36, 0.7);
+$--filter-color-login-dark-shallow: rgba(35,35,36, 0.3);
+$--filter-color-login-light: rgba(240, 240, 240, 0.7);
+$--filter-color-login-light-shallow: rgba(240, 240, 240, 0.3);
+
+// khung
+$--border-radius-base: 8px;
+// bóng tối
+$--border-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
