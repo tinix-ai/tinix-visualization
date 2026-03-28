@@ -86,12 +86,11 @@ export const translateStr = (target: string | object) => {
   if (typeof target === 'string') {
     if (target.startsWith(prefix)) {
       const funcStr = target.split(prefix)[1]
-      let result;
       try {
         result = new Function(`${funcStr}`)()
       } catch (error) {
-        console.log(error)
-        window['$message'].error((typeof window !== 'undefined' && window['$t'] ? window['$t']('phase7.auto_297') : 'lỗi phân tích nội dung js!'))
+        console.error('JS Parsing Error in translateStr:', error, 'Source:', funcStr)
+        window['$message']?.error((typeof window !== 'undefined' && window['$t'] ? window['$t']('phase7.auto_297') : 'Lỗi phân tích nội dung JS!'))
       }
       return result
     } else {
@@ -114,7 +113,8 @@ export const translateStr = (target: string | object) => {
  */
 export const customizeHttp = (targetParams: RequestConfigType, globalParams: RequestGlobalConfigType) => {
   if (!targetParams || !globalParams) {
-    return
+    console.warn('customizeHttp: Missing targetParams or globalParams');
+    return Promise.reject(new Error('Missing configuration'));
   }
   // tình hình chung
   const {
@@ -146,7 +146,8 @@ export const customizeHttp = (targetParams: RequestConfigType, globalParams: Req
   if (requestDataType === RequestDataTypeEnum.STATIC) return
 
   if (!requestUrl) {
-    return
+    console.warn('customizeHttp: requestUrl is empty');
+    return Promise.reject(new Error('Missing requestUrl'));
   }
 
   // tiêu đề xử lý
@@ -211,16 +212,31 @@ export const customizeHttp = (targetParams: RequestConfigType, globalParams: Req
   }
 
   try {
-    const url =  (new Function("return `" + `${requestOriginUrl}${requestUrl}`.trim() + "`"))();
+    const fullRequestUrl = `${requestOriginUrl || ''}${requestUrl}`.trim();
+    const url =  (new Function("return `" + fullRequestUrl + "`"))();
+    
+    if (import.meta.env.DEV) {
+       console.log(`[HTTP Request] ${requestHttpType.toUpperCase()}: ${url}`, { data, params, headers });
+    }
+
     return axiosInstance({
         url,
         method: requestHttpType,
         data,
         params,
         headers
-    })
+    }).catch(err => {
+        // Enrich error for UI diagnostics
+        if (err.response) {
+            err.diagnostic = `[${err.response.status}] ${url}`;
+        } else {
+            err.diagnostic = url;
+        }
+        throw err;
+    });
   } catch (error) {
-    console.log(error)
-    window['$message'].error((typeof window !== 'undefined' && window['$t'] ? window['$t']('phase7.auto_21') : 'Định dạng địa chỉ URL không chính xác!'))
+    console.error('URL Transformation Error:', error);
+    window['$message']?.error((typeof window !== 'undefined' && windowAny['$t'] ? windowAny['$t']('phase7.auto_21') : 'Định dạng địa chỉ URL không chính xác!'))
+    throw error;
   }
 }

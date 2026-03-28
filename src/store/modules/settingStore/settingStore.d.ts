@@ -17,7 +17,9 @@ export enum SettingStoreEnums {
   // Trạng thái thanh công cụ biểu đồ (trạng thái công cụ bên)
   CHART_TOOLS_STATUS = 'chartToolsStatus',
   // Trạng thái thanh công cụ biểu đồ bị ẩn
-  CHART_TOOLS_STATUS_HIDE = 'chartToolsStatusHide'
+  CHART_TOOLS_STATUS_HIDE = 'chartToolsStatusHide',
+  // Có thu gọn danh mục biểu mẫu ở bên trái trang kéo và thả hay không
+  HIDE_PACKAGE_CATEGORY = 'hidePackageCategory'
 }
 
 export interface SettingStoreType {
@@ -28,4 +30,5 @@ export interface SettingStoreType {
   [SettingStoreEnums.CHART_ALIGN_RANGE]: number
   [SettingStoreEnums.CHART_TOOLS_STATUS]: ToolsStatusEnum
   [SettingStoreEnums.CHART_TOOLS_STATUS_HIDE]: boolean
+  [SettingStoreEnums.HIDE_PACKAGE_CATEGORY]: boolean
 }

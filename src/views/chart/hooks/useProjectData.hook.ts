@@ -83,18 +83,6 @@ export const useProjectData = () => {
         storageList = await getProjectsApi()
       }
 
-      // Migration fallback: Nếu không thấy trên server, thử LocalStorage
-      if (!storageList || (Array.isArray(storageList) && !storageList.find((item: any) => item.id === idStr))) {
-        const localProjects = getLocalStorage(StorageEnum.GO_CHART_STORAGE_LIST)
-        if (localProjects) {
-          const localProject = localProjects.find((item: any) => item.id === idStr)
-          if (localProject) {
-            projectData = localProject
-            await saveProjectApi(localProject) // Đồng bộ lên server ngay lập tức
-          }
-        }
-      }
-
       if (!projectData && storageList && Array.isArray(storageList)) {
         projectData = storageList.find((item: any) => item.id === idStr)
       }

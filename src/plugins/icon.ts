@@ -58,7 +58,6 @@ import {
   Search as SearchIcon,
   ChevronUpOutline as ChevronUpOutlineIcon,
   ChevronDownOutline as ChevronDownOutlineIcon,
-  ChevronForward as ChevronForwardIcon,
   Pulse as PulseIcon,
   Folder as FolderIcon,
   FolderOpen as FolderOpenIcon,
@@ -70,7 +69,12 @@ import {
   Albums as AlbumsIcon,
   Analytics as AnalyticsIcon,
   AirplaneOutline as AirPlaneOutlineIcon,
-  ShieldCheckmarkOutline
+  ShieldCheckmarkOutline as ShieldIcon,
+  PieChartOutline as PieChartIcon,
+  GlobeOutline as GlobeIcon,
+  EllipsisHorizontalOutline as MoreIcon,
+  AppsOutline as AppsIcon,
+  ChevronForward as ChevronForwardIcon
 } from '@vicons/ionicons5'
 
 import {
@@ -81,7 +85,7 @@ import {
   Store as StoreIcon,
   Devices as DevicesIcon,
   ObjectStorage as ObjectStorageIcon,
-  DicomOverlay as DicomOverlayIcon,
+  DicomOverlay as DicomOutlineIcon,
   UpToTop as UpToTopIcon,
   DownToBottom as DownToBottomIcon,
   StackedMove as StackedMoveIcon,
@@ -250,9 +254,14 @@ const ionicons5 = {
   // máy bay
   AirPlaneOutlineIcon,
   // Khiên (Shield)
-  ShieldCheckmarkOutline,
+  ShieldIcon,
   // Ở bên phải
-  ChevronForwardIcon
+  ChevronForwardIcon,
+  // Thêm mới phân loại
+  PieChartIcon,
+  GlobeIcon,
+  MoreIcon,
+  AppsIcon
 }
 
 const carbon = {
@@ -271,7 +280,7 @@ const carbon = {
   // mẫu của tôi
   ObjectStorageIcon,
   // bàn phím
-  DicomOverlayIcon,
+  DicomOutlineIcon,
   // ghim lên trên
   UpToTopIcon,
   // đáy

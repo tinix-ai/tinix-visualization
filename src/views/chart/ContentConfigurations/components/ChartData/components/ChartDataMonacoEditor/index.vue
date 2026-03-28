@@ -1,12 +1,36 @@
 <template>
-  <template v-if="targetData.filter">
-    <n-card>
-      <p><span class="func-keyword">function</span>&nbsp;&nbsp;filter(data, res)&nbsp;&nbsp;{</p>
-      <!-- Thân Body Function -->
-      <div class="go-ml-4">
-        <n-code :code="targetData.filter" language="typescript"></n-code>
-      </div>
-      <p>}</p>
+  <div class="go-chart-data-monaco-editor-container">
+    <div class="go-mb-2">
+       <n-space justify="space-between" align="center">
+         <n-text depth="3" strong>Bộ lọc / Transform</n-text>
+         <n-radio-group v-model:value="viewMode" size="small" name="mode-toggle">
+            <n-radio-button value="visual">Giao diện</n-radio-button>
+            <n-radio-button value="code">Mã nguồn</n-radio-button>
+          </n-radio-group>
+       </n-space>
+    </div>
+    
+    <div v-if="fetchError" class="go-mb-3 go-px-1">
+       <n-alert title="Nguồn dữ liệu không khả dụng" type="warning" :bordered="false" size="small">
+         {{ fetchError }}
+       </n-alert>
+    </div>
+    
+    <n-card v-if="targetData.filter || viewMode === 'visual'" size="small" :bordered="true">
+      <template v-if="viewMode === 'visual'">
+        <chart-data-transform-ui v-model:modelValue="targetData.filter" :sourceData="sourceData" />
+      </template>
+
+      <template v-else>
+        <div class="code-box">
+          <p><span class="func-keyword">function</span>&nbsp;&nbsp;filter(data, res)&nbsp;&nbsp;{</p>
+          <div class="go-ml-4">
+            <n-code :code="targetData.filter || 'return data'" language="typescript"></n-code>
+          </div>
+          <p>}</p>
+        </div>
+      </template>
+
       <template #footer>
         <n-space justify="end">
           <n-button type="primary" tertiary size="small" @click="addFilter">
@@ -15,25 +39,26 @@
                 <filter-edit-icon />
               </n-icon>
             </template>
-            Sửa (Edit)
+            Chỉnh sửa nâng cao (Advanced Edit)
           </n-button>
-          <n-button tertiary size="small" @click="delFilter"> {{ $t('phase7.auto_87') }} </n-button>
+          <n-button v-if="targetData.filter" tertiary size="small" @click="delFilter"> {{ $t('phase7.auto_87') }} </n-button>
         </n-space>
       </template>
     </n-card>
-  </template>
-  <template v-else>
-    <n-button class="go-ml-3" @click="addFilter">
-      <template #icon>
-        <n-icon>
-          <filter-icon />
-        </n-icon>
-      </template>
-      Thêm+lọc
-    </n-button>
-  </template>
 
-  <!-- Bảng Tooltip -->
+    <template v-else>
+      <n-button class="go-ml-3" @click="viewMode = 'visual'">
+        <template #icon>
+          <n-icon>
+            <filter-icon />
+          </n-icon>
+        </template>
+        Thêm bộ lọc thông minh
+      </n-button>
+    </template>
+  </div>
+
+  <!-- Bảng Tooltip (Advanced Editor) -->
   <n-modal class="go-chart-data-monaco-editor" v-model:show="showModal" :mask-closable="false" :closeOnEsc="false">
     <n-card :bordered="false" role="dialog" size="small" aria-modal="true" style="width: 1000px; height: 600px">
       <template #header>
@@ -59,19 +84,19 @@
               <div class="editor-data-show">
                 <n-space>
                   <n-text depth="3">{{ $t('phase7.auto_160') }}</n-text>
-                  <n-code :code="toString(sourceData?.data) || window['$t']('views_components.auto_112')" language="json" :word-wrap="true"></n-code>
+                  <n-code :code="toString(sourceData?.data) || windowAny['$t']('views_components.auto_112')" language="json" :word-wrap="true"></n-code>
                 </n-space>
               </div>
               <div class="editor-data-show">
                 <n-space>
                   <n-text depth="3">{{ $t('phase7.auto_501') }}</n-text>
-                  <n-code :code="toString(sourceData) || window['$t']('views_components.auto_112')" language="json" :word-wrap="true"></n-code>
+                  <n-code :code="toString(sourceData) || windowAny['$t']('views_components.auto_112')" language="json" :word-wrap="true"></n-code>
                 </n-space>
               </div>
               <div class="editor-data-show">
                 <n-space>
                   <n-text depth="3">{{ $t('phase7.auto_154') }}</n-text>
-                  <n-code :code="filterRes || window['$t']('views_components.auto_112')" language="json" :word-wrap="true"></n-code>
+                  <n-code :code="filterRes || windowAny['$t']('views_components.auto_112')" language="json" :word-wrap="true"></n-code>
                 </n-space>
               </div>
             </n-space>
@@ -101,19 +126,20 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed, watch, toRef, toRefs, toRaw, reactive } from 'vue'
+import { ref, computed, watch, toRef, toRefs, toRaw, reactive, onMounted } from 'vue'
 import { useTargetData } from '../../../hooks/useTargetData.hook'
 import { MonacoEditor } from '@/components/Pages/MonacoEditor'
 import { icon } from '@/plugins'
 import { goDialog, toString } from '@/utils'
 import { customizeHttp } from '@/api/http'
 import cloneDeep from 'lodash/cloneDeep'
+import ChartDataTransformUi from './components/ChartDataTransformUi.vue'
 
 const { DocumentTextIcon } = icon.ionicons5
 const { FilterIcon, FilterEditIcon } = icon.carbon
 const { targetData, chartEditStore } = useTargetData()
-const { requestDataType } = toRefs(targetData.value.request)
-const { requestOriginUrl } = toRefs(chartEditStore.getRequestGlobalConfig)
+
+const windowAny = window as any
 
 // được kiểm soátBảng Tooltip
 const showModal = ref(false)
@@ -122,20 +148,45 @@ const filter = ref(targetData.value.filter || `return data`)
 // cờ lỗi bộ lọc
 const errorFlag = ref(false)
 // Mục tiêuStatic (Cứng)/giao diệnDữ liệu
-const sourceData = ref<any>('')
+const sourceData = ref<any>(null)
+// Lỗi fetch dữ liệu
+const fetchError = ref<string | null>(null)
+
+// Chế độ xem: visual | code - MẶC ĐỊNH LUÔN LÀ VISUAL
+// Chế độ xem: visual | code
+const viewMode = ref<'visual' | 'code'>('visual')
 
 // Dynamic (Động)LấyDữ liệu
 const fetchTargetData = async () => {
   try {
     const res = await customizeHttp(toRaw(targetData.value.request), toRaw(chartEditStore.getRequestGlobalConfig))
-    if (res) {
-      sourceData.value = res
-      return
+    if (res?.data) {
+       sourceData.value = res.data
+       fetchError.value = ""
+    } else {
+       // Fallback to existing chart data if remote is empty
+       if (targetData.value.option.dataset) {
+         sourceData.value = targetData.value.option.dataset
+         fetchError.value = "Sử dụng dữ liệu hiện có (Không thể tải mới)"
+       } else {
+         fetchError.value = windowAny['$t'] ? windowAny['$t']('phase7.auto_14') : "Không thể tải nguồn dữ liệu. Hãy kiểm tra lại kết nối API."
+       }
     }
-    window['$message'].warning(window['$t']('views_components.auto_108'))
-  } catch (error) {
-    console.error(error);
-    window['$message'].warning(window['$t']('views_components.auto_104'))
+  } catch (error: any) {
+    console.error('[Transformer Fetch Error]', error);
+    
+    // Provide detailed diagnostic message
+    const diagnostic = error.diagnostic ? ` (${error.diagnostic})` : ''
+    
+    if (targetData.value.option.dataset) {
+      sourceData.value = targetData.value.option.dataset
+      fetchError.value = `Nguồn 404 - Đang hiển thị dữ liệu cục bộ.${diagnostic}`
+    } else if (error?.response?.status === 404) {
+      fetchError.value = `Nguồn dữ liệu này không tồn tại hoặc đã bị xóa (404).${diagnostic}`
+    } else {
+      const defaultMsg = windowAny['$t'] ? windowAny['$t']('phase7.auto_14') : "Không thể tải nguồn dữ liệu. Hãy kiểm tra lại kết nối API."
+      fetchError.value = `${defaultMsg}${diagnostic}`
+    }
   }
 }
 
@@ -151,7 +202,7 @@ const filterRes = computed(() => {
   } catch (error) {
     // eslint-disable-next-line vue/no-side-effects-in-computed-properties
     errorFlag.value = true
-    return window['$t']('phase7.auto_1')
+    return windowAny['$t']('phase7.auto_1')
   }
 })
 
@@ -163,7 +214,7 @@ const addFilter = () => {
 // {{ $t('phase7.auto_87') }}lọc
 const delFilter = () => {
   goDialog({
-    message: window['$t']('views_components.auto_148'),
+    message: windowAny['$t']('views_components.auto_148'),
     onPositiveCallback: () => {
       targetData.value.filter = undefined
     }
@@ -178,27 +229,52 @@ const closeFilter = () => {
 // Thêm+lọc
 const saveFilter = () => {
   if (errorFlag.value) {
-    window['$message'].error(window['$t']('views_components.auto_147'))
+    windowAny['$message'].error(windowAny['$t']('views_components.auto_147'))
     return
   }
   targetData.value.filter = filter.value
   closeFilter()
 }
 
-watch(
-  () => showModal.value,
-  (newData: boolean) => {
-    if (newData) {
-      fetchTargetData()
-      filter.value = targetData.value.filter || `return data`
-    }
-  }
-)
+// Watch switch chart
+watch(() => targetData.value.id, () => {
+   fetchTargetData()
+   viewMode.value = 'visual' // Luôn reset về visual khi đổi biểu đồ
+}, { immediate: true })
+
 </script>
 
 <style lang="scss" scoped>
 .func-keyword {
   color: #b478cf;
+}
+.code-box {
+  padding: 10px;
+  background-color: rgba(0,0,0,0.2);
+  border-radius: 4px;
+}
+@include go('chart-data-monaco-editor') {
+  &.n-card.n-modal,
+  .n-card {
+    @extend .go-background-filter;
+  }
+  .editor-data-show {
+    @include fetch-bg-color('filter-color');
+    width: 420px;
+    padding: 20px;
+    border-radius: 5px;
+  }
+}
+</style>
+
+<style lang="scss" scoped>
+.func-keyword {
+  color: #b478cf;
+}
+.code-box {
+  padding: 10px;
+  background-color: rgba(0,0,0,0.2);
+  border-radius: 4px;
 }
 @include go('chart-data-monaco-editor') {
   &.n-card.n-modal,

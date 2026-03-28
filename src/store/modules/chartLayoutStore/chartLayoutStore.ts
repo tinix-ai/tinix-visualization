@@ -4,8 +4,6 @@ import { setLocalStorage, getLocalStorage } from '@/utils'
 import { StorageEnum } from '@/enums/storageEnum'
 import { useChartEditStore } from '@/store/modules/chartEditStore/chartEditStore'
 
-const chartEditStore = useChartEditStore()
-
 const { GO_CHART_LAYOUT_STORE } = StorageEnum
 
 const storageChartLayout: Partial<ChartLayoutType> = getLocalStorage(GO_CHART_LAYOUT_STORE)
@@ -70,6 +68,7 @@ export const useChartLayoutStore = defineStore({
       // Tính toán lại tỷ lệ vùng kéo
       if (computedScale) {
         setTimeout(() => {
+          const chartEditStore = useChartEditStore()
           chartEditStore.computedScale()
         }, 500)
       }

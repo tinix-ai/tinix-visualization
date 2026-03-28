@@ -139,6 +139,9 @@ async function suggestCharts(confirmedSchema) {
   YÊU CẦU:
   - Gợi ý từ 4 đến 10 biểu đồ tùy theo độ đa dạng của dữ liệu.
   - CÁC LOẠI BIỂU ĐỒ ĐƯỢC PHÉP: "Bar", "Line", "Pie", "Table", "Map", "Radar", "Funnel", "Heatmap", "TreeMap", "Scatter".
+  - HƯỚNG DẪN BỐ CỤC (Layout):
+    + "w" (chiều rộng): từ 4 đến 12 (lưới 12 cột). Bar/Line thường là 6-12, Pie/Radar thường là 4-6, Table nên là 12.
+    + "h" (chiều cao): từ 300 đến 600.
   - HƯỚNG DẪN CHỌN:
     + "Radar": Khi muốn so sánh nhiều thuộc tính (metrics) của cùng một đối tượng.
     + "Funnel": Khi dữ liệu có tính chất quy trình, giai đoạn.
@@ -147,6 +150,9 @@ async function suggestCharts(confirmedSchema) {
     + "Scatter": Khi muốn thể hiện tương quan giữa 2 cột số liệu (mapping.x và mapping.y đều là metric).
     + "Map": Khi có cột về địa lý.
     + "Pie": Khi so sánh thành phần/tỷ lệ (tối đa 6-8 phần tử).
+  - CHỈ SỐ ẢO (Virtual Metrics):
+    + Nếu cần một cột số liệu không có sẵn (ví dụ: Lợi nhuận = Doanh thu - Chi phí), hãy gợi ý nó.
+    + Khi dùng chỉ số ảo, thêm thuộc tính 'virtual: true' và 'formula: \"row[\'Doanh thu\'] - row[\'Chi phí\']\"' vào trong chart object.
   - Mỗi biểu đồ phải mapping đúng tên cột từ Schema (case-sensitive, chính xác từng ký tự).
   - mapping.x là cột phân loại/địa điểm (dimension), mapping.y là cột số liệu (metric).
 Schema: ${JSON.stringify(confirmedSchema)}
@@ -155,7 +161,22 @@ Danh mục biểu đồ: ${JSON.stringify(TINIX_CATALOG.charts)}
 Themes: ${JSON.stringify(TINIX_CATALOG.themes)}
 
 Trả về JSON duy nhất (KHÔNG giải thích, KHÔNG markdown, KHÔNG thẻ think):
-{"suggestedTheme":"tên theme","charts":[{"id":"1","title":"Tiêu đề","chartType":"Bar","selected":true,"reason":"Lý do phân tích chi tiết (2-3 câu)","mapping":{"x":"tên_cột_dimension","y":"tên_cột_metric"}}]}
+{
+  "suggestedTheme": "tên theme",
+  "executiveSummary": "Tóm tắt 1-3 câu về ý nghĩa quan trọng nhất của tập dữ liệu này.",
+  "charts": [
+    {
+      "id": "1",
+      "title": "Tiêu đề",
+      "chartType": "Bar",
+      "w": 6,
+      "h": 400,
+      "selected": true,
+      "reason": "Lý do phân tích chi tiết (2-3 câu)",
+      "mapping": {"x": "tên_cột_dimension", "y": "tên_cột_metric"}
+    }
+  ]
+}
 
 Chỉ trả về JSON thuần.`;
 

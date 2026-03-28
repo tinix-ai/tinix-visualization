@@ -29,8 +29,8 @@ import {
   EditCanvasConfigType
 } from './chartEditStore.d'
 
-const chartHistoryStore = useChartHistoryStore()
-const settingStore = useSettingStore()
+// const chartHistoryStore = useChartHistoryStore()
+// const settingStore = useSettingStore()
 
 // Chỉnh sửa nội dung khu vực
 export const useChartEditStore = defineStore({
@@ -316,6 +316,7 @@ export const useChartEditStore = defineStore({
         return
       }
       if (isHistory) {
+        const chartHistoryStore = useChartHistoryStore()
         chartHistoryStore.createAddHistory([componentInstance])
       }
       if (isHead) {
@@ -340,7 +341,7 @@ export const useChartEditStore = defineStore({
             this.componentList.splice(index, 1)
           }
         })
-        isHistory && chartHistoryStore.createDeleteHistory(history)
+        isHistory && useChartHistoryStore().createDeleteHistory(history)
         loadingFinish()
         return
       } catch (value) {
@@ -367,7 +368,7 @@ export const useChartEditStore = defineStore({
     },
     // * Linh kiện di động
     moveComponentList(item: Array<CreateComponentType | CreateComponentGroupType>) {
-      chartHistoryStore.createMoveHistory(item)
+      useChartHistoryStore().createMoveHistory(item)
     },
     // * Cập nhật giá trị của một mục trong danh sách thành phần
     updateComponentList(index: number, newData: CreateComponentType | CreateComponentGroupType) {
@@ -412,7 +413,7 @@ export const useChartEditStore = defineStore({
 
           // Lịch sử
           if (isHistory) {
-            chartHistoryStore.createLayerHistory(
+            useChartHistoryStore().createLayerHistory(
               [setIndex(targetData, index)],
               isEnd ? HistoryActionTypeEnum.BOTTOM : HistoryActionTypeEnum.TOP
             )
@@ -463,7 +464,7 @@ export const useChartEditStore = defineStore({
 
           // Lịch sử
           if (isHistory) {
-            chartHistoryStore.createLayerHistory(
+            useChartHistoryStore().createLayerHistory(
               [targetItem],
               isDown ? HistoryActionTypeEnum.DOWN : HistoryActionTypeEnum.UP
             )
@@ -688,6 +689,7 @@ export const useChartEditStore = defineStore({
     setBack() {
       try {
         loadingStart()
+        const chartHistoryStore = useChartHistoryStore()
         const targetData = chartHistoryStore.backAction()
         if (!targetData) {
           loadingFinish()
@@ -703,6 +705,7 @@ export const useChartEditStore = defineStore({
     setForward() {
       try {
         loadingStart()
+        const chartHistoryStore = useChartHistoryStore()
         const targetData = chartHistoryStore.forwardAction()
         if (!targetData) {
           loadingFinish()
@@ -719,6 +722,7 @@ export const useChartEditStore = defineStore({
       const index = this.fetchTargetIndex()
       if (index === -1) return
       const attr = this.getComponentList[index].attr
+      const settingStore = useSettingStore()
       const distance = settingStore.getChartMoveDistance
       switch (keyboardValue) {
         case MenuEnum.ARROW_UP:
@@ -799,7 +803,7 @@ export const useChartEditStore = defineStore({
         })
 
         // Trước khi sửa đổi dữ liệu gốc, hãy ghi lại dữ liệu đó trước
-        if (isHistory) chartHistoryStore.createGroupHistory(historyList)
+        if (isHistory) useChartHistoryStore().createGroupHistory(historyList)
 
         // Thiết lập vị trí của các thành phần con
         targetList.forEach((item: CreateComponentType) => {
@@ -837,7 +841,7 @@ export const useChartEditStore = defineStore({
           if (!targetGroup.isGroup) return
 
           // Ghi dữ liệu
-          if (isHistory) chartHistoryStore.createUnGroupHistory(cloneDeep([targetGroup]))
+          if (isHistory) useChartHistoryStore().createUnGroupHistory(cloneDeep([targetGroup]))
 
           // Tách các thành phần và khôi phục thuộc tính vị trí
           targetGroup.groupList.forEach(item => {
@@ -885,8 +889,8 @@ export const useChartEditStore = defineStore({
           // Lịch sử
           if (isHistory) {
             status
-              ? chartHistoryStore.createLockHistory([targetItem])
-              : chartHistoryStore.createUnLockHistory([targetItem])
+              ? useChartHistoryStore().createLockHistory([targetItem])
+              : useChartHistoryStore().createUnLockHistory([targetItem])
           }
           this.updateComponentList(index, targetItem)
           // Khóa để thêm hiệu ứng mất nét
@@ -918,8 +922,8 @@ export const useChartEditStore = defineStore({
           // Lịch sử
           if (isHistory) {
             status
-              ? chartHistoryStore.createHideHistory([targetItem])
-              : chartHistoryStore.createShowHistory([targetItem])
+              ? useChartHistoryStore().createHideHistory([targetItem])
+              : useChartHistoryStore().createShowHistory([targetItem])
           }
           this.updateComponentList(index, targetItem)
           loadingFinish()

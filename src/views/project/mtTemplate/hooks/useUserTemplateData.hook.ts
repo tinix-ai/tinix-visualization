@@ -17,11 +17,7 @@ export const useUserTemplateData = () => {
   const getUserTemplateList = async (): Promise<UserTemplateType[]> => {
     // Thử lấy từ Server SQLite trước
     const templates = await getUserTemplatesApi()
-    if (templates) return templates
-
-    // Migration Fallback: LocalStorage
-    const localTemplates = getLocalStorage(StorageEnum.GO_USER_TEMPLATE_STORAGE) || []
-    return localTemplates
+    return templates || []
   }
 
   /**

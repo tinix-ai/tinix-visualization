@@ -1,7 +1,7 @@
 <template>
   <div class="go-setting-item" :style="{ width: width + 'px' }">
-    <slot ></slot>
     <n-text class="name" depth="3">{{ name }}</n-text>
+    <slot ></slot>
   </div>
 </template>
 
@@ -24,9 +24,10 @@ defineProps({
   flex-direction: column;
   min-width: 110px;
   text-align: start;
-  margin-bottom: 5px;
+  margin-bottom: 12px;
   .name {
-    margin-top: 2px;
+    margin-bottom: 4px;
+    font-size: 12px;
   }
 }
 </style>

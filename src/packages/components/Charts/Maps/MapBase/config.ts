@@ -10,8 +10,7 @@ export const includes = []
 export const option = {
   dataset: dataJson,
   mapRegion: {
-    adcode: 'china',
-    showHainanIsLands: false,
+    adcode: 'world',
     enter: false,
     backSize: 20,
     backColor: '#ffffff'
@@ -95,7 +94,7 @@ export const option = {
     {
       name: (typeof window !== 'undefined' && window['$t'] ? window['$t']('phase7.auto_275') : 'khu vực'),
       type: 'map',
-      map: 'china',
+      map: 'world',
       data: [],
       selectedMode: false,
       zoom: 1,

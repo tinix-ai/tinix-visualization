@@ -65,8 +65,10 @@ const addConfig = {
           uploadFile((e: UploadCompletedEventType) => {
             // VàTrênĐịnh cấu hình các thành phần tương tự như các thành phần đã tải lên, thay đổi tiêu đề, hình ảnh và cài đặt trướcDữ liệu
             const packagesStore = usePackagesStore()
-            const newPhoto = {
+            const photoId = `photo-${new Date().getTime()}-${Math.random().toString(36).substr(2, 9)}`
+            const newPhoto: any = {
               ...ImageConfig,
+              id: photoId,
               category: ChatCategoryEnum.PRIVATE,
               categoryName: ChatCategoryEnumName.PRIVATE,
               package: PackagesCategoryEnum.PHOTOS,
@@ -76,10 +78,7 @@ const addConfig = {
               dataset: e.url,
               redirectComponent: `${ImageConfig.package}/${ImageConfig.category}/${ImageConfig.key}` // Nhảy đường dẫn thành phầnRule Format：packageName/categoryName/componentKey
             }
-            userPhotosList.unshift(newPhoto)
-            // Lưu trữ tại địa phươngDữ liệuở giữa
-            setLocalStorage(StoreKey, userPhotosList)
-            // Chèn vàoTrêntrước nút tải lênVị trí
+            // Không còn lưu LocalStorage ở đây, store sẽ tự xử lý sync lên server
             packagesStore.addPhotos(newPhoto, 1)
           })
         }

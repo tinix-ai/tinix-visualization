@@ -1,81 +1,73 @@
 <template>
   <div class="go-chart-configurations-data-ajax">
-    <n-card class="n-card-shallow">
-      <setting-item-box :name="$t('views_components.auto_100')"
->
-        <setting-item :name="$t('views_components.auto_103')"
->
-          <n-tag :bordered="false" type="primary" style="border-radius: 5px">
-            {{ targetData.request.requestContentType === RequestContentTypeEnum.DEFAULT ? window['$t']('views_components.auto_111') : window['$t']('views_components.auto_101') }}
-          </n-tag>
-        </setting-item>
-
-        <setting-item :name="$t('views_components.auto_106')"
->
-          <n-input size="small" :placeholder="targetData.request.requestHttpType || window['$t']('views_components.auto_112')" :disabled="true"></n-input>
-        </setting-item>
-
-        <setting-item :name="$t('views_components.auto_105')"
->
-          <n-input size="small" :placeholder="`${targetData.request.requestInterval || window['$t']('views_components.auto_112')}`" :disabled="true">
-            <template #suffix> {{ SelectHttpTimeNameObj[targetData.request.requestIntervalUnit] }} </template>
-          </n-input>
-        </setting-item>
-
-        <setting-item :name="$t('views_components.auto_102')"
->
-          <n-input size="small" :placeholder="`${GlobalRequestInterval || window['$t']('views_components.auto_112')} `" :disabled="true">
-            <template #suffix> {{ SelectHttpTimeNameObj[GlobalRequestIntervalUnit] }} </template>
-          </n-input>
-        </setting-item>
-      </setting-item-box>
-
-      <setting-item-box :name="$t('views_components.auto_107')"
- :alone="true">
-        <n-input size="small" :placeholder="requestOriginUrl || window['$t']('views_components.auto_112')" :disabled="true">
-          <template #prefix>
-            <n-icon :component="PulseIcon" />
-          </template>
-        </n-input>
-      </setting-item-box>
-
-      <setting-item-box :name="$t('views_components.auto_110')"
- :alone="true">
-        <n-input size="small" :placeholder="targetData.request.requestUrl || window['$t']('views_components.auto_112')" :disabled="true">
-          <template #prefix>
-            <n-icon :component="FlashIcon" />
-          </template>
-        </n-input>
-      </setting-item-box>
-
-      <div class="edit-text" @click="requestModelHandle">
-        <div class="go-absolute-center">
-          <n-button type="primary" secondary>{{ $t('phase7.auto_138') }}</n-button>
+    <n-card class="n-card-shallow" size="small">
+      <n-space vertical :size="12">
+        <!-- Dataset Info Title -->
+        <div class="go-flex-items-center">
+           <n-text strong depth="1" style="font-size: 15px;">{{ $t('views_components.auto_100') }}</n-text>
+           <n-button quaternary size="tiny" type="primary" class="go-ml-auto" @click="requestModelHandle">
+             {{ $t('phase7.auto_138') }}
+           </n-button>
         </div>
-      </div>
+
+        <n-grid :cols="2" :x-gap="12" :y-gap="8">
+          <n-gi>
+            <n-text depth="3">Kiểu nội dung</n-text>
+            <n-tag :bordered="false" type="primary" size="small" style="width: 100%; justify-content: center;">
+              {{ targetData.request.requestContentType === RequestContentTypeEnum.DEFAULT ? windowAny['$t']('views_components.auto_111') : windowAny['$t']('views_components.auto_101') }}
+            </n-tag>
+          </n-gi>
+          <n-gi>
+            <n-text depth="3">Phương thức</n-text>
+            <n-tag :bordered="false" type="info" size="small" style="width: 100%; justify-content: center;">
+              {{ targetData.request.requestHttpType || 'GET' }}
+            </n-tag>
+          </n-gi>
+        </n-grid>
+
+        <div>
+          <n-text depth="3">Địa chỉ giao diện (Cơ sở)</n-text>
+          <n-input size="small" :placeholder="requestOriginUrl || 'Chưa cấu hình'" :disabled="true">
+            <template #prefix>
+              <n-icon :component="PulseIcon" />
+            </template>
+          </n-input>
+        </div>
+
+        <div>
+           <n-text depth="3">Tham số Request URL</n-text>
+           <n-input size="small" :placeholder="targetData.request.requestUrl || 'Chưa cấu hình'" :disabled="true">
+            <template #prefix>
+              <n-icon :component="FlashIcon" />
+            </template>
+          </n-input>
+        </div>
+      </n-space>
     </n-card>
 
-    <setting-item-box :alone="true">
-      <template #name>
-        Kiểm thử
-        <n-tooltip trigger="hover">
-          <template #trigger>
-            <n-icon size="21" :depth="3">
-              <help-outline-icon></help-outline-icon>
+    <div class="go-mt-4">
+      <setting-item-box :alone="true">
+        <template #name>
+          Kiểm thử dữ liệu
+          <n-tooltip trigger="hover">
+            <template #trigger>
+              <n-icon size="18" :depth="3" style="cursor: help;">
+                <help-outline-icon></help-outline-icon>
+              </n-icon>
+            </template>
+            Gửi yêu cầu để lấy dữ liệu thực tế và kiểm tra ánh xạ.
+          </n-tooltip>
+        </template>
+        <n-button type="primary" block secondary @click="sendHandle">
+          <template #icon>
+            <n-icon>
+              <flash-icon />
             </n-icon>
           </template>
-          Mặc định gán Value vào `dataset`
-        </n-tooltip>
-      </template>
-      <n-button type="primary" ghost @click="sendHandle">
-        <template #icon>
-          <n-icon>
-            <flash-icon />
-          </n-icon>
-        </template>
-        gửiReuqest Data
-      </n-button>
-    </setting-item-box>
+          Gửi Request & Cập nhật
+        </n-button>
+      </setting-item-box>
+    </div>
 
     <!-- Dưới cùngDữ liệuXem / Hát -->
     <chart-data-matching-and-show :show="showMatching && !loading" :ajax="true"></chart-data-matching-and-show>
@@ -109,6 +101,8 @@ import { newFunctionHandle } from '@/utils'
 const { HelpOutlineIcon, FlashIcon, PulseIcon } = icon.ionicons5
 const { targetData, chartEditStore } = useTargetData()
 
+const windowAny = window as any
+
 const {
   requestOriginUrl,
   requestInterval: GlobalRequestInterval,
@@ -139,7 +133,7 @@ const sendHandle = async () => {
     if (res) {
       const { data } = res
       if (!data && !targetData.value.filter) {
-        window['$message'].warning(window['$t']('views_components.auto_109'))
+        windowAny['$message'].warning(windowAny['$t']('views_components.auto_109'))
         showMatching.value = true
         return
       }
@@ -147,11 +141,11 @@ const sendHandle = async () => {
       showMatching.value = true
       return
     }
-    window['$message'].warning(window['$t']('views_components.auto_108'))
+    windowAny['$message'].warning(windowAny['$t']('views_components.auto_108'))
   } catch (error) {
     console.error(error);
     loading.value = false
-    window['$message'].warning(window['$t']('views_components.auto_104'))
+    windowAny['$message'].warning(windowAny['$t']('views_components.auto_104'))
   }
 }
 

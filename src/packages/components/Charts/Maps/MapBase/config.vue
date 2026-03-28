@@ -210,15 +210,6 @@
         ></n-input-number>
       </SettingItem>
     </SettingItemBox>
-    <SettingItemBox :name="$t('packages.auto_205')"
- v-if="mapRegion.adcode === 'china'">
-      <SettingItem>
-        <n-checkbox v-model:checked="mapRegion.showHainanIsLands" size="small">{{ $t('phase7.auto_372') }}</n-checkbox>
-      </SettingItem>
-      <SettingItem v-if="seriesList[2]">
-        <n-checkbox v-model:checked="mapRegion.enter" size="small">{{ $t('phase7.auto_145') }}</n-checkbox>
-      </SettingItem>
-    </SettingItemBox>
     <SettingItemBox :name="$t('packages.auto_202')"
  v-if="mapRegion.enter">
       <SettingItem :name="$t('packages.auto_21')"
@@ -348,12 +339,11 @@ import { CollapseItem, SettingItemBox, SettingItem } from '@/components/Pages/Ch
 import { GlobalThemeJsonType } from '@/settings/chartThemes/index'
 import { GlobalSetting } from '@/components/Pages/ChartItemSetting'
 import { ref } from 'vue'
-import mapChinaJson from './mapGeojson/china.json'
 
 const mapRegionOptions = ref([
   {
-    adcode: 'china',
-    name: window['$t']('packages.auto_203')
+    adcode: 'world',
+    name: 'Thế giới (World)'
   },
   {
     adcode: 'vietnam',
@@ -379,14 +369,6 @@ const props = defineProps({
   }
 })
 
-const initMapRegionOptions = () => {
-  mapChinaJson.features.forEach((element: any) => {
-    if (element.properties.name) {
-      mapRegionOptions.value.push({ ...element.properties })
-    }
-  })
-}
-initMapRegionOptions()
 
 const seriesList = computed(() => {
   return props.optionData.series

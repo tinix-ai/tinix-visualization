@@ -68,6 +68,10 @@
           </n-button>
         </n-space>
 
+        <n-alert v-if="executiveSummary" title="Tóm tắt thông điệp từ AI" type="success" :show-icon="true" class="mb-4">
+          {{ executiveSummary }}
+        </n-alert>
+
         <n-grid :cols="3" :x-gap="16" :y-gap="16">
           <n-grid-item v-for="(chart, index) in suggestedCharts" :key="index">
             <n-card 
@@ -162,14 +166,18 @@ const analysisResult = reactive<{ columns: any[], insights: string[] }>({
 })
 
 interface ChartSuggestion {
+  id?: string
   title: string
   chartType: 'Bar' | 'Line' | 'Pie' | 'Map' | 'Gauge' | 'Table' | 'Radar' | 'Funnel' | 'Heatmap' | 'TreeMap' | 'Scatter'
   reason: string
   mapping: { x: string; y: string }
   selected: boolean
+  w?: number
+  h?: number
 }
 
 const suggestedCharts = ref<ChartSuggestion[]>([])
+const executiveSummary = ref('')
 const projectName = ref(`Auto-BI: ${props.dataset?.name || 'Dự án mới'}`)
 const projectTheme = ref('chalk')
 
@@ -317,12 +325,13 @@ const fetchSuggestions = async (force = false) => {
   try {
     const res = await suggestChartsApi(analysisResult)
     if (!res) throw new Error('API failed')
-    // Cập nhật cấu trúc mới: { suggestedTheme, charts }
+    // Cập nhật cấu trúc mới: { suggestedTheme, executiveSummary, charts }
     if (res && res.charts) {
       suggestedCharts.value = res.charts.map((c: any) => ({
         ...c,
         selected: c.selected !== false // Mặc định là true nếu không bị AI tắt
       }))
+      executiveSummary.value = res.executiveSummary || ''
       projectTheme.value = res.suggestedTheme || 'chalk'
       
       message.success('Đã tìm thấy các gợi ý trực quan hóa mới!')
@@ -358,21 +367,165 @@ const aggregateData = (source: any[], xField: string, yField: string, limit = 15
   const map = new Map<string, number>()
   source.forEach(row => {
     const key = String(row[xField] || 'N/A')
-    const val = Number(row[yField]) || 0
+    const rawVal = row[yField] || 0
+    const val = Number(String(rawVal).replace(/[^0-9.-]+/g,"")) || 0
     map.set(key, (map.get(key) || 0) + val)
   })
   return Array.from(map.entries())
-    .map(([key, value]) => ({ [xField]: key, [yField]: Math.round(value) }))
+    .map(([k, v]) => ({ [xField]: k, [yField]: Math.round(v * 100) / 100 }))
     .sort((a: any, b: any) => b[yField] - a[yField])
     .slice(0, limit)
 }
 
 const handleGenerate = async () => {
+  const datasetId = props.dataset?.id || ''
+  if (!datasetId || datasetId === 'undefined') {
+    message.error('ID nguồn dữ liệu không hợp lệ. Vui lòng chọn lại tập dữ liệu.')
+    return
+  }
+
   loading.value = true
   try {
+    // --- BƯỚC 0: SYNC DỮ LIỆU LÊN SERVER (TRÁNH LỖI 404) ---
+    await saveDatasetApi(toRaw(props.dataset))
+
     const projectId = getUUID()
     const charts = selectedCharts.value
+    const pondId = `POND_${props.dataset?.id || getUUID()}`
+    const datasetId = props.dataset?.id || ''
     
+    // --- DYNAMIC GRID CALCULATOR ---
+    const CANVAS_WIDTH = 1920
+    const GRID_UNIT = CANVAS_WIDTH / 12 // 160px per unit
+    let currentX = 0
+    let currentY = 0
+    let lastRowMaxHeight = 0
+    
+    const componentList: any[] = []
+    
+    // 1. ADD EXECUTIVE SUMMARY (NARRATIVE)
+    if (executiveSummary.value) {
+      const summaryHeight = 180
+      componentList.push({
+        id: getUUID(),
+        key: 'TextCommon',
+        isGroup: false,
+        attr: { x: 0, y: 0, w: CANVAS_WIDTH, h: summaryHeight, zIndex: 1, offsetX: 0, offsetY: 0 },
+        styles: { filterShow: false, opacity: 1, rotateZ: 0, blendMode: 'normal', animations: [] },
+        status: { lock: false, hide: false },
+        chartConfig: { key: 'TextCommon', chartKey: 'VTextCommon', conKey: 'VCTextCommon', package: 'Informations', category: 'Texts', categoryName: 'Văn bản', title: 'Tóm tắt phân tích' },
+        option: {
+          dataset: executiveSummary.value,
+          fontSize: 22,
+          fontColor: '#fff',
+          fontWeight: 'bold',
+          textAlign: 'center',
+          writingMode: 'horizontal-tb'
+        }
+      })
+      currentY = summaryHeight + 20
+    }
+
+    // 2. ADD CHARTS WITH SMART LAYOUT
+    charts.forEach((suggest, index) => {
+      const mapping = chartKeyMap[suggest.chartType] || chartKeyMap['Bar']
+      const isEcharts = mapping.chartFrame === 'echarts'
+      
+      // Determine Dimensions
+      const wUnits = Number(suggest.w || 4) // AI usually suggests 4, 6, 12
+      const w = wUnits * GRID_UNIT
+      const h = Number(suggest.h || 400)
+      
+      // Wrapping Logic
+      if (currentX + w > CANVAS_WIDTH) {
+        currentX = 0
+        currentY += lastRowMaxHeight + 20
+        lastRowMaxHeight = 0
+      }
+      
+      const x = currentX
+      const y = currentY
+      
+      currentX += w
+      lastRowMaxHeight = Math.max(lastRowMaxHeight, h)
+
+      // --- DATA PREPARATION ---
+      const rawContent = Array.isArray(props.dataset?.content) ? props.dataset.content : []
+      const xField = suggest.mapping?.x || ''
+      const yField = suggest.mapping?.y || ''
+      const aggregatedSource = aggregateData(rawContent, xField, yField, 15)
+      
+      let filterStr = ''
+      if (suggest.chartType === 'Scatter') {
+         filterStr = `// @tinix-transform:${JSON.stringify({ x: xField, y: yField, type: 'raw', limit: 1000, sort: 'none' })}\nif (!data || !Array.isArray(data)) return [];\nreturn [{ dimensions: ["${xField}", "${yField}"], source: data.map(i => ({ ["${xField}"]: Number(i["${xField}"]) || 0, ["${yField}"]: Number(i["${yField}"]) || 0 })) }];`
+      } else {
+         const isVirtual = (suggest as any).virtual === true
+         // Dự phòng công thức: Nếu AI gợi ý virtual mà ko có formula, dùng cột yField làm gốc
+         const rawFormula = (suggest as any).formula || ''
+         const formula = isVirtual && !rawFormula ? `row["${yField}"]` : rawFormula
+         
+         const transformMeta = { x: xField, y: yField, type: isVirtual ? 'virtual' : 'sum', formula, limit: 15, sort: 'desc' }
+         
+         if (isVirtual && formula) {
+           filterStr = `// @tinix-transform:${JSON.stringify(transformMeta)}\nif (!data || !Array.isArray(data)) return [];\nconst x = "${xField}", y = "${yField}", map = new Map();\ndata.forEach(row => { \n  const k = String(row[x] || 'N/A'); \n  let v = 0;\n  try { v = Number(${formula}) || 0; } catch(e) { v = 0; }\n  map.set(k, (map.get(k) || 0) + v); \n});\nconst source = Array.from(map.entries()).map(([k, v]) => ({ [x]: k, [y]: Math.round(v * 100) / 100 })).sort((a, b) => b[y] - a[y]).slice(0, 15);\nreturn [{ dimensions: [x, y], source }];`
+         } else {
+           filterStr = `// @tinix-transform:${JSON.stringify(transformMeta)}\nif (!data || !Array.isArray(data)) return [];\nconst x = "${xField}", y = "${yField}", map = new Map();\ndata.forEach(row => { const k = String(row[x] || 'N/A'), v = Number(String(row[y] || 0).replace(/[^0-9.-]+/g,"")) || 0; map.set(k, (map.get(k) || 0) + v); });\nconst source = Array.from(map.entries()).map(([k, v]) => ({ [x]: k, [y]: Math.round(v * 100) / 100 })).sort((a, b) => b[y] - a[y]).slice(0, 15);\nreturn [{ dimensions: [x, y], source }];`
+         }
+      }
+      
+      let option: any = {}
+      if (isEcharts) {
+        option.dataset = { dimensions: [xField, yField], source: aggregatedSource }
+        const seriesType = mapping.category === 'Lines' ? 'line' : mapping.category === 'Pies' ? 'pie' : mapping.category === 'Maps' ? 'map' : 'bar'
+        
+        if (seriesType === 'pie') {
+          option.series = [{ type: 'pie', radius: ['30%', '50%'], center: ['50%', '57%'], label: { show: true, formatter: '{b}: {d}%', fontSize: 10 }, encode: { itemName: xField, value: yField } }]
+        } else if (seriesType === 'map') {
+          const adcode = detectMapRegion(rawContent, xField)
+          option.mapRegion = { adcode }; option.geo = { map: adcode, show: false }
+          option.dataset = { map: aggregatedSource.map((i: any) => ({ name: adcode === 'world' ? normalizeMapName(i[xField]) : i[xField], value: i[yField] })) }
+          option.visualMap = { show: true, min: 0, max: Math.max(...aggregatedSource.map((i:any) => i[yField] || 0)) || 100, inRange: { color: ['#e0ffff', '#006edd'] } }
+          option.series = [{ type: 'effectScatter', coordinateSystem: 'geo', data: [] }, { type: 'map', map: adcode, encode: { value: 'value' } }]
+        } else if (suggest.chartType === 'Radar') {
+          const vals = aggregatedSource.map((i:any) => i[yField] || 0); const maxVal = Math.max(...vals) || 100
+          option.radar = { indicator: aggregatedSource.map((i:any) => ({ name: String(i[xField] || ''), max: maxVal * 1.2 })), shape: 'polygon' }
+          option.series = [{ type: 'radar', label: { show: true, fontSize: 10 }, data: [{ value: vals, name: suggest.title }] }]
+        } else if (suggest.chartType === 'Scatter') {
+          option.tooltip = { trigger: 'item', formatter: `X: {@[0]}<br/>Y: {@[1]}` }
+          option.series = [{ type: 'scatter', encode: { x: xField, y: yField } }]
+          option.xAxis = { type: 'value', scale: true }; option.yAxis = { type: 'value', scale: true }
+        } else {
+          option.series = [{ type: seriesType, label: { show: true, position: 'top', fontSize: 10, color: '#eee' }, encode: { x: xField, y: yField } }]
+          if ((seriesType as any) !== 'treemap') {
+            option.xAxis = { type: 'category', axisLabel: { rotate: aggregatedSource.length > 5 ? 45 : 0, interval: 0, fontSize: 10 } }
+            option.yAxis = { type: 'value' }
+          }
+        }
+      } else {
+        option.dataset = (mapping.key === 'TableList') ? aggregatedSource.map((row: any) => ({ name: String(row[xField] || ''), value: Number(row[yField]) || 0 })) : aggregatedSource
+      }
+
+      componentList.push({
+        id: getUUID(),
+        key: mapping.key,
+        isGroup: false,
+        attr: { x, y, w, h, zIndex: index + 2, offsetX: 0, offsetY: 0 },
+        filter: filterStr,
+        styles: { filterShow: false, opacity: 1, rotateZ: 0, blendMode: 'normal', animations: [] },
+        status: { lock: false, hide: false },
+        events: { baseEvent: {}, advancedEvents: {}, interactEvents: [] },
+        chartConfig: { ...mapping, title: suggest.title },
+        option: option,
+        request: {
+          requestDataType: 2, requestHttpType: 'get', requestUrl: `/datasets/${datasetId}`,
+          requestDataPondId: pondId, requestContentType: 0, requestParamsBodyType: 'none',
+          requestInterval: 30, requestIntervalUnit: 'second', requestParams: { Params: {}, Body: {}, Header: {} }
+        }
+      })
+    })
+
+    const dynamicCanvasHeight = Math.max(1080, currentY + lastRowMaxHeight + 100)
+
     const newProject: any = {
       id: projectId,
       title: projectName.value,
@@ -380,191 +533,27 @@ const handleGenerate = async () => {
       index: 0,
       editCanvasConfig: {
         projectName: projectName.value,
-        width: 1920,
-        height: 1080,
+        width: CANVAS_WIDTH,
+        height: dynamicCanvasHeight,
         chartThemeColor: projectTheme.value,
         previewScaleType: 'fit',
         selectColor: true
       },
-      componentList: charts.map((suggest, index) => {
-        // Fallback to Bar if unknown
-        const mapping = chartKeyMap[suggest.chartType] || chartKeyMap['Bar']
-        const isEcharts = mapping.chartFrame === 'echarts'
-        
-        // --- DATA PREPARATION ---
-        const rawContent = Array.isArray(props.dataset?.content) ? props.dataset.content : []
-        const xField = suggest.mapping?.x || ''
-        const yField = suggest.mapping?.y || ''
-        
-        // --- CHẾ ĐỘ XỬ LÝ DỮ LIỆU THÔNG MINH (AGGREGATION & TOP-N) ---
-        const aggregatedSource = aggregateData(rawContent, xField, yField, 15)
-        
-        let option: any = {}
-        
-        if (isEcharts) {
-          // 1. Dataset Format for ECharts
-          option.dataset = {
-            dimensions: [xField, yField],
-            source: aggregatedSource
+      requestGlobalConfig: {
+        requestInterval: 30,
+        requestIntervalUnit: 'second',
+        requestParams: { Params: {}, Body: {}, Header: {} },
+        requestDataPond: [{
+          dataPondId: pondId,
+          dataPondName: props.dataset?.name || 'Dataset',
+          dataPondRequestConfig: {
+            requestDataType: 1, requestHttpType: 'get', requestUrl: `/datasets/${datasetId}`,
+            requestContentType: 0, requestParamsBodyType: 'none', requestInterval: 30,
+            requestIntervalUnit: 'second', requestParams: { Params: {}, Body: {}, Header: {} }
           }
-
-          // 2. Set Series with ENCODE (Crucial for TiniX components to see our data)
-          const seriesType = mapping.category === 'Lines' ? 'line' 
-                           : mapping.category === 'Pies' ? 'pie'
-                           : mapping.category === 'Maps' ? 'map'
-                           : 'bar'
-          
-          if (seriesType === 'pie') {
-            option.series = [{
-              type: 'pie',
-              radius: ['30%', '50%'],
-              center: ['50%', '57%'],
-              avoidLabelOverlap: true,
-              label: { 
-                show: true, 
-                position: 'outer', 
-                alignTo: 'labelLine',
-                formatter: '{b}: {d}%', 
-                fontSize: 10 
-              },
-              encode: { itemName: xField, value: yField }
-            }]
-          } else if (seriesType === 'map') {
-            const adcode = detectMapRegion(rawContent, xField)
-            option.mapRegion = { adcode }
-            option.geo = { map: adcode, show: false }
-            option.dataset = {
-              map: aggregatedSource.map((i: any) => ({
-                name: adcode === 'world' ? normalizeMapName(i[xField]) : i[xField],
-                value: i[yField]
-              }))
-            }
-            option.visualMap = { 
-              show: true, 
-              min: 0, 
-              max: Math.max(...aggregatedSource.map((i:any) => i[yField] || 0)) || 100,
-              orient: 'vertical', left: 'left', bottom: '10%',
-              inRange: { color: ['#e0ffff', '#006edd'] }
-            }
-            option.series = [
-               { type: 'effectScatter', coordinateSystem: 'geo', data: [] },
-               {
-                 type: 'map',
-                 map: adcode,
-                 encode: { value: 'value' }
-               }
-            ]
-          } else if ((suggest.chartType as string) === 'Radar') {
-             const vals = aggregatedSource.map((i:any) => i[yField] || 0)
-             const maxVal = Math.max(...vals) || 100
-             option.radar = {
-                indicator: aggregatedSource.map((i:any) => ({ name: String(i[xField] || ''), max: maxVal * 1.2 })),
-                shape: 'polygon'
-             }
-             option.series = [{
-                type: 'radar',
-                label: { show: true, fontSize: 10 },
-                data: [{ value: vals, name: suggest.title }]
-             }]
-          } else if ((suggest.chartType as string) === 'Funnel') {
-             option.series = [{
-                type: 'funnel',
-                label: { show: true, position: 'inside', fontSize: 10 },
-                encode: { itemName: xField, value: yField }
-             }]
-          } else if ((suggest.chartType as string) === 'Scatter') {
-             option.tooltip = {
-                trigger: 'item',
-                formatter: `{b}<br/>${xField}: {@${xField}}<br/>${yField}: {@${yField}}`
-             }
-             option.series = [{
-                type: 'scatter',
-                label: { show: false }, 
-                encode: { x: xField, y: yField }
-             }]
-             option.xAxis = { type: 'value' }
-             option.yAxis = { type: 'value' }
-          } else {
-            // Bars, Lines, Heatmap, TreeMap
-            option.series = [{
-              type: seriesType,
-              label: { 
-                show: true, 
-                position: 'top', 
-                fontSize: 10, 
-                hideOverlap: true,
-                color: '#eee'
-              },
-              encode: { x: xField, y: yField }
-            }]
-            if (seriesType !== 'treemap') {
-              option.xAxis = { 
-                type: 'category',
-                axisLabel: { rotate: aggregatedSource.length > 5 ? 45 : 0, interval: 0, fontSize: 10 }
-              }
-              option.yAxis = { type: 'value' }
-            }
-          }
-        } else {
-          // TableList specific format
-          if (mapping.key === 'TableList') {
-             option.dataset = aggregatedSource.map((row: any) => ({
-               name: String(row[xField] || ''),
-               value: Number(row[yField]) || 0
-             }))
-          } else {
-             option.dataset = aggregatedSource
-          }
-        }
-
-        return {
-          id: getUUID(),
-          key: mapping.key,
-          isGroup: false,
-          attr: {
-            x: 50 + (index % 3) * 620,
-            y: 50 + Math.floor(index / 3) * 420,
-            w: 600,
-            h: 400,
-            zIndex: index + 1,
-            offsetX: 0,
-            offsetY: 0
-          },
-          styles: {
-            filterShow: false,
-            opacity: 1,
-            saturate: 1,
-            contrast: 1,
-            hueRotate: 0,
-            brightness: 1,
-            rotateZ: 0,
-            rotateX: 0,
-            rotateY: 0,
-            skewX: 0,
-            skewY: 0,
-            blendMode: 'normal',
-            animations: []
-          },
-          status: {
-            lock: false,
-            hide: false
-          },
-          events: {
-            baseEvent: {},
-            advancedEvents: {},
-            interactEvents: []
-          },
-          chartConfig: {
-            ...mapping,
-            title: suggest.title
-          },
-          option: option,
-          request: {
-            requestDataType: 0, // STATIC
-            requestDataPondId: props.dataset?.id || ''
-          }
-        }
-      })
+        }]
+      },
+      componentList
     }
 
     await saveProjectApi(newProject)

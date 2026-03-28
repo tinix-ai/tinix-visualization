@@ -16,4 +16,6 @@ export const systemSetting = {
   [SettingStoreEnums.CHART_TOOLS_STATUS]: ToolsStatusEnum.ASIDE,
   // Trạng thái thanh công cụ biểu đồ bị ẩn (ban đầu không bị ẩn)
   [SettingStoreEnums.CHART_TOOLS_STATUS_HIDE]: false,
+  // Có thu gọn danh mục biểu mẫu ở bên trái trang kéo và thả hay không
+  [SettingStoreEnums.HIDE_PACKAGE_CATEGORY]: false
 }

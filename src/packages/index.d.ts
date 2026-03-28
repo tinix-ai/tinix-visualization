@@ -18,6 +18,8 @@ export enum ChartFrameEnum {
 
 // Cấu hình thành phần
 export type ConfigType = {
+  // ID duy nhất (cho đồng bộ server)
+  id?: string
   // thành phần key
   key: string
   // thành phần vải key

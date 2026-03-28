@@ -16,6 +16,18 @@ export default defineConfig({
   server: {
     port: 3020,
     open: true,
+    proxy: {
+      '/api': {
+        target: 'http://127.0.0.1:3000',
+        changeOrigin: true,
+        secure: false,
+      },
+      '/datasets': {
+        target: 'http://127.0.0.1:3000/api',
+        changeOrigin: true,
+        secure: false,
+      }
+    }
   },
   // Chuyển hướng đường dẫn
   resolve: {

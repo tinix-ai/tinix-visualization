@@ -1,63 +1,70 @@
 <template>
   <!-- Data Select -->
   <div class="go-chart-data-pond">
-    <n-card class="n-card-shallow">
-      <setting-item-box :name="$t('views_components.auto_150')"
- :alone="true">
-        <n-input size="small" :placeholder="pondData?.dataPondName || window['$t']('views_components.auto_112')" :disabled="true">
-          <template #prefix>
-            <n-icon :component="FishIcon" />
-          </template>
-        </n-input>
-      </setting-item-box>
-
-      <setting-item-box :name="$t('views_components.auto_151')"
- :alone="true">
-        <n-input size="small" :placeholder="pondData?.dataPondRequestConfig.requestUrl || window['$t']('views_components.auto_112')" :disabled="true">
-          <template #prefix>
-            <n-icon :component="FlashIcon" />
-          </template>
-        </n-input>
-      </setting-item-box>
-
-      <div class="edit-text" @click="controlModelHandle">
-        <div class="go-absolute-center">
-          <n-button type="primary" secondary>{{ $t('phase7.auto_138') }}</n-button>
+    <n-card class="n-card-shallow" size="small">
+      <n-space vertical :size="12">
+        <!-- Dataset Info Title -->
+        <div class="go-flex-items-center">
+           <n-text strong depth="1" style="font-size: 15px;">{{ $t('views_components.auto_150') }}</n-text>
+           <n-button quaternary size="tiny" type="primary" class="go-ml-auto" @click="controlModelHandle">
+             {{ $t('phase7.auto_138') }}
+           </n-button>
         </div>
-      </div>
+
+        <n-grid :cols="1" :y-gap="8">
+          <n-gi>
+            <n-text depth="3">Tên nguồn dữ liệu</n-text>
+            <n-input size="small" :placeholder="pondData?.dataPondName || 'Chưa chọn nguồn'" :disabled="true">
+              <template #prefix>
+                <n-icon :component="FishIcon" />
+              </template>
+            </n-input>
+          </n-gi>
+          <n-gi>
+            <n-text depth="3">Địa chỉ giao diện (Pond)</n-text>
+            <n-input size="small" :placeholder="pondData?.dataPondRequestConfig.requestUrl || 'Chưa cấu hình'" :disabled="true">
+              <template #prefix>
+                <n-icon :component="FlashIcon" />
+              </template>
+            </n-input>
+          </n-gi>
+        </n-grid>
+      </n-space>
     </n-card>
-  </div>
 
-  <setting-item-box :alone="true">
-    <template #name>
-      Kiểm thử
-      <n-tooltip trigger="hover">
-        <template #trigger>
-          <n-icon size="21" :depth="3">
-            <help-outline-icon></help-outline-icon>
-          </n-icon>
+    <div class="go-mt-4">
+      <setting-item-box :alone="true">
+        <template #name>
+          Kiểm thử dữ liệu
+          <n-tooltip trigger="hover">
+            <template #trigger>
+              <n-icon size="18" :depth="3" style="cursor: help;">
+                <help-outline-icon></help-outline-icon>
+              </n-icon>
+            </template>
+            Lấy dữ liệu từ Data Pond và cập nhật cho biểu đồ.
+          </n-tooltip>
         </template>
-        Mặc định gán Value vào `dataset`
-      </n-tooltip>
-    </template>
-    <n-button type="primary" ghost @click="sendHandle">
-      <template #icon>
-        <n-icon>
-          <flash-icon />
-        </n-icon>
-      </template>
-      gửiReuqest Data
-    </n-button>
-  </setting-item-box>
+        <n-button type="primary" block secondary @click="sendHandle">
+          <template #icon>
+            <n-icon>
+              <flash-icon />
+            </n-icon>
+          </template>
+          Gửi Request & Cập nhật
+        </n-button>
+      </setting-item-box>
+    </div>
 
-  <!-- Dưới cùngDữ liệuXem / Hát -->
-  <chart-data-matching-and-show :show="showMatching && !loading" :ajax="true"></chart-data-matching-and-show>
+    <!-- Dưới cùngDữ liệuXem / Hát -->
+    <chart-data-matching-and-show :show="showMatching && !loading" :ajax="true"></chart-data-matching-and-show>
 
-  <!-- Khung Skeleton -->
-  <go-skeleton :load="loading" :repeat="3"></go-skeleton>
+    <!-- Khung Skeleton -->
+    <go-skeleton :load="loading" :repeat="3"></go-skeleton>
 
-  <!-- Sửa (Edit) / Thêm+Bảng Tooltip -->
-  <chart-data-pond-control v-model:modelShow="controlModel" @sendHandle="sendHandle"></chart-data-pond-control>
+    <!-- Sửa (Edit) / Thêm+Bảng Tooltip -->
+    <chart-data-pond-control v-model:modelShow="controlModel" @sendHandle="sendHandle"></chart-data-pond-control>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -75,11 +82,14 @@ const designStore = useDesignStore()
 const { HelpOutlineIcon, FlashIcon, PulseIcon, FishIcon } = icon.ionicons5
 const { targetData, chartEditStore } = useTargetData()
 
+const windowAny = window as any
+
 const {
   requestDataPond,
   requestInterval: GlobalRequestInterval,
   requestIntervalUnit: GlobalRequestIntervalUnit
 } = toRefs(chartEditStore.getRequestGlobalConfig)
+const { appTheme } = toRefs(designStore)
 
 const loading = ref(false)
 const controlModel = ref(false)
@@ -98,11 +108,6 @@ const pondData = computed(() => {
   return data[0]
 })
 
-// Màu sắc
-const themeColor = computed(() => {
-  return designStore.getAppTheme
-})
-
 // Reuqest DataCấu hình model
 const controlModelHandle = () => {
   controlModel.value = true
@@ -111,7 +116,7 @@ const controlModelHandle = () => {
 // gửiReuqest Data
 const sendHandle = async () => {
   if (!targetData.value?.request) {
-    window.$message.warning(window['$t']('views_components.auto_149'))
+    windowAny['$message'].warning(windowAny['$t']('views_components.auto_149'))
     return
   }
   loading.value = true
@@ -120,7 +125,7 @@ const sendHandle = async () => {
     loading.value = false
     if (res) {
       if (!res?.data && !targetData.value.filter) {
-        window['$message'].warning(window['$t']('views_components.auto_109'))
+        windowAny['$message'].warning(windowAny['$t']('views_components.auto_109'))
         showMatching.value = true
         return
       }
@@ -128,11 +133,30 @@ const sendHandle = async () => {
       showMatching.value = true
       return
     }
-    window['$message'].warning(window['$t']('views_components.auto_108'))
-  } catch (error) {
-    console.error(error);
+    windowAny['$message'].warning(windowAny['$t']('views_components.auto_108'))
+  } catch (error: any) {
+    console.error('[Data Pond Error]', error);
     loading.value = false
-    window['$message'].warning(window['$t']('views_components.auto_104'))
+    
+    // Provide detailed diagnostic message
+    const diagnostic = error.diagnostic ? ` (${error.diagnostic})` : ''
+    const status = error.response?.status
+    
+    let msg = windowAny['$t'] ? windowAny['$t']('views_components.auto_104') : "Lỗi kết nối dữ liệu"
+    if (status === 404) {
+       msg = `Không tìm thấy nguồn dữ liệu (404)${diagnostic}`
+    } else if (status) {
+       msg = `Lỗi máy chủ (${status})${diagnostic}`
+    } else {
+       msg = `${msg}${diagnostic}`
+    }
+
+    if (targetData.value.option.dataset) {
+      windowAny['$message'].warning(`${msg}. Đang giữ lại dữ liệu cũ.`)
+      showMatching.value = true
+    } else {
+      windowAny['$message'].error(msg)
+    }
   }
 }
 
@@ -178,7 +202,7 @@ onBeforeUnmount(() => {
       backdrop-filter: blur(2px) !important;
     }
     &:hover {
-      border-color: v-bind('themeColor');
+      border-color: v-bind('appTheme');
       .edit-text {
         opacity: 1;
       }

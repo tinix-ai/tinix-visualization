@@ -2,25 +2,29 @@
   <n-timeline class="go-chart-configurations-timeline">
     <!-- đối phó với echarts củaDữ liệulập bản đồ -->
     <n-timeline-item v-if="isCharts && dimensionsAndSource" type="info" :title="TimelineTitleEnum.MAPPING">
-      <n-table striped>
+      <n-table striped size="small" :single-line="false" style="font-size: 12px;">
         <thead>
           <tr>
-            <th v-for="item in tableTitle" :key="item">{{ item }}</th>
+            <th style="width: 80px;">Trường</th>
+            <th>Ánh xạ</th>
+            <th style="width: 40px; text-align: center;">Th.thái</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="(item, index) in dimensionsAndSource" :key="index">
-            <td>{{ item.field }}</td>
-            <td>{{ item.mapping }}</td>
+            <td style="font-weight: bold;">
+               <n-ellipsis :line-clamp="1">{{ item.field }}</n-ellipsis>
+            </td>
             <td>
-              <n-space v-if="item.result === 0">
-                <n-badge dot type="success"></n-badge>
-                <n-text>{{ $t('phase7.auto_204') }}</n-text>
-              </n-space>
-              <n-space v-else>
-                <n-badge dot :type="item.result === 1 ? 'success' : 'error'"></n-badge>
-                <n-text>{{ $t('phase7.auto_232') }}</n-text>
-              </n-space>
+              <n-text depth="3">{{ item.mapping }}</n-text>
+            </td>
+            <td style="text-align: center;">
+              <n-tooltip trigger="hover">
+                <template #trigger>
+                   <n-badge dot :type="item.result === 0 || item.result === 1 ? 'success' : 'error'"></n-badge>
+                </template>
+                {{ item.result === 0 || item.result === 1 ? 'Khớp dữ liệu' : 'Chưa có dữ liệu' }}
+              </n-tooltip>
             </td>
           </tr>
         </tbody>
@@ -131,7 +135,7 @@
   <!-- Sửa (Edit)Dữ liệu -->
   <n-modal
     class="go-online-edit go-background-filter"
-    :title="window['$t']('views_components.auto_130') + targetData.chartConfig.title"
+    :title="windowAny['$t'] ? windowAny['$t']('views_components.auto_130') + targetData.chartConfig.title : 'Chỉnh sửa ' + targetData.chartConfig.title"
     preset="card"
     size="small"
     style="width: 800px"
@@ -210,6 +214,8 @@ const vchartTableTitle = ['Trường', 'Ánh xạ']
 const { HelpOutlineIcon, DocumentTextIcon } = icon.ionicons5
 const { DocumentAddIcon, DocumentDownloadIcon, EditIcon } = icon.carbon
 
+const windowAny = window as any
+
 const source = ref()
 const dimensions = ref()
 const dimensionsAndSource = ref()
@@ -263,14 +269,14 @@ const dimensionsAndSourceHandle = () => {
       return index === 0
         ? {
             // Cánh đồng
-            field: window['$t']('views_components.auto_132'),
+            field: windowAny['$t'] ? windowAny['$t']('views_components.auto_132') : 'Nhãn',
             // lập bản đồ
             mapping: dimensionsItem,
             // {{ $t('phase7.auto_412') }}
             result: DataResultEnum.NULL
           }
         : {
-            field: window['$t']('phase7.auto_13'),
+            field: windowAny['$t'] ? windowAny['$t']('phase7.auto_13') : 'Dữ liệu',
             mapping: dimensionsItem,
             result: matchingHandle(dimensionsItem)
           }
@@ -325,7 +331,7 @@ const saveOlineEditHandle = () => {
     targetData.value.option.dataset = newData
   }
   goDialog({
-    message: window['$t']('views_components.auto_134'),
+    message: windowAny['$t'] ? windowAny['$t']('views_components.auto_134') : 'Lưu thay đổi dữ liệu?',
     onPositiveCallback: () => {
       try {
         let jsonData = editorCode.value
@@ -334,15 +340,15 @@ const saveOlineEditHandle = () => {
         }
         if (typeof jsonData !== typeof source.value) {
           goDialog({
-            message: window['$t']('views_components.auto_137'),
+            message: windowAny['$t'] ? windowAny['$t']('views_components.auto_137') : 'Định dạng không khớp, bạn có chắc chắn?',
             onPositiveCallback: () => {
               try {
                 setDataHandle(jsonData)
                 editorCode.value = ''
-                window['$message'].success(window['$t']('views_components.auto_127'))
+                windowAny['$message']?.success(windowAny['$t'] ? windowAny['$t']('views_components.auto_127') : 'Lưu thành công')
                 closeOlineEditHandle()
               } catch (error) {
-                window['$message'].error(window['$t']('views_components.auto_135'))
+                windowAny['$message']?.error(windowAny['$t'] ? windowAny['$t']('views_components.auto_135') : 'Lỗi lưu dữ liệu')
               }
             }
           })
@@ -350,10 +356,10 @@ const saveOlineEditHandle = () => {
           try {
             setDataHandle(jsonData)
             editorCode.value = ''
-            window['$message'].success(window['$t']('views_components.auto_127'))
+            windowAny['$message']?.success(windowAny['$t'] ? windowAny['$t']('views_components.auto_127') : 'Lưu thành công')
             closeOlineEditHandle()
           } catch (error) {
-            window['$message'].error(window['$t']('views_components.auto_135'))
+            windowAny['$message']?.error(windowAny['$t'] ? windowAny['$t']('views_components.auto_135') : 'Lỗi lưu dữ liệu')
           }
         }
       } catch (error) {
@@ -389,7 +395,7 @@ watch(
       fieldList.value = []
     } else {
       noData.value = true
-      source.value = window['$t']('views_components.auto_133')
+      source.value = windowAny['$t'] ? windowAny['$t']('views_components.auto_133') : 'Chưa có nguồn dữ liệu'
     }
     if (isArray(newData)) {
       dimensionsAndSource.value = null

@@ -94,6 +94,8 @@ $topHeight: 40px;
           flex-direction: column;
           padding: 6px 12px !important;
           font-size: 14px !important;
+          align-items: center;
+          justify-content: center;
         }
         .n-menu-item-content__icon {
           font-size: 18px !important;

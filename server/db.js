@@ -34,6 +34,19 @@ db.exec(`
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
   );
 
+  CREATE TABLE IF NOT EXISTS system_settings (
+    id TEXT PRIMARY KEY,
+    config TEXT NOT NULL,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+  );
+
+  CREATE TABLE IF NOT EXISTS private_photos (
+    id TEXT PRIMARY KEY,
+    name TEXT NOT NULL,
+    content TEXT NOT NULL,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+  );
+
   CREATE TABLE IF NOT EXISTS datasets (
     id TEXT PRIMARY KEY,
     name TEXT NOT NULL,

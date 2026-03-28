@@ -2,18 +2,12 @@ import { defineStore } from 'pinia'
 import { systemSetting } from '@/settings/systemSetting'
 import { asideCollapsedWidth } from '@/settings/designSetting'
 import { SettingStoreType, ToolsStatusEnum } from './settingStore.d'
-import { setLocalStorage, getLocalStorage } from '@/utils'
-import { StorageEnum } from '@/enums/storageEnum'
-const { GO_SYSTEM_SETTING_STORE } = StorageEnum
-
-const storageSetting: SettingStoreType = getLocalStorage(
-  GO_SYSTEM_SETTING_STORE
-)
+import { saveGlobalSettingsApi, getGlobalSettingsApi } from '@/api/storage.api'
 
 // Cài đặt chung
 export const useSettingStore = defineStore({
   id: 'useSettingStore',
-  state: (): SettingStoreType => storageSetting || systemSetting,
+  state: (): SettingStoreType => systemSetting,
   getters: {
     getHidePackageOneCategory(): boolean {
       return this.hidePackageOneCategory
@@ -39,8 +33,18 @@ export const useSettingStore = defineStore({
     getChartToolsStatusHide(): boolean {
       return this.chartToolsStatusHide
     },
+    getHidePackageCategory(): boolean {
+      return this.hidePackageCategory
+    }
   },
   actions: {
+    // Sync với Server khi khởi tạo
+    async initialSync() {
+      const serverSettings = await getGlobalSettingsApi('system_setting')
+      if (serverSettings) {
+        this.$patch(serverSettings)
+      }
+    },
     setItem<T extends keyof SettingStoreType, K extends SettingStoreType[T]>(
       key: T,
       value: K
@@ -48,7 +52,8 @@ export const useSettingStore = defineStore({
       this.$patch(state => {
         state[key] = value
       })
-      setLocalStorage(GO_SYSTEM_SETTING_STORE, this.$state)
+      // Lưu lên server thay vì LocalStorage
+      saveGlobalSettingsApi(this.$state, 'system_setting')
     }
   }
 })

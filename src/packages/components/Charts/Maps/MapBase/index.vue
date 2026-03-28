@@ -41,8 +41,6 @@ import { useChartDataFetch } from '@/hooks'
 import { mergeTheme, setOption } from '@/packages/public/chart'
 import { useChartEditStore } from '@/store/modules/chartEditStore/chartEditStore'
 import { isPreview } from '@/utils'
-import mapJsonWithoutHainanIsLands from './mapWithoutHainanIsLands.json'
-import mapChinaJson from './mapGeojson/china.json'
 import { DatasetComponent, GridComponent, TooltipComponent, GeoComponent, VisualMapComponent } from 'echarts/components'
 
 const props = defineProps({
@@ -105,11 +103,7 @@ const registerMapInitAsync = async () => {
   await nextTick()
   const adCode = `${props.chartConfig.option.mapRegion.adcode}`
 
-  if (adCode !== 'china') {
-    await getGeojson(adCode)
-  } else {
-    await hainanLandsHandle(props.chartConfig.option.mapRegion.showHainanIsLands)
-  }
+  await getGeojson(adCode)
   // Reactive update
   option.value = props.chartConfig.option
   mapReady.value = true
@@ -145,14 +139,6 @@ const dataSetHandle = async (dataset: any) => {
 
   isPreview() && vEchartsSetOption()
 }
-// Đối phó với quần đảo Hải Nam
-const hainanLandsHandle = async (newData: boolean) => {
-  if (newData) {
-    await getGeojson('china')
-  } else {
-    registerMap('china', { geoJSON: mapJsonWithoutHainanIsLands as any, specialAreas: {} })
-  }
-}
 
 // vùng nhấp chuột
 const chartPEvents = (e: any) => {
@@ -160,43 +146,18 @@ const chartPEvents = (e: any) => {
   if (!props.chartConfig.option.mapRegion.enter) {
     return
   }
-  mapChinaJson.features.forEach(item => {
-    var pattern = new RegExp(e.name)
-    if (pattern.test(item.properties.name)) {
-      let code = String(item.properties.adcode)
-      levelHistory.value.push(code)
-      checkOrMap(code)
-    }
-  })
+  // Drill-down logic can be added here if GeoJSON data is available
 }
 
-// trở lại{{ $t('phase7.auto_510') }}Cấp 1
+// trở lại cấp độ cao hơn
 const backLevel = () => {
   levelHistory.value = []
-  if (levelHistory.value.length > 1) {
-    levelHistory.value.pop()
-    const code = levelHistory[levelHistory.value.length - 1]
-    checkOrMap(code)
-  } else {
-    checkOrMap('china')
-  }
+  checkOrMap(`${props.chartConfig.option.mapRegion.adcode}`)
 }
 
 // Chuyển đổi bản đồ
 const checkOrMap = async (newData: string) => {
-  if (newData === 'china') {
-    if (props.chartConfig.option.mapRegion.showHainanIsLands) {
-      // {{ $t('phase7.auto_227') }}Biển Đông
-      hainanLandsHandle(true)
-      vEchartsSetOption()
-    } else {
-      // Biển Đông ẩn giấu
-      hainanLandsHandle(false)
-      vEchartsSetOption()
-    }
-  } else {
-    await getGeojson(newData)
-  }
+  await getGeojson(newData)
   props.chartConfig.option.geo.map = newData
   props.chartConfig.option.series.forEach((item: any) => {
     if (item.type === 'map') item.map = newData
@@ -229,23 +190,6 @@ if (props.chartConfig.option.series[2] && !isPreview()) {
   )
 }
 
-//Giám sát xem{{ $t('phase7.auto_372') }}
-if (!isPreview()) {
-  watch(
-    () => props.chartConfig.option.mapRegion.showHainanIsLands,
-    async newData => {
-      try {
-        await hainanLandsHandle(newData)
-        vEchartsSetOption()
-      } catch (error) {
-        console.log(error)
-      }
-    },
-    {
-      deep: false
-    }
-  )
-}
 //Theo dõi những thay đổi trong khu vực hiển thị bản đồ
 watch(
   () => `${props.chartConfig.option.mapRegion.adcode}`,

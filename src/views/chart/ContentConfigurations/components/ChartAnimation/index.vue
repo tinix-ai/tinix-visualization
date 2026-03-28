@@ -13,7 +13,7 @@
       :name="item.label"
       :expanded="true"
     >
-      <n-grid :x-gap="6" :y-gap="10" :cols="3">
+      <n-grid :x-gap="8" :y-gap="8" :cols="2">
         <n-grid-item
           class="animation-item go-transition-quick"
           :class="[
@@ -26,7 +26,9 @@
           @mouseover="hoverPreviewAnimate = childrenItem.value"
           @click="addAnimation(childrenItem)"
         >
-          {{ childrenItem.label }}
+          <div class="label-box">
+            {{ childrenItem.label }}
+          </div>
         </n-grid-item>
       </n-grid>
     </collapse-item>
@@ -77,16 +79,32 @@ const addAnimation = (item: { label: string; value: string }) => {
     width: 100%;
   }
   .animation-item {
-    height: 40px;
-    line-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 4px 6px;
     text-align: center;
     cursor: pointer;
     border-radius: 5px;
+    border: 1px solid transparent;
+    background-color: rgba(255, 255, 255, 0.05);
+
+    .label-box {
+      font-size: 12px;
+      line-height: 1.2;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
     @include hover-border-color('hover-border-color');
     &:hover,
     &.active {
       color: v-bind('themeColor');
       border: 1px solid v-bind('themeColor');
+      background-color: rgba(255, 255, 255, 0.1);
     }
   }
 }

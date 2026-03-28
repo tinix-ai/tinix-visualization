@@ -7,7 +7,7 @@
     <n-layout-sider
       collapse-mode="transform"
       :collapsed-width="0"
-      :width="350"
+      :width="380"
       :collapsed="collapsed"
       :native-scrollbar="false"
       show-trigger="bar"
@@ -16,7 +16,7 @@
     >
       <content-box class="go-content-configurations go-boderbox" :show-top="false" :depth="2">
         <!-- Cấu hình Trang -->
-        <n-tabs v-if="!selectTarget" class="tabs-box" size="small" type="segment">
+        <n-tabs v-if="!selectTarget" class="tabs-box" size="medium" type="line" justify-content="space-around">
           <n-tab-pane
             v-for="item in globalTabList"
             :key="item.key"
@@ -25,19 +25,19 @@
             display-directive="show:lazy"
           >
             <template #tab>
-              <n-space>
-                <span>{{ item.title }}</span>
-                <n-icon size="16" class="icon-position">
+              <div class="go-flex-items-center" style="gap: 4px;">
+                <n-icon size="18">
                   <component :is="item.icon"></component>
                 </n-icon>
-              </n-space>
+                <span style="font-size: 13px; font-weight: bold;">{{ item.title }}</span>
+              </div>
             </template>
             <component :is="item.render"></component>
           </n-tab-pane>
         </n-tabs>
 
         <!-- Sửa (Edit) -->
-        <n-tabs v-if="selectTarget" v-model:value="tabsSelect" class="tabs-box" size="small" type="segment">
+        <n-tabs v-if="selectTarget" v-model:value="tabsSelect" class="tabs-box" size="medium" type="line" justify-content="space-between">
           <n-tab-pane
             v-for="item in selectTarget.isGroup ? chartsDefaultTabList : chartsTabList"
             :key="item.key"
@@ -46,12 +46,12 @@
             display-directive="show:lazy"
           >
             <template #tab>
-              <n-space>
-                <span>{{ item.title }}</span>
-                <n-icon size="16" class="icon-position">
+              <div class="go-flex-items-center" style="gap: 4px;">
+                <n-icon size="18">
                   <component :is="item.icon"></component>
                 </n-icon>
-              </n-space>
+                <span style="font-size: 13px; font-weight: bold;">{{ item.title }}</span>
+              </div>
             </template>
             <component :is="item.render"></component>
           </n-tab-pane>
@@ -121,7 +121,7 @@ watch(getDetails, newData => {
 const globalTabList = [
   {
     key: TabsEnum.PAGE_SETTING,
-    title: 'Cấu hình Trang',
+    title: 'Trang',
     icon: DesktopOutlineIcon,
     render: CanvasPage
   }
@@ -130,13 +130,13 @@ const globalTabList = [
 const chartsDefaultTabList = [
   {
     key: TabsEnum.CHART_SETTING,
-    title: 'Tùy Biến Tinh Chỉnh',
+    title: 'Cấu hình',
     icon: ConstructIcon,
     render: ChartSetting
   },
   {
     key: TabsEnum.CHART_ANIMATION,
-    title: 'Animation',
+    title: 'Động',
     icon: LeafIcon,
     render: ChartAnimation
   }
@@ -163,9 +163,11 @@ const chartsTabList = [
 @include go(content-configurations) {
   overflow: hidden;
   .tabs-box {
-    padding: 10px;
-    .icon-position {
-      padding-top: 2px;
+    padding: 4px 0;
+    @include deep() {
+      .n-tabs-tab {
+        padding: 8px 12px;
+      }
     }
   }
 }

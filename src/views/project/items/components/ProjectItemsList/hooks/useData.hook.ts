@@ -27,16 +27,6 @@ export const useDataListInit = () => {
           image: item.editCanvasConfig?.backgroundImage || ''
         }
       })
-    } else {
-      // Fallback LocalStorage migration
-      const localList = getLocalStorage(StorageEnum.GO_CHART_STORAGE_LIST) || []
-      list.value = localList.map((item: any) => ({
-        id: item.id,
-        title: item.editCanvasConfig?.projectName || 'Dự án mới (Local)',
-        release: item.isPublished || false,
-        label: 'Dự án',
-        image: item.editCanvasConfig?.backgroundImage || ''
-      }))
     }
   }
 
@@ -100,8 +90,13 @@ export const useDataListInit = () => {
       type: DialogEnum.DELETE,
       promise: true,
       onPositiveCallback: async () => {
-        await deleteProjectApi(cardData.id as string)
-        return Promise.resolve(1)
+        const res = await deleteProjectApi(cardData.id as string)
+        if (res && res.success) {
+          return Promise.resolve(1)
+        } else {
+          window['$message'].error('Không thể xóa dự án trên máy chủ.')
+          return Promise.reject(0)
+        }
       },
       promiseResCallback: (e: any) => {
         window['$message'].success(window['$t']('phase7.auto_149'))
