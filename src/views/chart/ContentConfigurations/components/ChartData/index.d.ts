@@ -17,6 +17,7 @@ export enum SelectCreateDataEnum {
   STATIC = 'Dữ liệu tĩnh',
   AJAX = 'Yêu cầu động',
   Pond = 'Nguồn dữ liệu',
+  LIBRARY = 'Thư viện dữ liệu'
 }
 
 export interface SelectCreateDataType {

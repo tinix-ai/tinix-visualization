@@ -196,6 +196,29 @@ export const canvasCut = (html: HTMLElement | null, callback?: Function) => {
 }
 
 /**
+ * * Chụp ảnh màn hình Canvas và trả về Data URL (Captures Canvas and returns Data URL)
+ * @returns Promise<string | null>
+ */
+export const getCanvasThumbnail = async () => {
+  const range = document.querySelector('.go-edit-range') as HTMLElement
+  if (!range) return null
+
+  try {
+    const canvas = await html2canvas(range, {
+      backgroundColor: null,
+      allowTaint: true,
+      useCORS: true,
+      logging: false,
+      scale: 0.5 // Thumbnail scale
+    })
+    return canvas.toDataURL('image/jpeg', 0.7) // Use JPEG 0.7 for smaller size
+  } catch (error) {
+    console.error('Snapshot failed:', error)
+    return null
+  }
+}
+
+/**
  * * bộ lọc chức năng
  * @param data Dữ liệugiá trị
  * @param res Trả về đối tượng cấp cao nhất
@@ -309,8 +332,7 @@ export const JSONStringify = <T>(data: T) => {
         return null
       }
       return val
-    },
-    2
+    }
   )
 }
 

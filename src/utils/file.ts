@@ -24,7 +24,7 @@ export const readFile = (file: File) => {
  * @param filename 
  * @param fileSuffix 
  */
-export const downloadByA = (url: string, filename = new Date().getTime(), fileSuffix?: string) => {
+export const downloadByA = (url: string, filename: string | number = new Date().getTime(), fileSuffix?: string) => {
   const ele = document.createElement('a') // tạo nênTải xuốngliên kết
   ele.download = `${filename}.${fileSuffix}` //Cài Đặt ChỉnhTải xuốngcủaDanh xưng
   ele.style.display = 'none' // hộp ẩnTải xuốngliên kết
@@ -40,12 +40,12 @@ export const downloadByA = (url: string, filename = new Date().getTime(), fileSu
 /**
  * * Tải xuốngDữ liệu
  * @param { string } content Dữ liệunội dung
- * @param { ?string } filename tài liệuDanh xưng(ký tự ngẫu nhiên mặc định)
+ * @param { ?(string | number) } filename tài liệuDanh xưng(ký tự ngẫu nhiên mặc định)
  * @param { ?string } fileSuffix tài liệuDanh xưng(ký tự ngẫu nhiên mặc định)
  */
 export const downloadTextFile = (
   content: string,
-  filename = new Date().getTime(),
+  filename: string | number = new Date().getTime(),
   fileSuffix?: string
 ) => {
   // Nội dung ký tự được chuyển đổi thànhblobURL

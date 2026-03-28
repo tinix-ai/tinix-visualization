@@ -96,11 +96,13 @@ function importJSON() {
 }
 
 // đồng bộDữ liệuSửa (Edit)Trang
-window.opener.addEventListener(SavePageEnum.CHART, (e: any) => {
-  window['$message'].success(window['$t']('views_components.auto_292'))
-  setSessionStorage(StorageEnum.GO_CHART_STORAGE_LIST, [e.detail])
-  content.value = JSONStringify(e.detail)
-})
+if (window.opener) {
+  window.opener.addEventListener(SavePageEnum.CHART, (e: any) => {
+    window['$message'].success(window['$t']('views_components.auto_292'))
+    setSessionStorage(StorageEnum.GO_CHART_STORAGE_LIST, [e.detail])
+    content.value = JSONStringify(e.detail)
+  })
+}
 
 // {{ $t('phase7.auto_447') }}đồng bộ nútDữ liệu
 document.addEventListener('keydown', function (e) {

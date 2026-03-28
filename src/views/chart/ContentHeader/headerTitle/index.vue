@@ -3,8 +3,8 @@
     <n-icon size="20" :depth="3">
       <fish-icon></fish-icon>
     </n-icon>
-    <n-text @click="handleFocus">
-      Bàn Giao Tranh -
+    <n-text @click="handleFocus" class="go-cursor-pointer">
+      Dự án -
       <n-button v-show="!focus" secondary size="tiny">
         <span class="title">
           {{ comTitle }}
@@ -35,33 +35,29 @@ import { useChartEditStore } from '@/store/modules/chartEditStore/chartEditStore
 import { EditCanvasConfigEnum } from '@/store/modules/chartEditStore/chartEditStore.d'
 import { icon } from '@/plugins'
 
+import { watch } from 'vue'
+
 const { FishIcon } = icon.ionicons5
 const chartEditStore = useChartEditStore()
 
 const focus = ref<boolean>(false)
 const inputInstRef = ref(null)
 
-// Theo định tuyến id Các thông số để lấy thông tin dự án
-const fetchProhectInfoById = () => {
-  const id = fetchRouteParamsLocation()
-  if (id.length) {
-    return id[0]
-  }
-  return ''
-}
+const title = ref<string>(chartEditStore.getEditCanvasConfig.projectName || '')
 
-const title = ref<string>(fetchProhectInfoById() || '')
+// Theo dõi sự thay đổi của tên dự án trong store
+watch(() => chartEditStore.getEditCanvasConfig.projectName, (newVal) => {
+  title.value = newVal || ''
+})
 
 const comTitle = computed(() => {
-  // eslint-disable-next-line vue/no-side-effects-in-computed-properties
-  title.value = title.value.replace(/\s/g, '')
-  const newTitle = title.value.length ? title.value : window['$t']('views_components.auto_303')
-  setTitle(window['$t']('phase7.auto_271'))
-  chartEditStore.setEditCanvasConfig(EditCanvasConfigEnum.PROJECT_NAME, newTitle)
+  const newTitle = chartEditStore.getEditCanvasConfig.projectName || window['$t']('views_components.auto_303')
+  setTitle(`${newTitle} - ${window['$t']('phase7.auto_271')}`)
   return newTitle
 })
 
 const handleFocus = () => {
+  title.value = chartEditStore.getEditCanvasConfig.projectName || ''
   focus.value = true
   nextTick(() => {
     inputInstRef.value && (inputInstRef.value as any).focus()
@@ -69,6 +65,7 @@ const handleFocus = () => {
 }
 
 const handleBlur = () => {
+  chartEditStore.setEditCanvasConfig(EditCanvasConfigEnum.PROJECT_NAME, title.value)
   focus.value = false
 }
 </script>

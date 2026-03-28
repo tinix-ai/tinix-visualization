@@ -75,14 +75,17 @@ const componentMerge = (newObject: any, sources: any, notComponent = false) => {
   const option = sources.option
   if (!option) return merge(newObject, sources)
 
-  // vì undefined của sources Thuộc tính đối tượng nguồn sẽ bị bỏ qua, xem chi tiết https://www.lodashjs.com/docs/lodash.merge
-  sources.option = undefined
-  if (option) {
-    return {
-      ...merge(newObject, sources),
-      option: option
-    }
+  // Merge options to preserve defaults, but replace dataset entirely
+  const { dataset, ...restOption } = option
+  merge(newObject.option, restOption)
+  if (dataset !== undefined) {
+    newObject.option.dataset = dataset
   }
+  
+  // Clear option from sources to avoid double merging or overwriting in the final merge
+  sources.option = undefined
+  
+  return merge(newObject, sources)
 }
 
 // Yêu cầu xử lý
@@ -97,7 +100,8 @@ export const useSync = () => {
    * @returns
    */
   const updateComponent = async (projectData: ChartEditStorage, isReplace = false, changeId = false) => {
-    if (isReplace) {
+    try {
+      if (isReplace) {
       // danh sách rõ ràng
       chartEditStore.componentList = []
       // xóa lịch sử
@@ -108,7 +112,7 @@ export const useSync = () => {
     projectData.editCanvasConfig = canvasVersionUpdatePolyfill(projectData.editCanvasConfig)
 
     // Danh sách đăng ký thành phần
-    projectData.componentList.forEach(async (e: CreateComponentType | CreateComponentGroupType) => {
+    for (const e of projectData.componentList) {
       const intComponent = (target: CreateComponentType) => {
         if (!window['$vue'].component(target.chartConfig.chartKey)) {
           window['$vue'].component(target.chartConfig.chartKey, fetchChartComponent(target.chartConfig))
@@ -123,7 +127,7 @@ export const useSync = () => {
       } else {
         intComponent(e as CreateComponentType)
       }
-    })
+    }
 
     // Tạo chức năng-Giải trí là để giải quyết vấn đề các phương thức lớp biến mất
     const create = async (
@@ -186,7 +190,7 @@ export const useSync = () => {
             groupClass.groupList = targetList
 
             // Chèn nhóm vào danh sách
-            chartEditStore.addComponentList(groupClass, false, true)
+            chartEditStore.addComponentList(groupClass as unknown as CreateComponentGroupType, false, true)
           } else {
             await create(comItem as CreateComponentType)
           }
@@ -201,8 +205,11 @@ export const useSync = () => {
       }
     }
 
-    // Số lượng rõ ràng
+    // Số lượng rõ ràng (Clear percentage to hide loading)
     chartLayoutStore.setItemUnHandle(ChartLayoutStoreEnum.PERCENTAGE, 0)
+    } catch (error) {
+      console.error('TiniX Error: updateComponent failed:', error)
+    }
   }
 
   return {

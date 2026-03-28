@@ -6,3 +6,5 @@ dist-ssr
 .vscode
 .idea
 pnpm-lock
+.env
+*.sqlite

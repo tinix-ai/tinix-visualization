@@ -69,7 +69,8 @@ import {
   EyeOffOutline as EyeOffOutlineIcon,
   Albums as AlbumsIcon,
   Analytics as AnalyticsIcon,
-  AirplaneOutline as AirPlaneOutlineIcon
+  AirplaneOutline as AirPlaneOutlineIcon,
+  ShieldCheckmarkOutline
 } from '@vicons/ionicons5'
 
 import {
@@ -248,6 +249,8 @@ const ionicons5 = {
   AnalyticsIcon,
   // máy bay
   AirPlaneOutlineIcon,
+  // Khiên (Shield)
+  ShieldCheckmarkOutline,
   // Ở bên phải
   ChevronForwardIcon
 }

@@ -3,28 +3,28 @@
     "CMYK": [62, 0, 21, 16],
     "RGB": [81, 214, 169],
     "hex": "#51d6a9",
-    "name": "màu xanh da trời",
-    "pinyin": "bikonlv"
+    "name": "Xanh Cỏ May",
+    "pinyin": "Mint Green"
   },
   {
     "CMYK": [73, 17, 20, 1],
     "RGB": [102, 169, 201],
     "hex": "#66a9c9",
-    "name": "Suối đá xanh",
-    "pinyin": "jianshilan"
+    "name": "Xanh Băng Giá",
+    "pinyin": "Icy Blue"
   },
   {
     "CMYK": [4, 13, 67, 0],
     "RGB": [248, 223, 114],
     "hex": "#f8df72",
-    "name": "hoa nhài màu vàng",
-    "pinyin": "molihuang"
+    "name": "Vàng Hoa Nhài",
+    "pinyin": "Jasmine Yellow"
   },
   {
     "CMYK": [76, 51, 0, 0],
     "RGB": [60, 126, 255],
     "hex": "#3c7eff",
-    "name": "biển xanh thẳm",
-    "pinyin": "shenhailan"
+    "name": "Xanh Đại Dương",
+    "pinyin": "Deep Sea Blue"
   }
 ]

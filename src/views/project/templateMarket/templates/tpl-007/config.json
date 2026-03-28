@@ -1,0 +1,116 @@
+{
+  "editCanvasConfig": {
+    "projectName": "Báo cáo Bán lẻ Thương mại Điện tử",
+    "width": 1920, "height": 1080,
+    "background": "#ffffff",
+    "selectColor": false, "chartThemeColor": "light",
+    "vChartThemeName": "vScreenVolcanoBlue", "previewScaleType": "fit"
+  },
+  "componentList": [
+    {
+      "id": "r-title", "key": "TextCommon",
+      "attr": { "x": 610, "y": 20, "w": 700, "h": 55, "zIndex": 10 },
+      "chartConfig": { "key": "TextCommon", "chartKey": "VTextCommon", "conKey": "VCTextCommon", "title": "Tiêu đề", "package": "Informations", "category": "Texts", "chartFrame": "common" },
+      "option": { "dataset": "CHỈ SỐ KINH DOANH THƯƠNG MẠI ĐIỆN TỬ", "fontSize": 34, "fontColor": "#f5222d", "textAlign": "center", "fontWeight": "bold", "letterSpacing": 1 }
+    },
+    {
+      "id": "r-deco", "key": "Decorates01",
+      "attr": { "x": 460, "y": 78, "w": 1000, "h": 15, "zIndex": 9 },
+      "chartConfig": { "key": "Decorates01", "chartKey": "VDecorates01", "conKey": "VCDecorates01", "title": "Trang trí", "package": "Decorates", "category": "Decorates", "chartFrame": "static" },
+      "option": { "colors": ["#f5222d","#ff4d4f"], "dur": 3 }
+    },
+    {
+      "id": "r-bdr1", "key": "Border01",
+      "attr": { "x": 30, "y": 110, "w": 450, "h": 320, "zIndex": 1 },
+      "chartConfig": { "key": "Border01", "chartKey": "VBorder01", "conKey": "VCBorder01", "title": "Khung", "package": "Decorates", "category": "Borders", "chartFrame": "static" },
+      "option": { "colors": ["#f5222d","#d9d9d9"], "backgroundColor": "#ffffff" }
+    },
+    {
+      "id": "r-pie-share", "key": "PieCircle",
+      "attr": { "x": 50, "y": 140, "w": 410, "h": 260, "zIndex": 2 },
+      "chartConfig": { "key": "PieCircle", "chartKey": "VPieCircle", "conKey": "VCPieCircle", "title": "Tỉ trọng doanh thu theo ngành", "package": "Charts", "category": "Pies", "chartFrame": "echarts" },
+      "option": {
+        "legend": { "show": true, "textStyle": { "color": "#333" } },
+        "dataset": { "source": [
+          { "product": "Thời trang", "data": 35 }, { "product": "Điện tử", "data": 45 },
+          { "product": "Gia dụng", "data": 20 }
+        ]},
+        "series": [{ "type": "pie", "radius": ["40%","70%"] }]
+      }
+    },
+    {
+      "id": "r-bdr2", "key": "Border01",
+      "attr": { "x": 500, "y": 110, "w": 940, "h": 320, "zIndex": 1 },
+      "chartConfig": { "key": "Border01", "chartKey": "VBorder01", "conKey": "VCBorder01", "title": "Khung", "package": "Decorates", "category": "Borders", "chartFrame": "static" },
+      "option": { "colors": ["#f5222d","#d9d9d9"], "backgroundColor": "#ffffff" }
+    },
+    {
+      "id": "r-line-sales", "key": "LineCommon",
+      "attr": { "x": 520, "y": 140, "w": 900, "h": 260, "zIndex": 2 },
+      "chartConfig": { "key": "LineCommon", "chartKey": "VLineCommon", "conKey": "VCLineCommon", "title": "Doanh số 7 ngày qua", "package": "Charts", "category": "Lines", "chartFrame": "echarts" },
+      "option": {
+        "xAxis": { "show": true, "type": "category" }, "yAxis": { "show": true, "type": "value" },
+        "dataset": { "dimensions": ["product","Đơn hàng","Doanh số"], "source": [
+          { "product": "Mon", "Đơn hàng": 520, "Doanh số": 1200 }, { "product": "Tue", "Đơn hàng": 480, "Doanh số": 1100 },
+          { "product": "Wed", "Đơn hàng": 610, "Doanh số": 1500 }, { "product": "Thu", "Đơn hàng": 580, "Doanh số": 1400 },
+          { "product": "Fri", "Đơn hàng": 720, "Doanh số": 1800 }, { "product": "Sat", "Đơn hàng": 950, "Doanh số": 2500 },
+          { "product": "Sun", "Đơn hàng": 880, "Doanh số": 2200 }
+        ]},
+        "series": [{ "type": "line", "smooth": true }, { "type": "line", "smooth": true }]
+      }
+    },
+    {
+      "id": "r-bdr3", "key": "Border01",
+      "attr": { "x": 1460, "y": 110, "w": 430, "h": 320, "zIndex": 1 },
+      "chartConfig": { "key": "Border01", "chartKey": "VBorder01", "conKey": "VCBorder01", "title": "Khung", "package": "Decorates", "category": "Borders", "chartFrame": "static" },
+      "option": { "colors": ["#f5222d","#d9d9d9"], "backgroundColor": "#ffffff" }
+    },
+    {
+      "id": "r-water-conversion", "key": "WaterPolo",
+      "attr": { "x": 1520, "y": 130, "w": 310, "h": 260, "zIndex": 2 },
+      "chartConfig": { "key": "WaterPolo", "chartKey": "VWaterPolo", "conKey": "VCWaterPolo", "title": "Tỉ lệ chuyển đổi", "package": "Charts", "category": "Mores", "chartFrame": "common" },
+      "option": { "dataset": 0.045, "series": [{ "type": "liquidFill", "shape": "circle", "radius": "90%", "data": [0], "center": ["50%","50%"],
+        "color": [{ "type": "linear", "x": 0, "y": 0, "x2": 0, "y2": 1, "colorStops": [{ "offset": 0, "color": "#f5222d" }, { "offset": 1, "color": "#ffadd2" }] }],
+        "backgroundStyle": { "borderWidth": 1, "color": "rgba(245,34,45,0.05)" },
+        "label": { "normal": { "textStyle": { "fontSize": 32, "color": "#f5222d" } } }, "outline": { "show": false }
+      }] }
+    },
+    {
+      "id": "r-bdr-bot", "key": "Border01",
+      "attr": { "x": 30, "y": 450, "w": 1860, "h": 600, "zIndex": 1 },
+      "chartConfig": { "key": "Border01", "chartKey": "VBorder01", "conKey": "VCBorder01", "title": "Khung", "package": "Decorates", "category": "Borders", "chartFrame": "static" },
+      "option": { "colors": ["#f5222d","#d9d9d9"], "backgroundColor": "#ffffff" }
+    },
+    {
+      "id": "r-table-orders", "key": "TableList",
+      "attr": { "x": 50, "y": 480, "w": 600, "h": 540, "zIndex": 2 },
+      "chartConfig": { "key": "TableList", "chartKey": "VTableList", "conKey": "VCTableList", "title": "Đơn hàng thành công gần đây", "package": "Tables", "category": "Tables", "chartFrame": "common" },
+      "option": {
+        "dataset": [
+          { "name": "#ORD-1234 - Nguyễn Văn A", "value": 1250000, "id": "o1" },
+          { "name": "#ORD-1235 - Trần Thị B", "value": 850000, "id": "o2" },
+          { "name": "#ORD-1236 - Lê Văn C", "value": 2100000, "id": "o3" },
+          { "name": "#ORD-1237 - Phạm Minh D", "value": 450000, "id": "o4" },
+          { "name": "#ORD-1238 - Hoàng Anh E", "value": 3200000, "id": "o5" }
+        ],
+        "waitTime": 2, "rowNum": 5, "unit": "đ", "sort": false,
+        "color": "#f5222d", "textColor": "#333", "borderColor": "#f5222d",
+        "indexFontSize": 12, "leftFontSize": 12, "rightFontSize": 12, "carousel": "single"
+      }
+    },
+    {
+      "id": "r-bar-cat", "key": "BarCommon",
+      "attr": { "x": 680, "y": 480, "w": 1180, "h": 540, "zIndex": 2 },
+      "chartConfig": { "key": "BarCommon", "chartKey": "VBarCommon", "conKey": "VCBarCommon", "title": "Doanh thu theo danh mục sản phẩm", "package": "Charts", "category": "Bars", "chartFrame": "echarts" },
+      "option": {
+        "xAxis": { "show": true, "type": "category" }, "yAxis": { "show": true, "type": "value" },
+        "dataset": { "dimensions": ["product","Doanh thu"], "source": [
+          { "product": "Điện tử", "Doanh thu": 4500 }, { "product": "Thời trang", "Doanh thu": 3200 },
+          { "product": "Gia dụng", "Doanh thu": 2800 }, { "product": "Sức khỏe", "Doanh thu": 1500 },
+          { "product": "Sách & Văn phòng", "Doanh thu": 850 }, { "product": "Khác", "Doanh thu": 400 }
+        ]},
+        "series": [{ "type": "bar", "itemStyle": { "color": "#f5222d" } }]
+      }
+    }
+  ]
+}

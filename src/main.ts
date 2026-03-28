@@ -56,11 +56,11 @@ async function appInit() {
   // Đăng ký ngôn ngữ
   app.use(i18n)
 
-  // Gắn vào trang
-  app.mount('#app', true)
-
   // gắn kết với window
   window['$vue'] = app
+
+  // Gắn vào trang
+  app.mount('#app', true)
 }
 
 appInit().then(() => {

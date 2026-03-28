@@ -46,6 +46,10 @@ export enum PageEnum {
   BASE_HOME_TEMPLATE_MARKET = '/project/template-market',
   BASE_HOME_TEMPLATE_MARKET_NAME = 'Project-Template-Market',
 
+  // quản lý dữ liệu (Dataset Management)
+  BASE_HOME_DATA = '/project/data-management',
+  BASE_HOME_DATA_NAME = 'Project-Data-Management',
+
   // sai lầm
   ERROR_PAGE_NAME_403 = 'ErrorPage403',
   ERROR_PAGE_NAME_404 = 'ErrorPage404',

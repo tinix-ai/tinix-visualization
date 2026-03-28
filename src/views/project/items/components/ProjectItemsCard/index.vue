@@ -12,71 +12,78 @@
          ></mac-os-control-btn>
         </div>
         <!-- ở giữa -->
-        <div class="list-content-img" @click="resizeHandle">
+        <div class="list-content-img" @click="editHandle">
           <n-image
             object-fit="contain"
             height="180"
             preview-disabled
             :src="
-              requireUrl('project/moke-20211219181327.png')
+              cardData.image ? cardData.image : requireUrl('project/moke-20211219181327.png')
             "
             :alt="cardData.title"
             :fallback-src="requireErrorImg()"
-         ></n-image>
+          ></n-image>
         </div>
       </div>
       <template #action>
-        <div class="go-flex-items-center list-footer" justify="space-between">
-          <n-text class="go-ellipsis-1" :title="cardData.title">
-            {{ cardData.title || '' }}
-          </n-text>
-          <!-- dụng cụ -->
-          <div class="go-flex-items-center list-footer-ri">
-            <n-space>
-              <n-text>
-                <n-badge
-                  class="go-animation-twinkle"
-                  dot
-                  :color="cardData.release ? '#34c749' : '#fcbc40'"
+        <div class="card-footer-new">
+          <!-- Title on top -->
+          <div class="title-row go-mb-1">
+            <n-text class="go-ellipsis-1 project-title" :title="cardData.title">
+              {{ cardData.title || '' }}
+            </n-text>
+          </div>
+          
+          <!-- Status and Actions at bottom -->
+          <div class="info-row go-flex-items-center" justify="space-between">
+            <div class="status-info">
+              <n-badge
+                class="go-animation-twinkle status-dot"
+                dot
+                :color="cardData.release ? '#34c749' : '#fcbc40'"
               ></n-badge>
+              <n-text class="status-text-small">
                 {{
                   cardData.release
                     ? $t('project.release')
                     : $t('project.unreleased')
                 }}
               </n-text>
-
-              <template v-for="item in fnBtnList" :key="item.key">
-                <template v-if="item.key === 'select'">
-                  <n-dropdown
-                    trigger="hover"
-                    placement="bottom"
-                    :options="selectOptions"
-                    :show-arrow="true"
-                    @select="handleSelect"
-                  >
-                    <n-button size="small">
-                      <template #icon>
-                        <component :is="item.icon"></component>
-                      </template>
-                    </n-button>
-                  </n-dropdown>
-                </template>
-
-                <n-tooltip v-else placement="bottom" trigger="hover">
-                  <template #trigger>
-                    <n-button size="small" @click="handleSelect(item.key)">
-                      <template #icon>
-                        <component :is="item.icon"></component>
-                      </template>
-                    </n-button>
+            </div>
+            
+            <div class="action-btns">
+              <n-space :size="6" align="center">
+                <template v-for="item in fnBtnList" :key="item.key">
+                  <template v-if="item.key === 'select'">
+                    <n-dropdown
+                      trigger="hover"
+                      placement="bottom"
+                      :options="selectOptions"
+                      :show-arrow="true"
+                      @select="handleSelect"
+                    >
+                      <n-button size="tiny" secondary>
+                        <template #icon>
+                          <component :is="item.icon" :size="14"></component>
+                        </template>
+                      </n-button>
+                    </n-dropdown>
                   </template>
-                  <component :is="item.label"></component>
-                </n-tooltip>
-              </template>
-            </n-space>
+
+                  <n-tooltip v-else placement="bottom" trigger="hover">
+                    <template #trigger>
+                      <n-button size="tiny" secondary @click="handleSelect(item.key)">
+                        <template #icon>
+                          <component :is="item.icon" :size="14"></component>
+                        </template>
+                      </n-button>
+                    </template>
+                    <component :is="item.label"></component>
+                  </n-tooltip>
+                </template>
+              </n-space>
+            </div>
           </div>
-          <!-- end -->
         </div>
       </template>
     </n-card>
@@ -101,7 +108,7 @@ const {
   SendIcon
 } = icon.ionicons5
 
-const emit = defineEmits(['delete', 'resize', 'edit'])
+const emit = defineEmits(['delete', 'resize', 'edit', 'preview', 'send'])
 
 const props = defineProps({
   cardData: Object as PropType<Chartype>
@@ -152,6 +159,12 @@ const handleSelect = (key: string) => {
       break
     case 'edit':
       editHandle()
+      break
+    case 'preview':
+      emit('preview', props.cardData)
+      break
+    case 'send':
+      emit('send', props.cardData)
       break
   }
 }
@@ -206,13 +219,45 @@ $contentHeight: 180px;
       }
     }
   }
-  .list-footer {
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    line-height: 30px;
-    &-ri {
-      justify-content: flex-end;
-      min-width: 180px;
+  .card-footer-new {
+    display: flex;
+    flex-direction: column;
+    padding: 8px 12px 2px;
+    
+    .title-row {
+      .project-title {
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--n-text-color);
+        max-width: 100%;
+        display: block;
+      }
+    }
+    
+    .info-row {
+      justify-content: space-between;
+      height: 32px;
+      
+      .status-info {
+        display: flex;
+        align-items: center;
+        opacity: 0.8;
+        
+        .status-dot {
+          margin-right: 6px;
+          transform: scale(0.8);
+        }
+        
+        .status-text-small {
+          font-size: 11px;
+          letter-spacing: 0.5px;
+        }
+      }
+      
+      .action-btns {
+        display: flex;
+        align-items: center;
+      }
     }
   }
 }

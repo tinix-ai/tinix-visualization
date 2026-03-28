@@ -17,7 +17,9 @@ export enum RequestDataTypeEnum {
   // Yêu cầu dữ liệu
   AJAX = 1,
   // nhóm dữ liệu
-  Pond = 2
+  Pond = 2,
+  // Thư viện dữ liệu (Dataset management)
+  LIBRARY = 3
 }
 
 // Yêu cầu loại cơ thể

@@ -15,6 +15,7 @@
       </span>
     </div>
     <v-chart
+      v-if="mapReady"
       ref="vChartRef"
       :init-options="initOptions"
       :theme="themeColor"
@@ -61,9 +62,10 @@ const props = defineProps({
 
 const { ArrowBackIcon } = icon.ionicons5
 let levelHistory: any = ref([])
+const mapReady = ref(false)
 
 const { backColor, backSize, enter } = toRefs(props.chartConfig.option.mapRegion)
-const initOptions = useCanvasInitOptions(props.chartConfig.option, props.themeSetting)
+const initOptions = { ...useCanvasInitOptions(props.chartConfig.option, props.themeSetting), renderer: 'canvas' }
 
 use([
   MapChart,
@@ -75,6 +77,13 @@ use([
   EffectScatterChart,
   VisualMapComponent
 ])
+
+// Cập nhật tên bản đồ trong cấu hình để khớp với adcode trước khi khởi tạo reactive
+const initialAdcode = `${props.chartConfig.option.mapRegion.adcode}`
+props.chartConfig.option.geo.map = initialAdcode
+props.chartConfig.option.series.forEach((item: any) => {
+  if (item.type === 'map') item.map = initialAdcode
+})
 
 const option = reactive({
   value: mergeTheme(props.chartConfig.option, props.themeSetting, includes)
@@ -91,18 +100,20 @@ const getGeojson = (regionId: string) => {
   })
 }
 
-//không đồng bộ{{ $t('phase7.auto_10') }}Đăng ký trống trước Đảm bảo không có lỗi nào được báo cáo trong quá trình khởi tạo
-registerMap(`${props.chartConfig.option.mapRegion.adcode}`, { geoJSON: {} as any, specialAreas: {} })
-
-// Thực hiện bản đồ khởi tạo thay thế nếu vìchina Xử lý riêng
+// không đồng bộ Đăng ký bản đồ
 const registerMapInitAsync = async () => {
   await nextTick()
   const adCode = `${props.chartConfig.option.mapRegion.adcode}`
+
   if (adCode !== 'china') {
     await getGeojson(adCode)
   } else {
     await hainanLandsHandle(props.chartConfig.option.mapRegion.showHainanIsLands)
   }
+  // Reactive update
+  option.value = props.chartConfig.option
+  mapReady.value = true
+  await nextTick()
   vEchartsSetOption()
 }
 registerMapInitAsync()
@@ -110,7 +121,9 @@ registerMapInitAsync()
 // Kích hoạt kết xuất theo cách thủ công
 const vEchartsSetOption = () => {
   option.value = props.chartConfig.option
-  setOption(vChartRef.value, props.chartConfig.option)
+  if (vChartRef.value) {
+    setOption(vChartRef.value, props.chartConfig.option)
+  }
 }
 
 // Cập nhật xử lý dữ liệu
@@ -122,7 +135,7 @@ const dataSetHandle = async (dataset: any) => {
         return {
           ...it,
           lineStyle: {
-            color: props.chartConfig.option.series[2].lineStyle.normal.color
+            color: props.chartConfig.option.series[2]?.lineStyle?.color || props.chartConfig.option.series[2]?.lineStyle?.normal?.color
           }
         }
       })
@@ -206,7 +219,7 @@ watch(
 // Giám sát màu dây
 if (props.chartConfig.option.series[2] && !isPreview()) {
   watch(
-    () => props.chartConfig.option.series[2].lineStyle.normal.color,
+    () => props.chartConfig.option.series[2]?.lineStyle?.color || props.chartConfig.option.series[2]?.lineStyle?.normal?.color,
     () => {
       dataSetHandle(props.chartConfig.option.dataset)
     },

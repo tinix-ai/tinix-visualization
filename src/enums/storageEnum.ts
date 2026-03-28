@@ -13,6 +13,10 @@ export enum StorageEnum {
   GO_CHART_LAYOUT_STORE = 'GO_CHART_LAYOUT',
   // Dữ liệu cần được lưu trên bàn làm việc
   GO_CHART_STORAGE_LIST = 'GO_CHART_STORAGE_LIST',
+  // Dữ liệu mẫu cá nhân và mẫu ghi đè
+  GO_TEMPLATE_STORAGE = 'GO_TEMPLATE_STORAGE',
+  // Dữ liệu mẫu của riêng người dùng (Save as Template)
+  GO_USER_TEMPLATE_STORAGE = 'GO_USER_TEMPLATE_STORAGE',
   // Phương tiện hình ảnh được người dùng lưu trữ
   GO_USER_MEDIA_PHOTOS = 'GO_USER_MEDIA_PHOTOS'
 }

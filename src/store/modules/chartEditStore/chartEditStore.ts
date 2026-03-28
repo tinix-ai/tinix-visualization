@@ -320,9 +320,9 @@ export const useChartEditStore = defineStore({
       }
       if (isHead) {
         this.componentList.unshift(componentInstance)
-        return
+      } else {
+        this.componentList.push(componentInstance)
       }
-      this.componentList.push(componentInstance)
     },
     // * Xóa thành phần
     removeComponentList(id?: string | string[], isHistory = true): void {
@@ -814,7 +814,7 @@ export const useChartEditStore = defineStore({
         groupClass.attr.w = groupAttr.r - groupAttr.l
         groupClass.attr.h = groupAttr.b - groupAttr.t
 
-        this.addComponentList(groupClass)
+        this.addComponentList(groupClass as unknown as CreateComponentGroupType)
         this.setTargetSelectChart(groupClass.id)
 
         loadingFinish()

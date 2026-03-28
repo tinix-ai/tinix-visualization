@@ -1,0 +1,148 @@
+{
+  "editCanvasConfig": {
+    "projectName": "Theo dõi Logistic & Vận tải",
+    "width": 1920, "height": 1080,
+    "background": "#051525",
+    "selectColor": true, "chartThemeColor": "dark",
+    "vChartThemeName": "vScreenVolcanoBlue", "previewScaleType": "fit"
+  },
+  "componentList": [
+    {
+      "id": "l-title", "key": "TextCommon",
+      "attr": { "x": 610, "y": 20, "w": 700, "h": 55, "zIndex": 10 },
+      "chartConfig": { "key": "TextCommon", "chartKey": "VTextCommon", "conKey": "VCTextCommon", "title": "Tiêu đề", "package": "Informations", "category": "Texts", "chartFrame": "common" },
+      "option": { "dataset": "GIÁM SÁT LOGISTIC & VẬN TẢI TOÀN CẦU", "fontSize": 36, "fontColor": "#00d2ff", "textAlign": "center", "fontWeight": "bold", "letterSpacing": 2 }
+    },
+    {
+      "id": "l-deco", "key": "Decorates01",
+      "attr": { "x": 460, "y": 78, "w": 1000, "h": 20, "zIndex": 9 },
+      "chartConfig": { "key": "Decorates01", "chartKey": "VDecorates01", "conKey": "VCDecorates01", "title": "Trang trí", "package": "Decorates", "category": "Decorates", "chartFrame": "static" },
+      "option": { "colors": ["#00d2ff","#3a7bd5"], "dur": 3 }
+    },
+    {
+      "id": "l-bdr1", "key": "Border01",
+      "attr": { "x": 30, "y": 110, "w": 450, "h": 460, "zIndex": 1 },
+      "chartConfig": { "key": "Border01", "chartKey": "VBorder01", "conKey": "VCBorder01", "title": "Khung", "package": "Decorates", "category": "Borders", "chartFrame": "static" },
+      "option": { "colors": ["#00d2ff","#3a7bd5"], "backgroundColor": "#00000000" }
+    },
+    {
+      "id": "l-bar-ship", "key": "BarCrossrange",
+      "attr": { "x": 50, "y": 140, "w": 410, "h": 400, "zIndex": 2 },
+      "chartConfig": { "key": "BarCrossrange", "chartKey": "VBarCrossrange", "conKey": "VCBarCrossrange", "title": "Sản lượng vận chuyển theo tháng", "package": "Charts", "category": "Bars", "chartFrame": "echarts" },
+      "option": {
+        "xAxis": { "show": true, "type": "category" }, "yAxis": { "show": true, "type": "value" },
+        "dataset": { "dimensions": ["product","Khối lượng"], "source": [
+          { "product": "T1", "Khối lượng": 4500 }, { "product": "T2", "Khối lượng": 5200 },
+          { "product": "T3", "Khối lượng": 4800 }, { "product": "T4", "Khối lượng": 6100 }
+        ]},
+        "series": [{ "type": "bar", "itemStyle": { "color": "#00d2ff" } }]
+      }
+    },
+    {
+      "id": "l-bdr2", "key": "Border01",
+      "attr": { "x": 500, "y": 110, "w": 940, "h": 460, "zIndex": 1 },
+      "chartConfig": { "key": "Border01", "chartKey": "VBorder01", "conKey": "VCBorder01", "title": "Khung", "package": "Decorates", "category": "Borders", "chartFrame": "static" },
+      "option": { "colors": ["#00d2ff","#3a7bd5"], "backgroundColor": "#00000000" }
+    },
+    {
+      "id": "l-map-vn", "key": "MapBase",
+      "attr": { "x": 520, "y": 140, "w": 900, "h": 400, "zIndex": 2 },
+      "chartConfig": { "key": "MapBase", "chartKey": "VMapBase", "conKey": "VCMapBase", "title": "Mạng lưới Logistics Toàn quốc", "package": "Charts", "category": "Maps", "chartFrame": "common" },
+      "option": {
+        "mapRegion": { "adcode": "vietnam", "showHainanIsLands": true, "enter": false },
+        "dataset": { "map": [
+          { "name": "Hà Nội", "value": 120 },
+          { "name": "TP. Hồ Chí Minh", "value": 150 },
+          { "name": "Đà Nẵng", "value": 90 },
+          { "name": "Bình Dương", "value": 110 },
+          { "name": "Đồng Nai", "value": 105 }
+        ] },
+        "series": [
+          { "type": "effectScatter", "coordinateSystem": "geo", "data": [] },
+          { "name": "Sản lượng", "type": "map", "map": "vietnam", "data": [
+            { "name": "Hà Nội", "value": 120 },
+            { "name": "TP. Hồ Chí Minh", "value": 150 },
+            { "name": "Đà Nẵng", "value": 90 },
+            { "name": "Bình Dương", "value": 110 },
+            { "name": "Đồng Nai", "value": 105 }
+          ] },
+          { "type": "lines", "coordinateSystem": "geo", "lineStyle": { "color": "#4fb6d2", "width": 1, "opacity": 0.4, "curveness": 0.3 }, "data": [
+            { "fromName": "Hà Nội", "toName": "TP. Hồ Chí Minh", "coords": [[105.85, 21.02], [106.66, 10.76]], "value": 100 },
+            { "fromName": "Đà Nẵng", "toName": "TP. Hồ Chí Minh", "coords": [[108.20, 16.05], [106.66, 10.76]], "value": 80 },
+            { "fromName": "Hải Phòng", "toName": "Hà Nội", "coords": [[106.68, 20.84], [105.85, 21.02]], "value": 90 }
+          ]}
+        ]
+      }
+    },
+    {
+      "id": "l-bdr3", "key": "Border01",
+      "attr": { "x": 1460, "y": 110, "w": 430, "h": 460, "zIndex": 1 },
+      "chartConfig": { "key": "Border01", "chartKey": "VBorder01", "conKey": "VCBorder01", "title": "Khung", "package": "Decorates", "category": "Borders", "chartFrame": "static" },
+      "option": { "colors": ["#00d2ff","#3a7bd5"], "backgroundColor": "#00000000" }
+    },
+    {
+      "id": "l-water-fuel", "key": "WaterPolo",
+      "attr": { "x": 1520, "y": 130, "w": 310, "h": 220, "zIndex": 2 },
+      "chartConfig": { "key": "WaterPolo", "chartKey": "VWaterPolo", "conKey": "VCWaterPolo", "title": "Nhiên liệu tiêu thụ", "package": "Charts", "category": "Mores", "chartFrame": "common" },
+      "option": { "dataset": 0.68, "series": [{ "type": "liquidFill", "shape": "diamond", "radius": "90%", "data": [0], "center": ["50%","50%"],
+        "color": [{ "type": "linear", "x": 0, "y": 0, "x2": 0, "y2": 1, "colorStops": [{ "offset": 0, "color": "#00c6ff" }, { "offset": 1, "color": "#0072ff" }] }],
+        "backgroundStyle": { "borderWidth": 1, "color": "rgba(0,114,255,0.4)" },
+        "label": { "normal": { "textStyle": { "fontSize": 28, "color": "#fff" } } }, "outline": { "show": false }
+      }] }
+    },
+    {
+      "id": "l-lbl-fuel", "key": "TextCommon",
+      "attr": { "x": 1520, "y": 360, "w": 310, "h": 30, "zIndex": 3 },
+      "chartConfig": { "key": "TextCommon", "chartKey": "VTextCommon", "conKey": "VCTextCommon", "title": "Label", "package": "Informations", "category": "Texts", "chartFrame": "common" },
+      "option": { "dataset": "Hiệu suất nhiên liệu đội tàu", "fontSize": 14, "fontColor": "#aaa", "textAlign": "center" }
+    },
+    {
+      "id": "l-radar-perf", "key": "Radar",
+      "attr": { "x": 1480, "y": 400, "w": 390, "h": 160, "zIndex": 2 },
+      "chartConfig": { "key": "Radar", "chartKey": "VRadar", "conKey": "VCRadar", "title": "Chỉ số vận hành", "package": "Charts", "category": "Mores", "chartFrame": "common" },
+      "option": {
+        "dataset": { "dimensions": ["product","Đúng giờ","An toàn","Chi phí","Bảo trì","Phủ sóng"],
+          "source": [{ "product": "Đội tàu A", "Đúng giờ": 92, "An toàn": 98, "Chi phí": 70, "Bảo trì": 85, "Phủ sóng": 90 }]
+        }
+      }
+    },
+    {
+      "id": "l-bdr-bot", "key": "Border01",
+      "attr": { "x": 30, "y": 590, "w": 1860, "h": 470, "zIndex": 1 },
+      "chartConfig": { "key": "Border01", "chartKey": "VBorder01", "conKey": "VCBorder01", "title": "Khung", "package": "Decorates", "category": "Borders", "chartFrame": "static" },
+      "option": { "colors": ["#00d2ff","#3a7bd5"], "backgroundColor": "#00000000" }
+    },
+    {
+      "id": "l-table-orders", "key": "TableList",
+      "attr": { "x": 50, "y": 620, "w": 580, "h": 420, "zIndex": 2 },
+      "chartConfig": { "key": "TableList", "chartKey": "VTableList", "conKey": "VCTableList", "title": "Trạng thái đơn hàng mới nhất", "package": "Tables", "category": "Tables", "chartFrame": "common" },
+      "option": {
+        "dataset": [
+          { "name": "ORD-7892 (SGP -> VNM)", "value": 95, "id": "o1" },
+          { "name": "ORD-7893 (CHN -> USA)", "value": 45, "id": "o2" },
+          { "name": "ORD-7894 (GER -> FRA)", "value": 82, "id": "o3" },
+          { "name": "ORD-7895 (JPN -> AUS)", "value": 60, "id": "o4" },
+          { "name": "ORD-7896 (IND -> UK)", "value": 20, "id": "o5" }
+        ],
+        "waitTime": 2, "rowNum": 5, "unit": "%", "sort": false,
+        "color": "#00d2ff", "textColor": "#eee", "borderColor": "#00d2ff80",
+        "indexFontSize": 12, "leftFontSize": 12, "rightFontSize": 12, "carousel": "single"
+      }
+    },
+    {
+      "id": "l-line-eff", "key": "LineCommon",
+      "attr": { "x": 660, "y": 620, "w": 1210, "h": 420, "zIndex": 2 },
+      "chartConfig": { "key": "LineCommon", "chartKey": "VLineCommon", "conKey": "VCLineCommon", "title": "Hiệu suất giao hàng 7 ngày qua", "package": "Charts", "category": "Lines", "chartFrame": "echarts" },
+      "option": {
+        "xAxis": { "show": true, "type": "category" }, "yAxis": { "show": true, "type": "value" },
+        "dataset": { "dimensions": ["product","Thành công","Trễ"], "source": [
+          { "product": "Mon", "Thành công": 120, "Trễ": 12 }, { "product": "Tue", "Thành công": 145, "Trễ": 8 },
+          { "product": "Wed", "Thành công": 130, "Trễ": 15 }, { "product": "Thu", "Thành công": 160, "Trễ": 10 },
+          { "product": "Fri", "Thành công": 180, "Trễ": 5 }, { "product": "Sat", "Thành công": 90, "Trễ": 2 },
+          { "product": "Sun", "Thành công": 70, "Trễ": 3 }
+        ]},
+        "series": [{ "type": "line", "smooth": true }, { "type": "line", "smooth": true }]
+      }
+    }
+  ]
+}

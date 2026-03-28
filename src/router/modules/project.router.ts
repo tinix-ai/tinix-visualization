@@ -6,7 +6,8 @@ const importPath = {
   'PageEnum.BASE_HOME_NAME': () => import('@/views/project/index.vue'),
   'PageEnum.BASE_HOME_ITEMS_NAME': () => import('@/views/project/items/index.vue'),
   'PageEnum.BASE_HOME_TEMPLATE_NAME': () => import('@/views/project/mtTemplate/index.vue'),
-  'PageEnum.BASE_HOME_TEMPLATE_MARKET_NAME': () => import('@/views/project/templateMarket/index.vue')
+  'PageEnum.BASE_HOME_TEMPLATE_MARKET_NAME': () => import('@/views/project/templateMarket/index.vue'),
+  'PageEnum.BASE_HOME_DATA_NAME': () => import('@/views/project/dataManagement/index.vue')
 }
 
 const projectRoutes: RouteRecordRaw = {
@@ -41,6 +42,14 @@ const projectRoutes: RouteRecordRaw = {
       component: importPath['PageEnum.BASE_HOME_TEMPLATE_MARKET_NAME'],
       meta: {
         title: (typeof window !== 'undefined' && window['$t'] ? window['$t']('phase7.auto_519') : 'thị trường mẫu')
+      }
+    },
+    {
+      path: PageEnum.BASE_HOME_DATA,
+      name: PageEnum.BASE_HOME_DATA_NAME,
+      component: importPath['PageEnum.BASE_HOME_DATA_NAME'],
+      meta: {
+        title: 'thư viện dữ liệu'
       }
     }
   ]

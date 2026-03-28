@@ -2,49 +2,37 @@
   <div class="content-left">
     <div
       class="content-left-item go-transition-quick go-mb-0"
-      span="12 1000:6 1400:4 1800:4 2200:2"
       v-for="(item, index) in designColorRecommend"
       :key="index"
       @click="colorSelectHandle(item)"
     >
       <n-space>
         <div class="content-left-item-color" :style="{ backgroundColor: item.hex }"></div>
-        <n-space vertical>
-          <n-space>
-            <span :style="{ color: item.hex }">{{ item.name }}</span>
-            <span class="Pinyin-upper">{{ item.pinyin.toUpperCase() }}</span>
-          </n-space>
-          <n-text>
+        <n-space vertical :size="2">
+          <span class="color-name-text" :style="{ color: item.hex }">{{ item.name }}</span>
+          <n-text depth="3" class="color-hex-text">
             {{ item.hex }}
             <n-divider vertical></n-divider>
-            {{
-              `rgb(${item.RGB[0]}, ${item.RGB[1]}, ${item.RGB[2]})`
-            }}
+            {{ `rgb(${item.RGB[0]}, ${item.RGB[1]}, ${item.RGB[2]})` }}
           </n-text>
         </n-space>
       </n-space>
     </div>
-    <n-divider></n-divider>
+    <n-divider title-placement="left">{{ $t('phase7.auto_419') }}</n-divider>
     <div
       class="content-left-item go-transition-quick"
-      span="12 1000:6 1400:4 1800:4 2200:2"
       v-for="(item, index) in designColor"
       :key="index"
       @click="colorSelectHandle(item)"
     >
       <n-space>
         <div class="content-left-item-color" :style="{ backgroundColor: item.hex }"></div>
-        <n-space vertical>
-          <n-space>
-            <span :style="{ color: item.hex }">{{ item.name }}</span>
-            <span class="Pinyin-upper">{{ item.pinyin.toUpperCase() }}</span>
-          </n-space>
-          <n-text>
+        <n-space vertical :size="2">
+          <span class="color-name-text" :style="{ color: item.hex }">{{ item.name }}</span>
+          <n-text depth="3" class="color-hex-text">
             {{ item.hex }}
             <n-divider vertical></n-divider>
-            {{
-              `rgb(${item.RGB[0]}, ${item.RGB[1]}, ${item.RGB[2]})`
-            }}
+            {{ `rgb(${item.RGB[0]}, ${item.RGB[1]}, ${item.RGB[2]})` }}
           </n-text>
         </n-space>
       </n-space>
@@ -102,12 +90,16 @@ const colorSelectHandle = (color: AppThemeColorType) => {
       backdrop-filter: none;
     }
     &-color {
-      width: 8px;
-      height: 40px;
-      border-radius: 2px;
+      width: 10px;
+      height: 44px;
+      border-radius: 4px;
     }
-    .Pinyin-upper {
-      font-size: 8px;
+    .color-name-text {
+      font-weight: 500;
+      font-size: 14px;
+    }
+    .color-hex-text {
+      font-size: 11px;
     }
   }
 }

@@ -1,67 +1,82 @@
 <div align="center">
-  <h1>📊 TiniX Visualization</h1>
-  <p><strong>Nền tảng Thiết kế Bảng Điều Khiển (Dashboard) Kéo-Thả & Phân tích Dữ liệu Trực quan Tối giản, Bảo mật Cục bộ và Tuyệt đẹp</strong></p>
+  <h1>📊 TiniX Visualization (Auto-BI Edition)</h1>
+  <p><strong>Nền tảng Trực quan hóa Dữ liệu Thông minh, Bảo mật Cục bộ và Tự động hóa bằng AI (Auto-BI)</strong></p>
 </div>
 
 ---
 
 ## 🌟 Giới thiệu tổng quan
-**TiniX Visualization** là một Low-Code Framework chuyên xây dựng và vận hành các Hệ thống Trực quan hóa Dữ liệu (Data Visualization Dashboard). Dựa trên lõi Vue 3 và công nghệ biểu đồ đa dạng (ECharts, VChart), hệ thống cho phép người dùng từ Giám đốc mảng, Phân tích viên Data đến Kỹ sư Hệ thống đều có thể tạo ra các bảng thông tin trực quan chuyên nghiệp.
 
-Dự án mang lại một giao diện người dùng **hoàn toàn 100% Tiếng Việt (Sạch bóng ngôn ngữ ngoại vùng)**, hỗ trợ thao tác dựng biểu đồ kéo-thả trên trình duyệt mà không cần viết code. Đặc biệt, TiniX Visualization ưu tiên quy trình lưu trữ, trích xuất cấu hình (JSON Config) độc lập mà không bắt buộc cài đặt CSDL Database phức tạp.
+**TiniX Visualization** là một Low-Code Framework thế hệ mới chuyên xây dựng các Dashboard chuyên nghiệp. Khác biệt với các công cụ truyền thống, TiniX tích hợp sức mạnh của **Trí tuệ Nhân tạo (AI)** để giúp người dùng chuyển đổi dữ liệu thô (Excel, CSV) thành các biểu đồ phân tích sâu sắc chỉ trong vài giây thông qua quy trình **Auto-BI**.
 
-## ✨ Tính năng Nổi bật
-- **Kéo thả Trực quan (Drag & Drop):** Cung cấp không gian làm việc (Canvas) linh hoạt, hỗ trợ Snap-to-Grid, Quản lý đa Lớp (Layer), và tính năng Nhóm (Group/Ungroup) tiện lợi như phần mềm Design.
-- **Thư viện Biểu đồ Đồ sộ:** Tích hợp hơn 50+ loại Khối hiển thị từ Cổ điển (Cột, Đường, Tròn) đến Chuyên sâu (Bản đồ Nhiệt, Phễu, Lưới, Đồng hồ Đo, Radar, Biểu đồ Nước...).
-- **Hệ thống Pipeline Dữ liệu Thông minh:**
-  - Hỗ trợ Dữ liệu Tĩnh cục bộ.
-  - Tương tác API Động (Fetch REST API tuần hoàn theo giây, tuỳ chỉnh Request Header & Params).
-  - Tích hợp WebSockets/MQTT cho các định dạng biểu đồ theo thời gian thực (Real-time update).
-  - Xử lý mảng và Format tiền kỳ qua ngôn ngữ JavaScript nội tuyến.
-- **Tuỳ biến Giao diện Nâng cao:**
-  - Engine CSS mở rộng: Filter (Độ tương phản, Hue Rotate, Độ Sáng, Bóng mờ).
-  - Chế độ Trộn Màu (Blend Mode) Layer chồng Layer chuẩn xác như phần mềm Photoshop / Figma.
-- **Phát hành File Cục Bộ (Local Publish):** Đóng gói và phát hành bản thiết kế thành file cấu hình chuẩn dạng `.json`. Tải về trọn vẹn, khôi phục cấu hình và chia sẻ bất cứ phút nào.
-- **Môi trường Toàn việt hóa:** Toàn bộ giao diện, tài liệu, thuật ngữ cảnh báo, Log Event đã được Việt hoá triệt để, xóa sổ hoàn toàn tiếng Trung rác, mang lại môi trường vận hành an toàn cho các tác vụ nội bộ (Internal Tool).
+Dự án được tối ưu hóa 100% Tiếng Việt, vận hành theo triết lý "Local-First" – dữ liệu và cấu hình nằm gọn trong hạ tầng của bạn, đảm bảo tính riêng tư tuyệt đối cho các báo cáo doanh nghiệp.
 
-## 🛠 Ngăn xếp Công nghệ (Tech Stack)
-* **Core Framework:** Vue 3.x (Composition API / Hooks)
-* **Ngôn ngữ Types:** TypeScript 4.x
-* **Trình Đóng Gói (Build Tool):** Vite 4.x
-* **State Management:** Pinia 2.x
-* **Bộ UI Components:** Naive UI (Theme Darkmode)
-* **Chart Rendering Engines:** ECharts 5.x, VChart
-* **Styling Logic:** SCSS, CSS Variables
+## ✨ Tính năng Đột phá
 
-## 🚀 Hướng dẫn Cài đặt & Khởi động
-Hệ thống là một ứng dụng **Single Page Application (SPA)**, hoạt động trơn tru dựa trên sức mạnh của Client-side. Vui lòng đảm bảo nền tảng OS đã cài đặt Node.js (>= 16.x) và Node Package Manager.
+### 1. 🤖 Auto-BI Wizard (AI-Driven Generation)
+- **Tự động Phân tích:** AI tự động đề xuất loại biểu đồ phù hợp nhất dựa trên đặc tính dữ liệu (Phân tán, Xu hướng, So sánh, Tỷ trọng).
+- **Khởi tạo Dashboard Thần tốc:** Tạo 4-10 biểu đồ chuyên sâu chỉ với 3 bước: Tải dữ liệu -> AI Đề xuất -> Tùy chỉnh & Lưu.
+- **Thumbnail Thông minh:** Tự động gán ảnh đại diện theo chủ đề (Tài chính, Marketing, Bản đồ...) ngay khi vừa khởi tạo.
 
-1. **Cài đặt thư viện phụ thuộc:**
+### 2. 🗺️ Geographic Intelligence (Bản đồ Toàn cầu & Việt Nam)
+- **Hỗ trợ Đa vùng:** Chế độ hiển thị linh hoạt Thế giới (World Map), Việt Nam (63 tỉnh thành) và Trung Quốc.
+- **Dữ liệu Sạch:** Cam kết sử dụng bản đồ đã tinh chỉnh, loại bỏ hoàn toàn các đường biên giới nhạy cảm (Đường lưỡi bò) để đảm bảo tính chuẩn mực pháp lý.
+- **Hỗ trợ đa ngôn ngữ địa lý:** Tự động chuẩn hóa tên quốc gia từ tiếng Việt sang tiếng Anh để ánh xạ dữ liệu chính xác trên bản đồ thế giới.
+
+### 3. 📈 Thư viện Biểu đồ Nâng cao (10+ Loại hình)
+- **Nhóm Cổ điển:** Cột, Đường, Tròn, Diện tích.
+- **Nhóm Chuyên sâu:** 
+  - **Radar/Funnel:** Phân tích năng lực và phễu chuyển đổi.
+  - **Heatmap/TreeMap:** Trực quan hóa mật độ và cấu trúc phân cấp.
+  - **Scatter:** Phân tích tương quan dữ liệu phức tạp với tooltip thông minh.
+
+### 4. 🔗 Pipeline & Xử lý Dữ liệu
+- **Data Aggregation:** Tự động tính tổng, làm tròn và lọc Top-N giúp biểu đồ luôn sạch sẽ, không bị rối số liệu.
+- **Cấu hình Động:** Gắn kết dữ liệu trực tiếp từ các Dataset đã tải lên hoặc gọi REST API realtime.
+
+## 🛠 Kiến trúc & Công nghệ (Tech Stack)
+### Frontend
+- **Framework:** Vue 3.x (Composition API), Vite 4.x
+- **State:** Pinia (Quản lý trạng thái Dashboard)
+- **UI:** Naive UI (Dark Mode chuẩn Hi-Tech)
+- **Charts:** ECharts 5.x, VChart (Web-GL Ready)
+
+### Backend (Local Server)
+- **Runtime:** Node.js + Express
+- **Database:** SQLite3 (Lưu trữ cục bộ không cần cài đặt phức tạp)
+- **AI Integration:** OpenAI API / AI Service (Xử lý logic gợi ý biểu đồ)
+
+## 🚀 Cài đặt & Khởi nghiệp
+
+### Yêu cầu hệ thống: Node.js >= 16.14
+
+1. **Cài đặt thư viện:**
    ```bash
    npm install
-   # Hoặc nếu dùng pnpm (khuyên dùng):
-   # pnpm install
    ```
 
-2. **Khởi chạy Môi trường Phát triển (Development):**
+2. **Cấu hình Môi trường (QUAN TRỌNG):**
+   - Sao chép file mẫu: `cp .env.example .env` (hoặc copy-paste thủ công).
+   - Mở file `.env` và điền `OPENROUTER_API_KEY` của bạn để sử dụng tính năng AI.
+   - Các file `.env` và `database.sqlite` đã được cấu hình trong `.gitignore` để đảm bảo bảo mật, không bị đẩy lên Git.
+
+3. **Khởi chạy đồng thời (Frontend & Backend):**
    ```bash
-   npm run dev
+   npm run dev:all
    ```
 
-3. **Đóng gói Triển khai (Production Build):**
-   ```bash
-   npm run build
-   ```
-   > Sau khi lệnh trên hoàn tất, hãy trích xuất thư mục `dist` đưa lên các Web Server tĩnh (VD: Nginx, Apache, Netlify, Github Pages...) để truy cập Public.
+4. **Tự động khởi tạo dữ liệu:**
+   - Khi chạy lần đầu, hệ thống sẽ tự động tạo file dữ liệu SQLite và nạp sẵn các **Dataset mẫu** (Doanh số, Năng lượng...) để bạn trải nghiệm ngay mà không cần cấu hình database thủ công.
 
-## 💡 Cấu trúc Trọng điểm
-- `src/packages/`: Khu vực chứa toàn bộ Nhân (Core Engine) của các Đối tượng Component (Biểu đồ, Khối Text, Hình ảnh, Input Form, Decorate...).
-- `src/views/chart/`: Trang quản lý Bàn Làm Việc (Workbench) và hệ thống công cụ đồ hoạ Drag-and-drop thiết lập Dashboard.
-- `src/api/`: Quản lý các cấu trúc Request gọi API và Mock Data giả lập cấu hình.
-- `src/settings/`: Cấu trúc màu sắc, Setting Theme (Sáng/Tối) và Thông số mặc định dự án.
+5. **Truy cập:**
+   - Frontend: `http://localhost:3000` (hoặc cổng hiển thị trên terminal)
+   - API Server: `http://localhost:3000/api`
 
-## 📝 Khai báo Giấy phép và Nguồn gốc
-Dự án được khởi nguồn dựa trên bộ khung lõi mã nguồn mở từ hệ sinh thái [GoView] kết hợp với các tinh chỉnh sâu rộng về mặt giao diện, dọn dẹp ngôn ngữ (Localization-Vietnam) triệt để và thay thế mô hình triển khai Back-end/Front-end nhằm tối ưu hóa 100% phù hợp với mục đích và hành vi sử dụng tại tổ chức nội bộ/Việt Nam.
+## 💡 Cấu trúc Thư mục Chính
+- `src/packages/`: Thư viện core các component biểu đồ.
+- `src/views/project/dataManagement/`: Trung tâm quản lý dữ liệu và Auto-BI Wizard.
+- `server/`: Mã nguồn server Node.js và dịch vụ AI.
+- `src/store/`: Quản lý trạng thái toàn cục của dashboard và cấu hình canvas.
 
 ---
-> Xin trân trọng cảm ơn bạn đã quan tâm và xây dựng cùng **TiniX Visualization!**
+> **TiniX Visualization** - Biến dữ liệu thô thành những quyết định chiến lược.

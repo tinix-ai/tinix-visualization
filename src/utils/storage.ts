@@ -9,6 +9,7 @@ import { JSONStringify, JSONParse } from './utils'
 export const setLocalStorage = <T>(k: string, v: T) => {
   try {
     window.localStorage.setItem(k, JSONStringify(v))
+    return true
   } catch (error) {
     return false
   }

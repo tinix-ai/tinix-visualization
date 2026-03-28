@@ -11,7 +11,7 @@ export const option = {
   dataset: dataJson,
   mapRegion: {
     adcode: 'china',
-    showHainanIsLands: true,
+    showHainanIsLands: false,
     enter: false,
     backSize: 20,
     backColor: '#ffffff'
@@ -163,12 +163,10 @@ export const option = {
         symbolSize: 7 //kích thước biểu tượng
       },
       lineStyle: {
-        normal: {
-          color: '#4fb6d2',
-          width: 1, //đường kẻChiều rộng
-          opacity: 0.1, //Đường mòn Độ mờ đục
-          curveness: 0.3 //Độ thẳng của đường mòn
-        }
+        color: '#4fb6d2',
+        width: 1, //đường kẻChiều rộng
+        opacity: 0.1, //Đường mòn Độ mờ đục
+        curveness: 0.3 //Độ thẳng của đường mòn
       },
       data: []
     }

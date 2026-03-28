@@ -10,6 +10,8 @@
     <chart-data-ajax v-if="targetData.request.requestDataType === RequestDataTypeEnum.AJAX"></chart-data-ajax>
     <!-- Dữ liệuhồ bơi -->
     <chart-data-pond v-if="targetData.request.requestDataType === RequestDataTypeEnum.Pond"></chart-data-pond>
+    <!-- Thư viện dữ liệu -->
+    <chart-data-library v-if="targetData.request.requestDataType === RequestDataTypeEnum.LIBRARY"></chart-data-library>
   </div>
 </template>
 
@@ -25,6 +27,7 @@ import { SelectCreateDataType, SelectCreateDataEnum } from './index.d'
 const ChartDataStatic = loadAsyncComponent(() => import('./components/ChartDataStatic/index.vue'))
 const ChartDataAjax = loadAsyncComponent(() => import('./components/ChartDataAjax/index.vue'))
 const ChartDataPond = loadAsyncComponent(() => import('./components/ChartDataPond/index.vue'))
+const ChartDataLibrary = loadAsyncComponent(() => import('./components/ChartDataLibrary/index.vue'))
 
 const { targetData } = useTargetData()
 
@@ -41,6 +44,10 @@ const selectOptions: SelectCreateDataType[] = [
   {
     label: SelectCreateDataEnum.Pond,
     value: RequestDataTypeEnum.Pond
+  },
+  {
+    label: SelectCreateDataEnum.LIBRARY,
+    value: RequestDataTypeEnum.LIBRARY
   }
 ]
 

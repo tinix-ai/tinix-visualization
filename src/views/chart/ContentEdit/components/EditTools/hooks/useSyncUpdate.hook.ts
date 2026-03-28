@@ -12,14 +12,19 @@ import { goDialog } from '@/utils'
 const { updateComponent } = useSync()
 const chartEditStore = useChartEditStore()
 
-export const syncData = () => {
+export const syncData = (id?: string) => {
   goDialog({
     message: window['$t']('views_components.auto_290'),
     isMaskClosable: true,
     transformOrigin: 'center',
     onPositiveCallback: () => {
       window['$message'].success("chartAnimation")
-      dispatchEvent(new CustomEvent(SavePageEnum.CHART, { detail: chartEditStore.getStorageInfo() }))
+      dispatchEvent(new CustomEvent(SavePageEnum.CHART, { 
+        detail: {
+          ...chartEditStore.getStorageInfo(),
+          id: id
+        } 
+      }))
     }
   })
 }

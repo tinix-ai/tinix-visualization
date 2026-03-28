@@ -27,6 +27,13 @@ const routerParamsInfo = useRoute()
 
 import { downloadTextFile } from '@/utils/file'
 
+import { DialogEnum } from '@/enums/pluginEnum'
+import { getCanvasThumbnail } from '@/utils'
+import { useUserTemplateData } from '@/views/project/mtTemplate/hooks/useUserTemplateData.hook'
+import { saveSystemTemplateApi } from '@/api/storage.api'
+
+const { saveUserTemplate } = useUserTemplateData()
+
 // Xem trước
 const previewHandle = () => {
   const path = fetchPathByName(PreviewEnum.CHART_PREVIEW_NAME, 'href')
@@ -59,16 +66,82 @@ const previewHandle = () => {
 
 // phát hành (Publish)
 const sendHandle = () => {
+  const { id } = routerParamsInfo.params
+  const idStr = typeof id === 'string' ? id : id[0]
+  const previewUrl = `${window.location.origin}/#/chart/preview/${idStr}`
+  const embedCode = `<iframe src="${previewUrl}" width="100%" height="600px" frameborder="0"></iframe>`
+
   goDialog({
-    message: 'Hệ thống sẽ trích xuất toàn bộ cấu hình Cụm Biểu Đồ (Dashboard) hiện hành thành tệp JSON. Bạn có chắc chắn muốn Tải về và Phát hành?',
-    positiveText: 'Phát hành (Tải JSON)',
+    type: DialogEnum.SUCCESS,
+    title: 'Phát hành Dự án & Nhúng website',
+    message: `Hệ thống sẽ trích xuất toàn bộ cấu hình Cụm Biểu Đồ (Dashboard) hiện hành thành tệp JSON. Ngoài ra, bạn có thể sử dụng đoạn mã sau để nhúng vào website khác:\n\n${embedCode}`,
+    positiveText: 'Tải JSON & Sao chép mã nhúng',
     negativeText: 'Hủy bớt',
-    closeNegativeText: true,
-    onPositiveCallback: () => {
+    onPositiveCallback: async () => {
       const storageInfo = chartEditStore.getStorageInfo()
       const jsonContent = JSON.stringify(storageInfo, null, 2)
       downloadTextFile(jsonContent, `tinix-dashboard-${new Date().getTime()}`, 'json')
-      window['$message'].success('Phát hành cục bộ thành công! Tệp JSON cấu hình đã được tải về máy.')
+      
+      // Sao chép mã nhúng
+      try {
+        await navigator.clipboard.writeText(embedCode)
+        window['$message'].success('Phát hành thành công! Tệp JSON đã được tải về và Mã nhúng Iframe đã được sao chép vào bộ nhớ tạm.')
+      } catch (e) {
+        window['$message'].success('Phát hành cục bộ thành công! Tệp JSON cấu hình đã được tải về máy.')
+      }
+    }
+  })
+}
+
+// Lưu thành mẫu (Save as Template)
+const { DuplicateOutlineIcon, ShieldCheckmarkOutline } = icon.ionicons5
+const saveAsTemplateHandle = async () => {
+  goDialog({
+    type: DialogEnum.SUCCESS,
+    title: 'Lưu thành Mẫu của tôi',
+    message: 'Bạn có muốn lưu thiết kế hiện tại thành một Bản mẫu cá nhân để tái sử dụng sau này không?',
+    positiveText: 'Lưu thành Mẫu',
+    negativeText: 'Hủy',
+    onPositiveCallback: async () => {
+      const storageInfo = chartEditStore.getStorageInfo()
+      const projectName = chartEditStore.getEditCanvasConfig.projectName || 'Mẫu mới'
+      
+      // Chụp ảnh xem trước
+      const thumbnail = await getCanvasThumbnail()
+      
+      await saveUserTemplate(projectName, thumbnail || '', storageInfo)
+      window['$message'].success('Đã lưu vào danh sách "Mẫu của tôi" thành công!')
+    }
+  })
+}
+
+// Lưu đè Mẫu Hệ thống (Save to System Template - Admin)
+const saveToSystemHandle = async () => {
+  const { id } = routerParamsInfo.params
+  const idStr = typeof id === 'string' ? id : id[0]
+  
+  goDialog({
+    type: DialogEnum.WARNING,
+    title: 'Lưu đè Mẫu Hệ thống (Admin)',
+    message: 'Bạn đang thực hiện thay đổi TRỰC TIẾP vào Mẫu gốc của Chợ Mẫu. Mọi người dùng khác sẽ thấy thay đổi này. Bạn có chắc chắn?',
+    positiveText: 'Xác nhận Lưu Gốc',
+    negativeText: 'Hủy',
+    onPositiveCallback: async () => {
+      const storageInfo = chartEditStore.getStorageInfo()
+      const projectName = chartEditStore.getEditCanvasConfig.projectName || 'Mẫu hệ thống'
+      const thumbnail = await getCanvasThumbnail()
+      
+      const res = await saveSystemTemplateApi({
+        id: idStr,
+        title: projectName,
+        image: thumbnail,
+        config: storageInfo
+      })
+      if (res) {
+        window['$message'].success('Đã cập nhật Mẫu gốc trong Chợ Mẫu thành công!')
+      } else {
+        window['$message'].error('Lỗi khi lưu vào Mẫu hệ thống.')
+      }
     }
   })
 }
@@ -79,29 +152,56 @@ const btnList = [
     title: window['$t']('views_components.auto_299'),
     type: 'primary',
     icon: renderIcon(AnalyticsIcon),
-    event: syncData
+    event: () => {
+      const { id } = routerParamsInfo.params
+      syncData(id as string)
+    }
+  },
+  {
+    select: true,
+    title: 'Lưu thành Mẫu',
+    icon: renderIcon(DuplicateOutlineIcon),
+    event: () => {
+      saveAsTemplateHandle()
+    }
+  },
+  {
+    admin: true,
+    title: 'Lưu đè Mẫu Gốc',
+    icon: renderIcon(ShieldCheckmarkOutline),
+    event: () => {
+      saveToSystemHandle()
+    }
   },
   {
     select: true,
     title: window['$t']('views_components.auto_298'),
     icon: renderIcon(BrowsersOutlineIcon),
-    event: previewHandle
+    event: () => {
+      previewHandle()
+    }
   },
   {
     select: true,
     title: window['$t']('views_components.auto_301'),
     icon: renderIcon(SendIcon),
-    event: sendHandle
+    event: () => {
+      sendHandle()
+    }
   }
 ]
 
 const comBtnList = computed(() => {
-  if (chartEditStore.getEditCanvas.isCodeEdit) {
-    return btnList
-  }
-  const cloneList = cloneDeep(btnList)
-  cloneList.shift()
-  return cloneList
+  const { id } = routerParamsInfo.params
+  const idStr = id ? (typeof id === 'string' ? id : id[0]) : ''
+  
+  return btnList.filter(item => {
+    // Nếu là nút Admin, chỉ hiển thị khi sửa Mẫu Chợ Mẫu (ID tpl-)
+    if (item.admin) {
+      return idStr.startsWith('tpl-')
+    }
+    return true
+  })
 })
 </script>
 

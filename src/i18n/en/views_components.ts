@@ -165,7 +165,7 @@ export default {
   auto_296: '[EN] thành phần biểu đồ',
   auto_297: '[EN] Điều khiển lớp',
   auto_298: '[EN] Xem trước',
-  auto_299: '[EN] Đồng bộ hóa nội dung',
+  auto_299: 'Save Project',
   auto_300: '[EN] thông thoáng',
   auto_301: '[EN] giải phóng',
   auto_303: '[EN] dự án mới',

@@ -165,7 +165,7 @@ export default {
   auto_296: 'Component Biểu đồ',
   auto_297: 'Điều khiển Layer',
   auto_298: 'Xem trước',
-  auto_299: 'Đồng bộ hệ thống',
+  auto_299: 'Lưu dự án',
   auto_300: 'Rõ ràng',
   auto_301: 'Phát hành',
   auto_303: 'Dự án tinh khôi',

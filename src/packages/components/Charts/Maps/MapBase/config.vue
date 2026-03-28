@@ -331,12 +331,12 @@
         <n-color-picker
           size="small"
           :modes="['hex']"
-          v-model:value="seriesList[2].lineStyle.normal.color"
+          v-model:value="seriesList[2].lineStyle.color"
         ></n-color-picker>
       </SettingItem>
       <SettingItem :name="$t('packages.auto_109')"
 >
-        <n-input-number v-model:value="seriesList[2].lineStyle.normal.width" size="small" :min="1"></n-input-number>
+        <n-input-number v-model:value="seriesList[2].lineStyle.width" size="small" :min="1"></n-input-number>
       </SettingItem>
     </SettingItemBox>
   </CollapseItem>
@@ -354,6 +354,10 @@ const mapRegionOptions = ref([
   {
     adcode: 'china',
     name: window['$t']('packages.auto_203')
+  },
+  {
+    adcode: 'vietnam',
+    name: 'Việt Nam'
   }
 ])
 

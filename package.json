@@ -1,5 +1,5 @@
 {
-  "name": "go-view",
+  "name": "tinix-visualization",
   "version": "1.3.2",
   "engines": {
     "node": ">=16.14"
@@ -11,7 +11,9 @@
     "new": "plop --plopfile ./plop/plopfile.js",
     "postinstall": "husky install",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx,.vue src",
-    "lint:fix": "eslint --ext .js,.jsx,.ts,.tsx,.vue src --fix"
+    "lint:fix": "eslint --ext .js,.jsx,.ts,.tsx,.vue src --fix",
+    "server": "node server/index.js",
+    "dev:all": "concurrently \"npm run dev\" \"npm run server\""
   },
   "dependencies": {
     "@amap/amap-jsapi-loader": "^1.0.1",
@@ -24,11 +26,12 @@
     "@visactor/vchart": "^2.0.0",
     "@visactor/vchart-theme": "^1.12.2",
     "animate.css": "^4.1.1",
-    "axios": "^1.4.0",
+    "axios": "^1.13.6",
     "color": "^4.2.3",
     "crypto-js": "^4.1.1",
     "dayjs": "^1.11.7",
     "dom-helpers": "^5.2.1",
+    "dotenv": "^17.3.1",
     "echarts-liquidfill": "^3.1.0",
     "echarts-stat": "^1.2.0",
     "echarts-wordcloud": "^2.0.0",
@@ -49,7 +52,8 @@
     "vue-router": "4.0.12",
     "vue3-lazyload": "^0.2.5-beta",
     "vue3-sketch-ruler": "^1.3.3",
-    "vuedraggable": "^4.1.0"
+    "vuedraggable": "^4.1.0",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.0.2",
@@ -65,6 +69,7 @@
     "@vue/compiler-sfc": "^3.2.31",
     "@vueuse/core": "^7.7.1",
     "commitlint": "^17.0.2",
+    "concurrently": "^9.2.1",
     "default-passive-events": "^2.0.0",
     "echarts": "^5.3.2",
     "eslint": "^8.12.0",

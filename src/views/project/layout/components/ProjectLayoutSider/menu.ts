@@ -5,7 +5,7 @@ import { PageEnum } from '@/enums/pageEnum'
 import { MenuOption, MenuGroupOption } from 'naive-ui'
 import { icon } from '@/plugins'
 
-const { GridIcon, TvOutlineIcon } = icon.ionicons5
+const { GridIcon, TvOutlineIcon, PulseIcon } = icon.ionicons5
 const { StoreIcon, ObjectStorageIcon, DevicesIcon } = icon.carbon
 export const renderMenuLabel = (option: MenuOption | MenuGroupOption) => {
   return option.label
@@ -58,6 +58,20 @@ export const menuOptionsInit = () => {
                 ),
               key: PageEnum.BASE_HOME_TEMPLATE_NAME,
               icon: renderIcon(ObjectStorageIcon),
+            },
+            {
+              label: () =>
+                h(
+                  RouterLink,
+                  {
+                    to: {
+                      name: PageEnum.BASE_HOME_DATA_NAME,
+                    },
+                  },
+                  { default: () => 'Thư viện Dữ liệu' }
+                ),
+              key: PageEnum.BASE_HOME_DATA_NAME,
+              icon: renderIcon(PulseIcon),
             },
           ],
         },

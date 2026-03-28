@@ -32,12 +32,16 @@
               :style="{ backgroundColor: designStore.appTheme }"
             ></div>
           </div>
-          <img :src="themeColorLogo" />
+          <div class="color-logo-text">
+            <n-icon size="40" depth="3">
+              <color-wand-icon></color-wand-icon>
+            </n-icon>
+            <span class="vertical-text">BẢNG MÀU</span>
+          </div>
         </div>
       </div>
       <div class="model-footer">
-        Bảng màu tham khảo từ:
-        <n-a href="http://zhongguose.com" target="_blank">http://zhongguose.com</n-a>
+        Hệ thống bảng màu chuyên nghiệp TiniX
       </div>
     </div>
   </n-modal>
@@ -139,20 +143,22 @@ $height: 85vh;
           background-image: url("@/assets/images/exception/texture.png");
         }
         .color-name {
-          font-family: serif;
-          font-size: 80px;
+          font-family: inherit;
+          font-weight: bold;
+          font-size: 32px;
+          line-height: 1.2;
           color: #fff;
           margin: 0 auto;
           display: block;
-          width: 110px;
+          width: 150px;
           text-align: center;
-          background-position: center top;
-          background-repeat: no-repeat;
         }
         .color-name-Pinyin {
           text-align: center;
-          font-family: Georgia;
-          font-size: 16px;
+          font-weight: 300;
+          font-size: 14px;
+          opacity: 0.8;
+          margin-top: 5px;
         }
       }
     }
@@ -160,6 +166,24 @@ $height: 85vh;
   .model-footer {
     z-index: 1;
     text-align: end;
+  }
+}
+
+.color-logo-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 20px;
+  .vertical-text {
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    font-size: 32px;
+    font-weight: 900;
+    letter-spacing: 12px;
+    opacity: 0.15;
+    color: #fff;
+    margin-top: 15px;
+    user-select: none;
   }
 }
 </style>

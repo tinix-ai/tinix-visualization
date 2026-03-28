@@ -12,12 +12,14 @@
           @resize="resizeHandle"
           @delete="deleteHandle($event, index)"
           @edit="editHandle"
+          @preview="previewHandle"
+          @send="publishHandle"
         ></project-items-card>
       </n-grid-item>
     </n-grid>
     <div class="list-pagination">
       <n-pagination
-        :item-count="10"
+        :item-count="list.length"
         :page-sizes="[10, 20, 30, 40]"
         show-size-picker
       />
@@ -40,7 +42,7 @@ import { useModalDataInit } from './hooks/useModal.hook'
 import { useDataListInit } from './hooks/useData.hook'
 
 const { CopyIcon, EllipsisHorizontalCircleSharpIcon } = icon.ionicons5
-const { list, deleteHandle } = useDataListInit()
+const { list, deleteHandle, publishHandle, previewHandle } = useDataListInit()
 const { modalData, modalShow, closeModal, resizeHandle, editHandle } = useModalDataInit()
 </script>
 
