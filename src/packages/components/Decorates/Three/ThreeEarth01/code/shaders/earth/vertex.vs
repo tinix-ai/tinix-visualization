@@ -5,7 +5,7 @@ varying vec3 vp;
 varying vec3 vPositionNormal;
 void main(void){
   vUv = uv;
-  vNormal = normalize( normalMatrix * normal ); // 转换到视图空间
+  vNormal = normalize( normalMatrix * normal ); // Transform to view space
   vp = position;
   vPositionNormal = normalize(( modelViewMatrix * vec4(position, 1.0) ).xyz);
   gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );

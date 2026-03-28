@@ -6,7 +6,7 @@ import designColor from './designColor.json'
 export const lang = LangEnum.VI
 
 // văn bản hình mờ
-export const watermarkText = (typeof window !== 'undefined' && window['$t'] ? window['$t']('phase7.auto_267') : 'Nền tảng mã thấp GoView')
+export const watermarkText = (typeof window !== 'undefined' && window['$t'] ? window['$t']('phase7.auto_267') : 'Nền tảng mã thấp TiniX Visualization')
 
 // Tên nhóm
 export const groupTitle = (typeof window !== 'undefined' && window['$t'] ? window['$t']('phase7.auto_142') : 'Nhóm')

@@ -14,7 +14,7 @@
         <n-space class="go-my-2" :size="20">
           <n-text class="item-left">{{ $t('phase7.auto_151') }}</n-text>
           <n-text>
-            GoView Bản quyền thuộc về
+            TiniX Visualization Bản quyền thuộc về
             <n-a href="https://gitee.com/MTrun/go-view" target="_blank">https://gitee.com/MTrun/go-view</n-a> Tác giả dự án
           </n-text>
         </n-space>

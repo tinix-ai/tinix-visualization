@@ -4,7 +4,7 @@ export default {
   auto_3: '[EN] điểm',
   auto_4: '[EN] giờ',
   auto_5: '[EN] Nhóm',
-  auto_6: '[EN] GoView nền tảng mã thấp',
+  auto_6: '[EN] TiniX Visualization nền tảng mã thấp',
   auto_7: '[EN] trung tâmXtrục quay',
   auto_8: '[EN] Nhập dài phải',
   auto_9: '[EN] Rẽ trái để vào',

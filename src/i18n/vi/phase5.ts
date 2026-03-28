@@ -4,7 +4,7 @@ export default {
   auto_3: 'Phút',
   auto_4: 'Giờ',
   auto_5: 'Nhóm',
-  auto_6: 'Nền tảng Low-code GoView',
+  auto_6: 'Nền tảng Low-code TiniX Visualization',
   auto_7: 'Xoay trục X giữa',
   auto_8: 'Trượt xa từ phải vào',
   auto_9: 'Phóng to từ trái',

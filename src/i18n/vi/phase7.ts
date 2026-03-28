@@ -265,7 +265,7 @@ export default {
   auto_264: 'Tia sáng (Flyline)',
   auto_265: 'Hàng 10 Cột 1',
   auto_266: 'Rã nhóm (Ungroup)',
-  auto_267: 'Nền tảng Lowcode GoView',
+  auto_267: 'Nền tảng Lowcode TiniX Visualization',
   auto_268: 'Canh phải',
   auto_269: 'Lướt sáng thoát khỏi bên trái',
   auto_270: 'Số giờ',

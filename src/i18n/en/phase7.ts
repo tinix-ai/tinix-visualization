@@ -265,7 +265,7 @@ export default {
   auto_264: 'đường bay',
   auto_265: 'ĐƯỢC RỒI10Danh sách1',
   auto_266: 'không có nguyên soái',
-  auto_267: 'GoView nền tảng mã thấp',
+  auto_267: 'TiniX Visualization nền tảng mã thấp',
   auto_268: 'Ở bên phải',
   auto_269: 'Tốc độ ánh sáng thoát ra từ bên trái',
   auto_270: 'Giờ',

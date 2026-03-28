@@ -6,9 +6,9 @@ varying vec3 vp;
 varying vec3 vNormal;
 varying vec3 vPositionNormal;
 uniform float scale;
-// 获取纹理
+// Get texture
 uniform sampler2D map;
-// 纹理坐标
+// Texture coordinates
 varying vec2 vUv;
 
 void main(void){

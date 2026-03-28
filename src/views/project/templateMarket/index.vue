@@ -1,11 +1,11 @@
 <template>
   <div class="go-project-template-market">
     <div class="content-box">
-      <n-space vertical>
-        <img src="https://goviewpro.goviewlink.com/charts-img-db/charts-img-db_id_5pimyysnnh8000.png" style="width: 100%" />
-        <img src="https://goviewpro.goviewlink.com/charts-img-db/charts-img-db_id_izetnl0654w00.png" style="height: 400px" />
-        <n-button text tag="a" href="https://ai.goviewlink.com/saas/?channel=mayun" target="_blank" type="primary">
-          đi đến GoViewPro Kiểm tra 👆
+      <n-space vertical align="center">
+        <h2>TiniX Visualization Templates</h2>
+        <p>Tính năng Chợ Giao diện đang được phát triển, vui lòng quay lại sau!</p>
+        <n-button type="primary" disabled>
+          Sắp ra mắt
         </n-button>
       </n-space>
     </div>

@@ -112,8 +112,6 @@
       <layout-footer></layout-footer>
     </div>
   </div>
-  <!-- pro -->
-   <GoViewProAI></GoViewProAI>
 </template>
 
 <script lang="ts" setup>
@@ -125,7 +123,6 @@ import { GoThemeSelect } from '@/components/GoThemeSelect'
 import { GoLangSelect } from '@/components/GoLangSelect'
 import { LayoutHeader } from '@/layout/components/LayoutHeader'
 import { LayoutFooter } from '@/layout/components/LayoutFooter'
-import { GoViewProAI } from '@/components/Tips/GoViewProAI'
 import { PageEnum } from '@/enums/pageEnum'
 import { icon } from '@/plugins'
 import { StorageEnum } from '@/enums/storageEnum'
