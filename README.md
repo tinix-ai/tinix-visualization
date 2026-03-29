@@ -1,5 +1,4 @@
 <div align="center">
-  <img src="./src/assets/images/logo.png" width="120" alt="TiniX Logo" />
   <h1>📊 TiniX Visualization (v0.1)</h1>
   <p><strong>Nền tảng Trực quan hóa Dữ liệu Thông minh, Bảo mật Cục bộ và Tự động hóa bằng AI</strong></p>
   <p>
@@ -126,7 +125,9 @@ Hệ thống cần một API Key để chạy tính năng Auto-BI.
    ```
 
 #### 💡 Mô hình LLM khuyến nghị (Recommended Models)
+
 Để tính năng **Auto-BI** đạt hiệu quả cao nhất (phân tích schema chính xác và gợi ý biểu đồ thông minh), bạn nên sử dụng các mô hình có khả năng lập trình (Coding) và tư vấn SQL tốt:
+
 - **Qwen 2.5 72B / 122B:** (Ví dụ: `qwen/qwen-2.5-72b-instruct`) - Cực kỳ mạnh mẽ trong việc hiểu cấu trúc dữ liệu.
 - **Qwen Coder Next:** (Ví dụ: `qwen/qwen-3-coder-next`) - Chuyên biệt cho các tác vụ xử lý mã nguồn và logic.
 - **DeepSeek V3 / Coder:** Một lựa chọn tuyệt vời với chi phí thấp và hiệu năng cao.

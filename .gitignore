@@ -5,6 +5,14 @@ dist-ssr
 *.local
 .vscode
 .idea
-pnpm-lock
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
 .env
+.env.*
 *.sqlite
+*.sqlite3
+*.db
+*.log
+*.key
+*.pem
