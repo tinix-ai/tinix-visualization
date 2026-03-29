@@ -95,6 +95,7 @@ export const menuOptionsInit = () => {
         ),
       key: PageEnum.BASE_HOME_TEMPLATE_MARKET_NAME,
       icon: renderIcon(StoreIcon),
+      disabled: true
     },
   ])
 }

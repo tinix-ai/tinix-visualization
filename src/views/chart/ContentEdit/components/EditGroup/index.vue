@@ -6,13 +6,13 @@
       :index="groupIndex"
       :item="groupData"
       :hiddenPoint="true"
-      :class="animationsClass(groupData.styles.animations)"
+      :class="groupData.styles ? animationsClass(groupData.styles.animations) : ''"
       :style="{
         ...useComponentStyle(groupData.attr, groupIndex),
         ...useSizeStyle(groupData.attr),
-        ...getFilterStyle(groupData.styles),
-        ...getTransformStyle(groupData.styles),
-        ...getBlendModeStyle(groupData.styles) as any
+        ...(groupData.styles ? getFilterStyle(groupData.styles) : {}),
+        ...(groupData.styles ? getTransformStyle(groupData.styles) : {}),
+        ...(groupData.styles ? getBlendModeStyle(groupData.styles) : {}) as any
       }"
       @click="mouseClickHandle($event, groupData)"
       @mousedown="mousedownHandle($event, groupData)"
@@ -34,15 +34,15 @@
       >
         <component
           class="edit-content-chart"
-          :class="animationsClass(item.styles.animations)"
+          :class="item.styles ? animationsClass(item.styles.animations) : ''"
           :is="item.chartConfig.chartKey"
           :chartConfig="item"
           :themeSetting="themeSetting"
           :themeColor="themeColor"
           :style="{
             ...useSizeStyle(item.attr),
-            ...getFilterStyle(item.styles),
-            ...getTransformStyle(item.styles)
+            ...(item.styles ? getFilterStyle(item.styles) : {}),
+            ...(item.styles ? getTransformStyle(item.styles) : {})
           }"
         ></component>
       </edit-shape-box>
@@ -124,6 +124,6 @@ const themeColor = computed(() => {
 // màu chủ đề
 const themeSetting = computed(() => {
   const chartThemeSetting = chartEditStore.getEditCanvasConfig.chartThemeSetting
-  return chartThemeSetting
+  return chartThemeSetting || {}
 })
 </script>

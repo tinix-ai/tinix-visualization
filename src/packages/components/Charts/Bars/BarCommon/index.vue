@@ -12,14 +12,14 @@
 </template>
 
 <script setup lang="ts">
-import { ref, nextTick, computed, watch, PropType } from 'vue'
+import { ref, nextTick, computed, watch, PropType, onMounted, onUnmounted } from 'vue'
 import VChart from 'vue-echarts'
 import { useCanvasInitOptions } from '@/hooks/useCanvasInitOptions.hook'
 import { use } from 'echarts/core'
 import { CanvasRenderer } from 'echarts/renderers'
 import { BarChart } from 'echarts/charts'
 import config, { includes, seriesItem } from './config'
-import { mergeTheme } from '@/packages/public/chart'
+import { mergeTheme, setOption } from '@/packages/public/chart'
 import { useChartDataFetch } from '@/hooks'
 import { CreateComponentType } from '@/packages/index.d'
 import { useChartEditStore } from '@/store/modules/chartEditStore/chartEditStore'
@@ -61,8 +61,6 @@ watch(
       if (!isObject(newData) || !('dimensions' in newData)) return
       if (Array.isArray(newData?.dimensions)) {
         const seriesArr = []
-        // PhảioldDataĐưa ra các phán đoán để ngăn chặn dữ liệu sai đến can thiệp vào phán đoán của các chiều cũ.
-        // Những gì được tính toán ở đây làdimensionscủaYkích thước trục, nếudimensions.lengthvì0hoặc1, mặc định là1,loại trừXnhiễu kích thước trục
         const oldDimensions = Array.isArray(oldData?.dimensions)&&oldData.dimensions.length >= 1 ? oldData.dimensions.length : 1; 
         const newDimensions = newData.dimensions.length >= 1 ? newData.dimensions.length : 1;
         const dimensionsGap = newDimensions - oldDimensions;
@@ -93,5 +91,20 @@ watch(
 
 const { vChartRef } = useChartDataFetch(props.chartConfig, useChartEditStore, (newData: any) => {
   props.chartConfig.option.dataset = newData
+})
+
+let timer: any = null
+onMounted(() => {
+  if (isPreview()) {
+    timer = setTimeout(() => {
+       if (vChartRef.value) {
+         setOption(vChartRef.value as any, { dataset: props.chartConfig.option.dataset }, false)
+       }
+    }, 1000)
+  }
+})
+
+onUnmounted(() => {
+  if (timer) clearTimeout(timer)
 })
 </script>

@@ -9,7 +9,7 @@ type StylesType = PickCreateComponentType<'styles'>
 
 // * hoạt hình
 export const animationsClass = (animations: string[]) => {
-  if (animations.length) {
+  if (animations && animations.length) {
     return `animate__animated  animate__${animations[0]}`
   }
   return ''
@@ -27,6 +27,7 @@ export const getFilterStyle = (styles?: StylesType | EditCanvasConfigType) => {
 
 // * biến đổi
 export const getTransformStyle = (styles: StylesType) => {
+  if (!styles) return {}
   const { rotateZ, rotateX, rotateY, skewX, skewY } = styles
   return {
     transform: `rotateZ(${rotateZ || 0}deg) rotateX(${rotateX || 0}deg) rotateY(${rotateY || 0}deg) skewX(${
@@ -131,12 +132,14 @@ export const colorCustomMerge = (customColor?: CustomColorsType[]) => {
     }
   }
   const formateCustomColor: FormateCustomColorType = {}
-  customColor?.forEach(item => {
-    formateCustomColor[item.id] = {
-      color: item.color,
-      name: item.name
-    }
-  })
+  if (Array.isArray(customColor)) {
+    customColor.forEach(item => {
+      formateCustomColor[item.id] = {
+        color: item.color,
+        name: item.name
+      }
+    })
+  }
   return { ...formateCustomColor, ...chartColors }
 }
 
@@ -149,15 +152,17 @@ export const colorGradientCustomMerge = (customColor?: CustomColorsType[]) => {
     [T: string]: string[]
   }
   const formateGradientCustomColor: FormateGradientCustomColorType = {}
-  customColor?.forEach(item => {
-    formateGradientCustomColor[item.id] = [
-      item.color[0],
-      item.color[1],
-      fade(item.color[0], 0.3),
-      fade(item.color[0], 0.5),
-      fade(item.color[1], 0.5)
-    ]
-  })
+  if (Array.isArray(customColor)) {
+    customColor.forEach(item => {
+      formateGradientCustomColor[item.id] = [
+        item.color[0],
+        item.color[1],
+        fade(item.color[0], 0.3),
+        fade(item.color[0], 0.5),
+        fade(item.color[1], 0.5)
+      ]
+    })
+  }
 
   return { ...formateGradientCustomColor, ...chartColorsSearch }
 }

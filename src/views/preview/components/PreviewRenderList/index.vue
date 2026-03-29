@@ -3,14 +3,14 @@
     class="chart-item"
     :id="item.id"
     v-for="(item, index) in chartEditStore.componentList"
-    :class="animationsClass(item.styles.animations)"
+    :class="item.styles ? animationsClass(item.styles.animations) : ''"
     :key="item.id"
     :style="{
       ...getComponentAttrStyle(item.attr, index),
       ...getTransformStyle(item.styles),
       ...getStatusStyle(item.status),
       ...getPreviewConfigStyle(item.preview),
-      ...getBlendModeStyle(item.styles) as any,
+      ...(item.styles ? getBlendModeStyle(item.styles) : {}) as any,
       ...getSizeStyle(item.attr)
     }"
   >
@@ -33,7 +33,7 @@
       :themeColor="themeColor"
       :style="{ 
         ...getSizeStyle(item.attr),
-        ...getFilterStyle(item.styles)
+        ...(item.styles ? getFilterStyle(item.styles) : {})
       }"
       v-on="useLifeHandler(item)"
     ></component>
@@ -66,13 +66,24 @@ const chartEditStore = useChartEditStore()
 // màu chủ đề
 const themeSetting = computed(() => {
   const chartThemeSetting = chartEditStore.editCanvasConfig.chartThemeSetting
-  return chartThemeSetting
+  return chartThemeSetting || {}
 })
 
 // Các mục cấu hình
 const themeColor = computed(() => {
-  const colorCustomMergeData = colorCustomMerge(chartEditStore.editCanvasConfig.chartCustomThemeColorInfo)
-  return colorCustomMergeData[chartEditStore.editCanvasConfig.chartThemeColor]
+  try {
+    const colorCustomMergeData = colorCustomMerge(chartEditStore.editCanvasConfig.chartCustomThemeColorInfo)
+    const res = colorCustomMergeData[chartEditStore.editCanvasConfig.chartThemeColor]
+    if (!res) {
+       console.warn(`[PreviewRenderList] Theme Color '${chartEditStore.editCanvasConfig.chartThemeColor}' not found, falling back to dark.`)
+       return colorCustomMergeData['dark']
+    }
+    return res
+  } catch (e) {
+    console.error('[PreviewRenderList] Error calculating themeColor:', e)
+    // Emergency fallback to dark theme from base chartColors
+    return colorCustomMerge([])['dark']
+  }
 })
 
 // Kết xuất thành phần kết thúc quá trình khởi tạoDữ liệuhồ bơi

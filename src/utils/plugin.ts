@@ -97,12 +97,14 @@ export const goDialog = (
     }
   }
 
-  const dialog: DialogReactive = typeObj[type || DialogEnum.WARNING]['fn']({
+  const dialogConfig = typeObj[type as DialogEnum] || typeObj[DialogEnum.WARNING]
+
+  const dialog: DialogReactive = dialogConfig['fn']({
     // Nhập phần còn lại NaiveUI Thông số hỗ trợ
     ...params,
     title: title || window['$t']('global.auto_28'),
     icon: renderIcon(InformationCircleIcon, { size: dialogIconSize }),
-    content: typeObj[type || DialogEnum.WARNING]['message'],
+    content: dialogConfig['message'],
     positiveText: positiveText || window['$t']('global.auto_29'),
     negativeText: closeNegativeText ? undefined : (negativeText || window['$t']('global.auto_27')),
     // Có nên đóng qua mặt nạ không

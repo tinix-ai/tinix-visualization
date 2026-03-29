@@ -74,8 +74,8 @@ export const useProjectData = () => {
         }
       }
     } else {
-      // 3. Dự án thông thường
-      // Thử lấy từ SessionStorage trước (thường do Preview hoặc Template Market đẩy vào)
+      // 3. Dự án thông thường hoặc Mẫu số (Numeric IDs 1-200)
+      // Thử lấy từ SessionStorage trước
       let storageList = getSessionStorage(StorageEnum.GO_CHART_STORAGE_LIST)
       
       // Nếu không có trong Session, thử lấy từ Server SQLite
@@ -83,8 +83,19 @@ export const useProjectData = () => {
         storageList = await getProjectsApi()
       }
 
-      if (!projectData && storageList && Array.isArray(storageList)) {
-        projectData = storageList.find((item: any) => item.id === idStr)
+      if (storageList && Array.isArray(storageList)) {
+        projectData = storageList.find((item: any) => String(item.id) === idStr)
+      }
+
+      // NẾU VẪN KHÔNG CÓ: Kiểm tra xem có phải là Mẫu hệ thống số (Numeric Template IDs 1-200)
+      if (!projectData && !isNaN(Number(idStr))) {
+        const systemTemplates = await getSystemTemplatesApi()
+        if (systemTemplates) {
+          const sysTpl = systemTemplates.find((t: any) => String(t.id) === idStr)
+          if (sysTpl) {
+            projectData = sysTpl.config
+          }
+        }
       }
     }
 

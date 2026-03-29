@@ -50,15 +50,35 @@ export const getSessionStorageInfo = async () => {
       }
     }
   } else {
-    // Dự án thông thường
+    // 3. Dự án thông thường hoặc Mẫu số (Numeric IDs 1-200)
     projectData = await getProjectApi(idStr)
+    
+    // NẾU VẪN KHÔNG CÓ: Kiểm tra xem có phải là Mẫu hệ thống số (Numeric Template IDs 1-200)
+    if (!projectData && !isNaN(Number(idStr))) {
+      const systems = await getSystemTemplatesApi()
+      if (systems) {
+        const sysTpl = systems.find((t: any) => String(t.id) === idStr)
+        if (sysTpl) projectData = sysTpl.config
+      }
+    }
   }
 
   if (projectData) {
     const { editCanvasConfig, requestGlobalConfig, componentList } = projectData
-    chartEditStore.editCanvasConfig = editCanvasConfig
-    chartEditStore.requestGlobalConfig = requestGlobalConfig
-    chartEditStore.componentList = componentList
+    
+    // Deep merge with current state to ensure all fields (like previewScaleType) are populated
+    chartEditStore.editCanvasConfig = {
+      ...chartEditStore.editCanvasConfig,
+      ...editCanvasConfig,
+      width: editCanvasConfig.width || chartEditStore.editCanvasConfig.width || 1920,
+      height: editCanvasConfig.height || chartEditStore.editCanvasConfig.height || 1080
+    }
+    chartEditStore.requestGlobalConfig = {
+      ...chartEditStore.requestGlobalConfig,
+      ...requestGlobalConfig
+    }
+    chartEditStore.componentList = componentList || []
+    
     return projectData
   }
   

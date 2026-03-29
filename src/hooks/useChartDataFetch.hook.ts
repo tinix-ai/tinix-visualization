@@ -42,6 +42,7 @@ export const useChartDataFetch = (
   }
 
   const requestIntervalFn = () => {
+    if (!targetComponent.request) return
     const chartEditStore = useChartEditStore()
 
     // dữ liệu toàn cầu
@@ -117,7 +118,7 @@ export const useChartDataFetch = (
   }
 
   if (isPreview()) {
-    targetComponent.request.requestDataType === RequestDataTypeEnum.Pond
+    targetComponent.request && targetComponent.request.requestDataType === RequestDataTypeEnum.Pond
       ? addGlobalDataInterface(targetComponent, useChartEditStore, (newData: any) => {
           echartsUpdateHandle(newData)
           if (updateCallback) updateCallback(newData)

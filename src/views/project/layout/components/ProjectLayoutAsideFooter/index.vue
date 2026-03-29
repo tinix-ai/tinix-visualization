@@ -28,7 +28,7 @@
 
       <n-tooltip v-if="collapsed" placement="right" trigger="hover">
         <template #trigger>
-          <n-button class="go-ml-2" secondary @click="handleDoc">
+          <n-button class="go-ml-2" secondary @click="handleCode">
             <template #icon>
               <n-icon size="18">
                 <code-slash-icon></code-slash-icon>

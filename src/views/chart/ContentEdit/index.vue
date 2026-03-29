@@ -41,7 +41,7 @@
                 :index="index"
                 :style="{
                 ...useComponentStyle(item.attr, index),
-                ...getBlendModeStyle(item.styles) as any
+                ...(item.styles ? getBlendModeStyle(item.styles) : {}) as any
               }"
                 :item="item"
                 @click="mouseClickHandle($event, item)"
@@ -52,15 +52,15 @@
               >
                 <component
                   class="edit-content-chart"
-                  :class="animationsClass(item.styles.animations)"
+                  :class="item.styles ? animationsClass(item.styles.animations) : ''"
                   :is="item.chartConfig.chartKey"
                   :chartConfig="item"
                   :themeSetting="themeSetting"
                   :themeColor="themeColor"
                   :style="{
                     ...useSizeStyle(item.attr),
-                    ...getFilterStyle(item.styles),
-                    ...getTransformStyle(item.styles)
+                    ...(item.styles ? getFilterStyle(item.styles) : {}),
+                    ...(item.styles ? getTransformStyle(item.styles) : {})
                   }"
                 ></component>
               </edit-shape-box>
@@ -145,7 +145,7 @@ const optionsHandle = (
 // màu chủ đề
 const themeSetting = computed(() => {
   const chartThemeSetting = chartEditStore.getEditCanvasConfig.chartThemeSetting
-  return chartThemeSetting
+  return chartThemeSetting || {}
 })
 
 // Các mục cấu hình

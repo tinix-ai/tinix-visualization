@@ -73,6 +73,7 @@
 <script setup lang="ts">
 import { PropType } from 'vue'
 import { fetchPathByName, routerTurnByPath, getUUID, setLocalStorage, getLocalStorage, requireErrorImg, goDialog } from '@/utils'
+import { DialogEnum } from '@/enums/pluginEnum'
 import { ChartEnum } from '@/enums/pageEnum'
 import { StorageEnum } from '@/enums/storageEnum'
 import { icon } from '@/plugins'
@@ -104,7 +105,7 @@ const handleEdit = () => {
 
 const handleDelete = () => {
   goDialog({
-    type: 1 as any, // DELETE
+    type: DialogEnum.DELETE,
     message: `Bạn có chắc chắn muốn xóa mẫu "${props.templateData.title}" không? Hành động này không thể hoàn tác.`,
     onPositiveCallback: () => {
       emit('delete', props.templateData.id)

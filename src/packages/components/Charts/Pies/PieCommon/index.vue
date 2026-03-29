@@ -12,13 +12,13 @@
 </template>
 
 <script setup lang="ts">
-import { computed, PropType, onMounted, watch } from 'vue'
+import { computed, PropType, onMounted, onUnmounted, watch, ref } from 'vue'
 import VChart from 'vue-echarts'
 import { useCanvasInitOptions } from '@/hooks/useCanvasInitOptions.hook'
 import { use } from 'echarts/core'
 import { CanvasRenderer } from 'echarts/renderers'
 import { PieChart } from 'echarts/charts'
-import { mergeTheme } from '@/packages/public/chart'
+import { mergeTheme, setOption } from '@/packages/public/chart'
 import config, { includes } from './config'
 import { useChartDataFetch } from '@/hooks'
 import { useChartEditStore } from '@/store/modules/chartEditStore/chartEditStore'
@@ -144,10 +144,25 @@ const { vChartRef } = useChartDataFetch(props.chartConfig, useChartEditStore, (n
   }
 })
 
+let timer: any = null
 onMounted(() => {
+  if (isPreview()) {
+    console.log(`[DEBUG_MOUNT] PieCommon ${props.chartConfig.chartConfig.key} mounted.`)
+    timer = setTimeout(() => {
+       if (vChartRef.value) {
+         console.log(`[DEBUG_FORCE] Triggering setOption for PieCommon ${props.chartConfig.chartConfig.key}`)
+         setOption(vChartRef.value as any, { dataset: props.chartConfig.option.dataset }, false)
+       }
+    }, 1000)
+  }
   seriesDataMaxLength = dataJson.source.length
   if (props.chartConfig.option.isCarousel) {
     addPieInterval(undefined, true)
   }
+})
+
+onUnmounted(() => {
+  if (timer) clearTimeout(timer)
+  clearPieInterval()
 })
 </script>

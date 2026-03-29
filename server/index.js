@@ -6,7 +6,7 @@ const db = require('./db');
 const { analyzeDatasetSchema, suggestCharts } = require('./ai.service');
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4000;
 
 app.use(cors());
 app.use(bodyParser.json({ limit: '50mb' }));
@@ -181,6 +181,7 @@ app.get('/api/system-templates', (req, res) => {
     res.json(templates.map(t => ({
       id: t.id,
       title: t.title,
+      category: t.category,
       image: t.image,
       config: JSON.parse(t.config)
     })));

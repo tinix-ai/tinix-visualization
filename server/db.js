@@ -29,6 +29,7 @@ db.exec(`
   CREATE TABLE IF NOT EXISTS system_templates (
     id TEXT PRIMARY KEY,
     title TEXT NOT NULL,
+    category INTEGER DEFAULT 8,
     image TEXT,
     config TEXT NOT NULL,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
@@ -66,23 +67,5 @@ try {
 
 console.log('SQLite Database initialized at:', dbPath);
 
-// Seeding: Nạp dữ liệu mẫu nếu chưa có (Populate sample data if empty)
-const { seedDatasets, seedProjects } = require('./seedData');
-
-const datasetCount = db.prepare('SELECT count(*) as count FROM datasets').get().count;
-if (datasetCount === 0 && seedDatasets.length > 0) {
-  console.log('Database empty, seeding sample datasets...');
-  const insertDataset = db.prepare(`
-    INSERT INTO datasets (id, name, type, content, bi_config)
-    VALUES (?, ?, ?, ?, ?)
-  `);
-  
-  db.transaction(() => {
-    for (const d of seedDatasets) {
-      insertDataset.run(d.id, d.name, d.type, d.content, d.bi_config);
-    }
-  })();
-  console.log(`Seeded ${seedDatasets.length} datasets.`);
-}
 
 module.exports = db;

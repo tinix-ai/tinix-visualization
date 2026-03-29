@@ -52,7 +52,8 @@ import {
   getTemplateOverridesApi, 
   saveProjectApi, 
   saveUserTemplateApi, 
-  saveTemplateOverridesApi 
+  saveTemplateOverridesApi,
+  saveSystemTemplateApi
 } from '@/api/storage.api'
 
 const chartHistoryStoreStore = useChartHistoryStore()
@@ -81,17 +82,16 @@ const saveHandle = async (e: any) => {
 
   // Nếu là ID của Chợ Mẫu (Starts with tpl-)
   if (id.startsWith('tpl-')) {
-    let templateStorage = await getTemplateOverridesApi() || []
-    const index = templateStorage.findIndex((item: any) => String(item.id) === id)
-    if (index !== -1) {
-      templateStorage.splice(index, 1, detail)
-    } else {
-      templateStorage.push(detail)
+    // Lưu trực tiếp vào Mẫu hệ thống (Global System Template)
+    const templateData = {
+      id: id,
+      title: detail.editCanvasConfig?.projectName || 'Mẫu hệ thống',
+      image: thumbnail,
+      config: detail
     }
-    // Lưu vào SQLite Server
-    const res = await saveTemplateOverridesApi(templateStorage)
+    const res = await saveSystemTemplateApi(templateData)
     success = !!res
-    if (success) window['$message'].success('Đã lưu các thay đổi vào Chợ Mẫu (SQLite Server)')
+    if (success) window['$message'].success('Đã cập nhật Mẫu gốc trong Chợ Mẫu thành công!')
   } else if (id.startsWith('ut-')) {
     // Lưu Mẫu cá nhân (User Templates)
     const templateData = {

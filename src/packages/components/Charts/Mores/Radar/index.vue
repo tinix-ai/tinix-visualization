@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, PropType, watch } from 'vue'
+import { ref, computed, PropType, watch, onMounted, onUnmounted } from 'vue'
 import VChart from 'vue-echarts'
 import { useCanvasInitOptions } from '@/hooks/useCanvasInitOptions.hook'
 import dataJson from './data.json'
@@ -70,6 +70,23 @@ watch(
     deep: false
   }
 )
+
+let timer: any = null
+onMounted(() => {
+  if (isPreview()) {
+    console.log(`[DEBUG_MOUNT] Radar ${props.chartConfig.key} mounted.`)
+    timer = setTimeout(() => {
+       if (props.chartConfig.option.dataset) {
+         console.log(`[DEBUG_FORCE] Triggering dataSetHandle for Radar ${props.chartConfig.key}`)
+         dataSetHandle(props.chartConfig.option.dataset)
+       }
+    }, 1000)
+  }
+})
+
+onUnmounted(() => {
+  if (timer) clearTimeout(timer)
+})
 
 useChartDataFetch(props.chartConfig, useChartEditStore, (newData: typeof dataJson) => {
   dataSetHandle(newData)

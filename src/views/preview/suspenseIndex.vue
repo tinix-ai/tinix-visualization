@@ -6,7 +6,7 @@
         <!-- Zoom Layer -->
         <div ref="previewRef" class="go-preview-scale">
           <!-- Xem / Hátlớp -->
-          <div :style="previewRefStyle" v-if="show">
+          <div v-if="show" :style="previewRefStyle">
             <!-- Render Layer -->
             <preview-render-list></preview-render-list>
           </div>
@@ -17,7 +17,7 @@
       <!-- Zoom Layer -->
       <div ref="previewRef" class="go-preview-scale">
         <!-- Xem / Hátlớp -->
-        <div :style="previewRefStyle" v-if="show">
+        <div v-if="show" :style="previewRefStyle">
           <!-- Render Layer -->
           <preview-render-list></preview-render-list>
         </div>

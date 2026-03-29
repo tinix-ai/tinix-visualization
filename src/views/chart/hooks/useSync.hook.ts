@@ -112,7 +112,8 @@ export const useSync = () => {
     projectData.editCanvasConfig = canvasVersionUpdatePolyfill(projectData.editCanvasConfig)
 
     // Danh sách đăng ký thành phần
-    for (const e of projectData.componentList) {
+    const componentList = projectData.componentList || []
+    for (const e of componentList) {
       const intComponent = (target: CreateComponentType) => {
         if (!window['$vue'].component(target.chartConfig.chartKey)) {
           window['$vue'].component(target.chartConfig.chartKey, fetchChartComponent(target.chartConfig))

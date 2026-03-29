@@ -1,4 +1,4 @@
-import { ref, provide, onMounted, onUnmounted } from 'vue'
+import { ref, provide, onMounted, onUnmounted, computed, watch } from 'vue'
 import { usePreviewFitScale, usePreviewScrollYScale, usePreviewScrollXScale, usePreviewFullScale } from '@/hooks/index'
 import type { ChartEditStorageType } from '../index.d'
 import { PreviewScaleEnum } from '@/enums/styleEnum'
@@ -8,133 +8,78 @@ export const SCALE_KEY = 'scale-value'
 export const useScale = (localStorageInfo: ChartEditStorageType) => {
   const entityRef = ref()
   const previewRef = ref()
-  const width = ref(localStorageInfo.editCanvasConfig.width)
-  const height = ref(localStorageInfo.editCanvasConfig.height)
+  
+  // Reactive dimensions from store
+  const width = computed(() => localStorageInfo.editCanvasConfig.width || 1920)
+  const height = computed(() => localStorageInfo.editCanvasConfig.height || 1080)
+  const previewScaleType = computed(() => localStorageInfo.editCanvasConfig.previewScaleType)
+  
   const scaleRef = ref({ width: 1, height: 1 })
+  let unWindowResizeFn: Function | null = null
 
   provide(SCALE_KEY, scaleRef)
 
-  // Màn hình con lăn chuột +ctrl chìa khóa
-  const useAddWheelHandle = (removeEvent: Function) => {
-    addEventListener(
-      'wheel',
-      (e: any) => {
-        if (window?.$KeyboardActive?.ctrl) {
-          e.preventDefault()
-          e.stopPropagation()
-          removeEvent()
-          const transform = previewRef.value?.style.transform
-          const regRes = transform.match(/scale\((\d+\.?\d*)*/) as RegExpMatchArray
-          const width = regRes[1]
-          const previewBoxDom = document.querySelector('.go-preview') as HTMLElement
-          const entityDom = document.querySelector('.go-preview-entity') as HTMLElement
-          if (previewBoxDom) {
-            previewBoxDom.style.overflow = 'unset'
-            previewBoxDom.style.position = 'absolute'
-          }
-          if (entityDom) {
-            entityDom.style.overflow = 'unset'
-          }
-
-          if (e.wheelDelta > 0) {
-            const resNum = parseFloat(Number(width).toFixed(2))
-            previewRef.value.style.transform = `scale(${resNum > 5 ? 5 : resNum + 0.1})`
-          } else {
-            const resNum = parseFloat(Number(width).toFixed(2))
-            previewRef.value.style.transform = `scale(${resNum < 0.2 ? 0.2 : resNum - 0.1})`
-          }
-        }
-      },
-      { passive: false }
-    )
-  }
-
   const updateScaleRef = (scale: { width: number; height: number }) => {
-    // Việc phá hủy là cần thiết ở đây để đảm bảo rằng giá trị được gán choscaleRefcho một đối tượng mới
-    // bởi vìscaleLuôn luôn có cùng một tài liệu tham khảo
     scaleRef.value = { ...scale }
   }
 
-  // Thích ứng màn hình
-  onMounted(() => {
-    switch (localStorageInfo.editCanvasConfig.previewScaleType) {
-      case PreviewScaleEnum.FIT:
-        ;(() => {
-          const { calcRate, windowResize, unWindowResize } = usePreviewFitScale(
-            width.value as number,
-            height.value as number,
-            previewRef.value,
-            updateScaleRef
-          )
-          calcRate()
-          windowResize()
-          useAddWheelHandle(unWindowResize)
-          onUnmounted(() => {
-            unWindowResize()
-          })
-        })()
-        break
-      case PreviewScaleEnum.SCROLL_Y:
-        ;(() => {
-          const { calcRate, windowResize, unWindowResize } = usePreviewScrollYScale(
-            width.value as number,
-            height.value as number,
-            previewRef.value,
-            scale => {
-              const dom = entityRef.value
-              dom.style.width = `${width.value * scale.width}px`
-              dom.style.height = `${height.value * scale.height}px`
-              updateScaleRef(scale)
-            }
-          )
-          calcRate()
-          windowResize()
-          useAddWheelHandle(unWindowResize)
-          onUnmounted(() => {
-            unWindowResize()
-          })
-        })()
-
-        break
-      case PreviewScaleEnum.SCROLL_X:
-        ;(() => {
-          const { calcRate, windowResize, unWindowResize } = usePreviewScrollXScale(
-            width.value as number,
-            height.value as number,
-            previewRef.value,
-            scale => {
-              const dom = entityRef.value
-              dom.style.width = `${width.value * scale.width}px`
-              dom.style.height = `${height.value * scale.height}px`
-              updateScaleRef(scale)
-            }
-          )
-          calcRate()
-          windowResize()
-          useAddWheelHandle(unWindowResize)
-          onUnmounted(() => {
-            unWindowResize()
-          })
-        })()
-
-        break
-      case PreviewScaleEnum.FULL:
-        ;(() => {
-          const { calcRate, windowResize, unWindowResize } = usePreviewFullScale(
-            width.value as number,
-            height.value as number,
-            previewRef.value,
-            updateScaleRef
-          )
-          calcRate()
-          windowResize()
-          useAddWheelHandle(unWindowResize)
-          onUnmounted(() => {
-            unWindowResize()
-          })
-        })()
-        break
+  const initScale = () => {
+    // Clean up previous listeners
+    if (unWindowResizeFn) {
+      unWindowResizeFn()
+      unWindowResizeFn = null
     }
+
+    if (!previewRef.value) return
+
+    const type = previewScaleType.value
+    const w = width.value
+    const h = height.value
+
+    let hooks: any
+    if (type === PreviewScaleEnum.FIT) {
+      hooks = usePreviewFitScale(w, h, previewRef.value, updateScaleRef)
+    } else if (type === PreviewScaleEnum.SCROLL_Y) {
+      hooks = usePreviewScrollYScale(w, h, previewRef.value, scale => {
+        if (entityRef.value) {
+          entityRef.value.style.width = `${w * scale.width}px`
+          entityRef.value.style.height = `${h * scale.height}px`
+        }
+        updateScaleRef(scale)
+      })
+    } else if (type === PreviewScaleEnum.SCROLL_X) {
+      hooks = usePreviewScrollXScale(w, h, previewRef.value, scale => {
+        if (entityRef.value) {
+          entityRef.value.style.width = `${w * scale.width}px`
+          entityRef.value.style.height = `${h * scale.height}px`
+        }
+        updateScaleRef(scale)
+      })
+    } else {
+      hooks = usePreviewFullScale(w, h, previewRef.value, updateScaleRef)
+    }
+
+    if (hooks) {
+      // Set explicit dimensions for centering
+      previewRef.value.style.width = `${w}px`
+      previewRef.value.style.height = `${h}px`
+      hooks.calcRate()
+      hooks.windowResize()
+      unWindowResizeFn = hooks.unWindowResize
+    }
+  }
+
+  // Watch for data changes to re-calculate scale
+  watch([width, height, previewScaleType], () => {
+    initScale()
+  })
+
+  onMounted(() => {
+    initScale()
+  })
+
+  onUnmounted(() => {
+    if (unWindowResizeFn) unWindowResizeFn()
   })
 
   return {

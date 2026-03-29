@@ -1,21 +1,21 @@
 <template>
   <div
-    :class="animationsClass(groupData.styles.animations)"
+    :class="groupData.styles ? animationsClass(groupData.styles.animations) : ''"
     :style="{
       ...getSizeStyle(groupData.attr),
-      ...getFilterStyle(groupData.styles),
+      ...(groupData.styles ? getFilterStyle(groupData.styles) : {}),
     }"
   >
     <div
       class="chart-item"
       v-for="item in groupData.groupList"
-      :class="animationsClass(item.styles.animations)"
+      :class="item.styles ? animationsClass(item.styles.animations) : ''"
       :key="item.id"
       :style="{
       ...getComponentAttrStyle(item.attr, groupIndex),
       ...getStatusStyle(item.status),
       ...getPreviewConfigStyle(item.preview),
-      ...getBlendModeStyle(item.styles) as any
+      ...(item.styles ? getBlendModeStyle(item.styles) : {}) as any
     }"
     >
       <component
@@ -26,8 +26,8 @@
         :themeColor="themeColor"
         :style="{
           ...getSizeStyle(item.attr),
-          ...getFilterStyle(item.styles),
-          ...getTransformStyle(item.styles)
+          ...(item.styles ? getFilterStyle(item.styles) : {}),
+          ...(item.styles ? getTransformStyle(item.styles) : {})
         }"
         v-on="useLifeHandler(item)"
       ></component>
@@ -49,7 +49,7 @@ const props = defineProps({
   },
   themeSetting: {
     type: Object,
-    required: true
+    default: () => ({})
   },
   themeColor: {
     type: Object,

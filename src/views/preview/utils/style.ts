@@ -9,14 +9,15 @@ type PreviewConfig = PickCreateComponentType<'preview'>
 export const getComponentAttrStyle = (attr: AttrType, index: number) => {
   const componentStyle = {
     zIndex: index + 1,
-    left: `${attr.x}px`,
-    top: `${attr.y}px`
+    left: attr ? `${attr.x}px` : '0px',
+    top: attr ? `${attr.y}px` : '0px'
   }
   return componentStyle
 }
 
 // Đặt kích thước
 export const getSizeStyle = (attr: AttrType, scale?: number) => {
+  if (!attr) return { width: '100%', height: '100%' }
   return {
     width: `${scale ? scale * attr.w : attr.w}px`,
     height: `${scale ? scale * attr.h : attr.h}px`
@@ -26,7 +27,7 @@ export const getSizeStyle = (attr: AttrType, scale?: number) => {
 // Đặt kiểu trạng thái
 export const getStatusStyle = (attr: StatusType) => {
   return {
-    display: attr.hide ? 'none' : 'block'
+    display: (attr && attr.hide) ? 'none' : 'block'
   }
 }
 

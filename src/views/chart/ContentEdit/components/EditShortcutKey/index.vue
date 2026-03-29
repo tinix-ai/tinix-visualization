@@ -10,7 +10,7 @@
           @click="modelShow = true"
         >
           <n-icon size="21" :depth="3">
-            <dicom-overlay-icon></dicom-overlay-icon>
+            <dicom-outline-icon></dicom-outline-icon>
           </n-icon>
         </n-button>
       </template>
@@ -24,7 +24,7 @@ import { ref } from 'vue'
 import { icon } from '@/plugins'
 import ShortcutKeyModal from './ShortcutKeyModal.vue'
 
-const { DicomOverlayIcon } = icon.carbon
+const { DicomOutlineIcon } = icon.carbon
 const modelShow = ref<boolean>(false)
 </script>
 

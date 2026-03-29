@@ -34,6 +34,9 @@
             <n-text class="go-ellipsis-1 project-title" :title="templateData.title">
               {{ templateData.title || templateData.id }}
             </n-text>
+            <n-text depth="3" class="category-label">
+              {{ templateCategoryMap[templateData.category as keyof typeof templateCategoryMap] || 'Chưa phân loại' }}
+            </n-text>
           </div>
           
           <!-- Status and Actions at bottom -->
@@ -86,11 +89,13 @@
 <script setup lang="ts">
 import { PropType, ref, onMounted } from 'vue'
 import { fetchPathByName, routerTurnByPath, getUUID, setSessionStorage, setLocalStorage, getLocalStorage, renderIcon, requireErrorImg, goDialog } from '@/utils'
+import { DialogEnum } from '@/enums/pluginEnum'
 import { ChartEnum } from '@/enums/pageEnum'
 import { StorageEnum } from '@/enums/storageEnum'
 import { icon } from '@/plugins'
 import { MacOsControlBtn } from '@/components/Tips/MacOsControlBtn'
 import type { TemplateItem } from '../data'
+import { templateCategoryMap } from '../data'
 import { saveProjectApi, getTemplateOverridesApi, saveTemplateOverridesApi } from '@/api/storage.api'
 
 const {
@@ -106,7 +111,8 @@ const props = defineProps({
   templateData: Object as PropType<TemplateItem>
 })
 
-const requireUrl = (name: string) => {
+const requireUrl = (name: string | null | undefined) => {
+  if (!name) return ''
   if (name.startsWith('http') || name.startsWith('data:') || name.startsWith('/src/') || name.startsWith('/@fs/')) {
     return name
   }
@@ -147,7 +153,7 @@ const handleDeleteOverride = () => {
   const id = props.templateData.id
   
   goDialog({
-    type: 1 as any, // DELETE
+    type: DialogEnum.DELETE,
     message: 'Bạn có chắc chắn muốn xóa bản ghi đè và đặt lại mẫu này về mặc định?',
     onPositiveCallback: async () => {
       // Lấy từ SQLite Server
@@ -278,6 +284,10 @@ $contentHeight: 180px;
         color: var(--n-text-color);
         max-width: 100%;
         display: block;
+      }
+      .category-label {
+        font-size: 11px;
+        opacity: 0.7;
       }
     }
     

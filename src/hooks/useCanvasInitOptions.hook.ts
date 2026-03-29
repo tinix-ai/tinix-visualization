@@ -13,7 +13,7 @@ type InitOptions = {
 
 // Nhận những gì cần phải được trao cho hiện tạiechartsGiá trị ban đầu nào mà thành phần này đặt?
 export function useCanvasInitOptions(option: any, themeSetting: any) {
-  const renderer = option.renderer || themeSetting.renderer
+  const renderer = option?.renderer || themeSetting?.renderer || 'canvas'
   const initOptions: InitOptions = { renderer }
   const scaleRef = inject<Ref<{ width: number; height: number }>>(SCALE_KEY) || { value: { width: 1, height: 1 } }
 

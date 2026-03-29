@@ -1,82 +1,178 @@
 <div align="center">
-  <h1>📊 TiniX Visualization (Auto-BI Edition)</h1>
-  <p><strong>Nền tảng Trực quan hóa Dữ liệu Thông minh, Bảo mật Cục bộ và Tự động hóa bằng AI (Auto-BI)</strong></p>
+  <img src="./src/assets/images/logo.png" width="120" alt="TiniX Logo" />
+  <h1>📊 TiniX Visualization (v0.1)</h1>
+  <p><strong>Nền tảng Trực quan hóa Dữ liệu Thông minh, Bảo mật Cục bộ và Tự động hóa bằng AI</strong></p>
+  <p>
+    <img src="https://img.shields.io/badge/Vue-3.x-brightgreen" alt="Vue 3" />
+    <img src="https://img.shields.io/badge/Vite-4.x-blue" alt="Vite 4" />
+    <img src="https://img.shields.io/badge/ECharts-5.x-red" alt="ECharts 5" />
+    <img src="https://img.shields.io/badge/AI-Auto--BI-orange" alt="Auto-BI" />
+    <img src="https://img.shields.io/badge/License-MIT-lightgrey" alt="License MIT" />
+  </p>
 </div>
 
 ---
 
-## 🌟 Giới thiệu tổng quan
+## 🌟 Giới thiệu
 
-**TiniX Visualization** là một Low-Code Framework thế hệ mới chuyên xây dựng các Dashboard chuyên nghiệp. Khác biệt với các công cụ truyền thống, TiniX tích hợp sức mạnh của **Trí tuệ Nhân tạo (AI)** để giúp người dùng chuyển đổi dữ liệu thô (Excel, CSV) thành các biểu đồ phân tích sâu sắc chỉ trong vài giây thông qua quy trình **Auto-BI**.
-
-Dự án được tối ưu hóa 100% Tiếng Việt, vận hành theo triết lý "Local-First" – dữ liệu và cấu hình nằm gọn trong hạ tầng của bạn, đảm bảo tính riêng tư tuyệt đối cho các báo cáo doanh nghiệp.
-
-## ✨ Tính năng Đột phá
-
-### 1. 🤖 Auto-BI Wizard (AI-Driven Generation)
-- **Tự động Phân tích:** AI tự động đề xuất loại biểu đồ phù hợp nhất dựa trên đặc tính dữ liệu (Phân tán, Xu hướng, So sánh, Tỷ trọng).
-- **Khởi tạo Dashboard Thần tốc:** Tạo 4-10 biểu đồ chuyên sâu chỉ với 3 bước: Tải dữ liệu -> AI Đề xuất -> Tùy chỉnh & Lưu.
-- **Thumbnail Thông minh:** Tự động gán ảnh đại diện theo chủ đề (Tài chính, Marketing, Bản đồ...) ngay khi vừa khởi tạo.
-
-### 2. 🗺️ Geographic Intelligence (Bản đồ Toàn cầu & Việt Nam)
-- **Hỗ trợ Đa vùng:** Chế độ hiển thị linh hoạt Thế giới (World Map), Việt Nam (63 tỉnh thành) và Trung Quốc.
-- **Dữ liệu Sạch:** Cam kết sử dụng bản đồ đã tinh chỉnh, loại bỏ hoàn toàn các đường biên giới nhạy cảm (Đường lưỡi bò) để đảm bảo tính chuẩn mực pháp lý.
-- **Hỗ trợ đa ngôn ngữ địa lý:** Tự động chuẩn hóa tên quốc gia từ tiếng Việt sang tiếng Anh để ánh xạ dữ liệu chính xác trên bản đồ thế giới.
-
-### 3. 📈 Thư viện Biểu đồ Nâng cao (10+ Loại hình)
-- **Nhóm Cổ điển:** Cột, Đường, Tròn, Diện tích.
-- **Nhóm Chuyên sâu:** 
-  - **Radar/Funnel:** Phân tích năng lực và phễu chuyển đổi.
-  - **Heatmap/TreeMap:** Trực quan hóa mật độ và cấu trúc phân cấp.
-  - **Scatter:** Phân tích tương quan dữ liệu phức tạp với tooltip thông minh.
-
-### 4. 🔗 Pipeline & Xử lý Dữ liệu
-- **Data Aggregation:** Tự động tính tổng, làm tròn và lọc Top-N giúp biểu đồ luôn sạch sẽ, không bị rối số liệu.
-- **Cấu hình Động:** Gắn kết dữ liệu trực tiếp từ các Dataset đã tải lên hoặc gọi REST API realtime.
-
-## 🛠 Kiến trúc & Công nghệ (Tech Stack)
-### Frontend
-- **Framework:** Vue 3.x (Composition API), Vite 4.x
-- **State:** Pinia (Quản lý trạng thái Dashboard)
-- **UI:** Naive UI (Dark Mode chuẩn Hi-Tech)
-- **Charts:** ECharts 5.x, VChart (Web-GL Ready)
-
-### Backend (Local Server)
-- **Runtime:** Node.js + Express
-- **Database:** SQLite3 (Lưu trữ cục bộ không cần cài đặt phức tạp)
-- **AI Integration:** OpenAI API / AI Service (Xử lý logic gợi ý biểu đồ)
-
-## 🚀 Cài đặt & Khởi nghiệp
-
-### Yêu cầu hệ thống: Node.js >= 16.14
-
-1. **Cài đặt thư viện:**
-   ```bash
-   npm install
-   ```
-
-2. **Cấu hình Môi trường (QUAN TRỌNG):**
-   - Sao chép file mẫu: `cp .env.example .env` (hoặc copy-paste thủ công).
-   - Mở file `.env` và điền `OPENROUTER_API_KEY` của bạn để sử dụng tính năng AI.
-   - Các file `.env` và `database.sqlite` đã được cấu hình trong `.gitignore` để đảm bảo bảo mật, không bị đẩy lên Git.
-
-3. **Khởi chạy đồng thời (Frontend & Backend):**
-   ```bash
-   npm run dev:all
-   ```
-
-4. **Tự động khởi tạo dữ liệu:**
-   - Khi chạy lần đầu, hệ thống sẽ tự động tạo file dữ liệu SQLite và nạp sẵn các **Dataset mẫu** (Doanh số, Năng lượng...) để bạn trải nghiệm ngay mà không cần cấu hình database thủ công.
-
-5. **Truy cập:**
-   - Frontend: `http://localhost:3000` (hoặc cổng hiển thị trên terminal)
-   - API Server: `http://localhost:3000/api`
-
-## 💡 Cấu trúc Thư mục Chính
-- `src/packages/`: Thư viện core các component biểu đồ.
-- `src/views/project/dataManagement/`: Trung tâm quản lý dữ liệu và Auto-BI Wizard.
-- `server/`: Mã nguồn server Node.js và dịch vụ AI.
-- `src/store/`: Quản lý trạng thái toàn cục của dashboard và cấu hình canvas.
+**TiniX Visualization** là một Low-Code Framework thế hệ mới chuyên sâu về xây dựng các Dashboard (bảng điều khiển) chuyên nghiệp và báo cáo phân tích. Được phát triển dựa trên triết lý **"Local-First, AI-Powered"**, TiniX cho phép doanh nghiệp và cá nhân biến những tập dữ liệu thô phức tạp thành các biểu đồ trực quan, sinh động chỉ trong vài giây mà không cần kỹ năng lập trình chuyên sâu.
 
 ---
-> **TiniX Visualization** - Biến dữ liệu thô thành những quyết định chiến lược.
+
+## ✨ Tính năng Đột phá (Detailed Features)
+
+### 1. 🤖 Hệ thống Auto-BI Wizard (AI-Powered Analytics)
+
+TiniX không chỉ là công cụ vẽ biểu đồ, mà là một cộng sự phân tích dữ liệu chuyên nghiệp được trợ lực bởi AI:
+
+- **Tự động Phân tích Schema:** Hệ thống tự động lấy mẫu dữ liệu (sampling), phân tích kiểu dữ liệu (Numeric, Category, Time, Geography) và gán nhãn logic cho từng cột.
+
+- **AI Suggestion Engine:** Tích hợp với OpenRouter (hỗ trợ Qwen, GPT, Claude), hệ thống gửi thông tin Schema và yêu cầu AI gợi ý các góc nhìn (insights) quan trọng nhất. Kết quả trả về là một bộ 4-10 biểu đồ được cấu hình sẵn hoàn chỉnh.
+
+- **Magic Generator:** Chỉ với 1 cú nhấp chuột, hệ thống tự động thiết lập Mapping (trục X, trục Y), chọn màu sắc (Theme), kích thước và bố cục tối ưu trên Dashboard.
+
+- **Virtual Metrics:** AI có khả năng tự đề xuất các công thức tính toán mới dựa trên dữ liệu hiện có (ví dụ: Tỷ lệ chuyển đổi, Tăng trưởng doanh thu) và nhúng trực tiếp vào biểu đồ.
+
+### 2. 📊 Thư viện Thành phần Trực quan hóa Đa dạng
+
+TiniX sở hữu kho linh kiện (components) đồ sộ, được tối ưu hóa cho hiệu suất cao:
+
+- **Nhóm Biểu đồ Phân tích (ECharts 5.x):** Đầy đủ các loại từ Bar (Cột), Line (Đường), Pie (Tròn), Radar (Radar), Funnel (Phễu), Heatmap (Nhiệt độ), TreeMap (Cấu trúc cây) đến Scatter (Phân tán).
+
+- **Trực quan hóa Địa lý (Maps):** Bản đồ Thế Giới và Việt Nam (63 tỉnh thành) với khả năng ánh xạ dữ liệu theo tên tỉnh/quốc gia bằng Tiếng Việt. Biên giới được chuẩn hóa pháp lý, loại bỏ các yếu tố nhạy cảm.
+
+- **Thành phần Trang trí & Media:** Hỗ trợ nhúng Video, Hình ảnh, Văn bản nghệ thuật, Đồng hồ thời gian thực và các đường Border trang trí Hi-tech.
+
+- **Hiệu ứng Hoạt ảnh (Animations):** Tích hợp công nghệ WebGL và Animate.css, giúp Dashboard luôn sinh động và thu hút.
+
+### 3. 🛡️ Kiến trúc Local-First & Bảo mật Tuyệt đối
+
+Sự riêng tư của dữ liệu doanh nghiệp là ưu tiên hàng đầu:
+
+- **Vận hành Cục bộ:** Toàn bộ mã nguồn và dữ liệu SQLite chạy trực tiếp trên hạ tầng của bạn. Không có dữ liệu kinh doanh nào được gửi ra ngoài (ngoại trừ Schema ẩn danh được gửi cho AI nếu bạn sử dụng Auto-BI).
+
+- **Dataset Syncing:** Cơ chế đồng bộ dữ liệu thông minh giữa Frontend và Backend SQLite, đảm bảo dữ liệu luôn nhất quán và sẵn sàng ngay cả khi không có internet.
+
+- **Zero-DB Setup:** Sử dụng SQLite tích hợp, người dùng không cần cài đặt các máy chủ cơ sở dữ liệu (MySQL, Postgres) phức tạp.
+
+### 4. 🎨 Trình Biên tập (Editor) Chuyên nghiệp & Kéo thả (Drag-and-Drop)
+
+Trải nghiệm thiết kế mượt mà như các phần mềm đồ họa chuyên nghiệp:
+
+- **Infinite Canvas:** Không gian làm việc vô hạn với hệ thống lưới (Grid) hỗ trợ căn chỉnh chính xác cao.
+
+- **Hệ thống Lớp (Layer Management):** Quản lý thứ tự hiển thị, khóa/ẩn các phần tử dễ dàng.
+
+- **Right-click Context Menu:** Menu chuột phải đầy đủ các lệnh: Sao chép, Dán, Nhóm (Group), Hủy nhóm, Khóa, và Di chuyển vị trí.
+
+- **Responsive Scaling Engine:** Dashboard tự động tính toán tỷ lệ (Zoom/Fit) để hiển thị đầy màn hình trên laptop, PC hay màn hình TV phòng điều hành mà không làm biến dạng tỷ lệ.
+
+### 5. 🔗 Đồng bộ & Kết nối Dữ liệu Linh hoạt
+
+- **Tải lên File:** Hỗ trợ trực tiếp Excel (.xlsx), CSV, JSON. Tự động xử lý các dòng trống và định dạng sai.
+
+- **Connect REST API:** Cấu hình URL API để biểu đồ tự động lấy dữ liệu từ hệ thống có sẵn của doanh nghiệp.
+
+- **Static Dataset:** Cho phép lưu trữ các bộ dữ liệu tĩnh ngay trong hệ thống để sử dụng lâu dài.
+
+---
+
+## 🏗️ Kiến trúc Hệ thống (Architecture)
+
+TiniX Visualization được xây dựng trên một ngăn xếp công nghệ hiện đại, đảm bảo tốc độ và khả năng mở rộng:
+
+- **Frontend Layer:**
+  - **Framework:** Vue 3 (Composition API) + Vite (Build tool siêu tốc).
+  - **State Management:** Pinia (Quản lý trạng thái Dashboard reactive).
+  - **UI Engine:** Naive UI (Hệ thống component tinh tế).
+  - **Components:** Kiến trúc đóng gói `src/packages` giúp dễ dàng mở rộng loại biểu đồ mới.
+- **Backend Layer:**
+  - **Runtime:** Node.js + Express.
+  - **Persistence:** SQLite (Lưu trữ dữ liệu cục bộ, không cần cài đặt database server phức tạp).
+- **AI Integration Core:**
+  - Kết nối qua OpenRouter (Hỗ trợ Qwen, GPT-4, Claude) để thực hiện các tác vụ phân tích schema và gợi ý BI.
+
+---
+
+## 🚀 Hướng dẫn Cài đặt
+
+### Yêu cầu Hệ thống
+
+- **Node.js:** Phiên bản 16.14 trở lên.
+- **Package Manager:** npm hoặc yarn.
+
+### Bước 1: Clone dự án
+
+```bash
+git clone https://github.com/tinix-ai/tinix-visualization.git
+cd tinix-visualization
+```
+
+### Bước 2: Cài đặt thư viện
+
+```bash
+npm install
+```
+
+### Bước 3: Cấu hình Môi trường
+
+Hệ thống cần một API Key để chạy tính năng Auto-BI.
+
+1. Sao chép file mẫu: `cp .env.example .env`.
+2. Mở file `.env` và điền key của bạn:
+
+   ```env
+   OPENROUTER_API_KEY=your_key_here
+   ```
+
+#### 💡 Mô hình LLM khuyến nghị (Recommended Models)
+Để tính năng **Auto-BI** đạt hiệu quả cao nhất (phân tích schema chính xác và gợi ý biểu đồ thông minh), bạn nên sử dụng các mô hình có khả năng lập trình (Coding) và tư vấn SQL tốt:
+- **Qwen 2.5 72B / 122B:** (Ví dụ: `qwen/qwen-2.5-72b-instruct`) - Cực kỳ mạnh mẽ trong việc hiểu cấu trúc dữ liệu.
+- **Qwen Coder Next:** (Ví dụ: `qwen/qwen-3-coder-next`) - Chuyên biệt cho các tác vụ xử lý mã nguồn và logic.
+- **DeepSeek V3 / Coder:** Một lựa chọn tuyệt vời với chi phí thấp và hiệu năng cao.
+- **GPT-4o / Claude 3.5 Sonnet:** Các mô hình hàng đầu thế giới cho độ chính xác tuyệt đối.
+
+*Lưu ý: Bạn có thể thay đổi model trong file `server/ai.service.js` hoặc qua biến môi trường `OPENROUTER_MODEL`.*
+
+### Bước 4: Khởi chạy
+
+```bash
+# Chạy đồng thời cả Frontend (Cổng 3000) và Backend Server (Cổng 4000)
+npm run dev:all
+```
+
+---
+
+## 📖 Hướng dẫn Sử dụng (Quick Start)
+
+1. **Khởi tạo:** Truy cập `http://localhost:3000`, nhấn nút **"Tạo mới"**.
+2. **Dữ liệu:** Chọn **"Import Data"** để tải lên file Excel hoặc CSV của bạn.
+3. **AI Magic:** Sử dụng **Auto-BI Wizard**, nhấn **"Analyze"** để AI quét dữ liệu và **"Suggest Charts"** để nhận các đề xuất Dashboard.
+4. **Tùy chỉnh:** Tại màn hình Editor, bạn có thể tự do thay đổi màu sắc, thêm tiêu đề, hiệu ứng hoạt ảnh và cấu hình tỷ lệ co giãn.
+5. **Lưu trữ:** Nhấn **"Save"** để lưu dự án vào database cục bộ.
+
+---
+
+## 🗺️ Lộ trình Phát triển (Roadmap)
+
+TiniX Visualization đang liên tục được cải tiến với mục tiêu trở thành nền tảng BI tự động hàng đầu cho doanh nghiệp Việt:
+
+- **Chợ Mẫu (Template Market):** Hệ thống chia sẻ và tải xuống các mẫu Dashboard chuyên sâu cho từng ngành nghề (Bất động sản, Kho vận, Y tế, Giáo dục).
+- **Giao diện Tích hợp (Embedded Analytics):** Cung cấp các công cụ (SDK/Iframe) để nhúng trực tiếp biểu đồ TiniX vào các website hoặc ứng dụng nội bộ hiện có của doanh nghiệp.
+- **Trợ lý Ảo Hỏi đáp Số liệu (AI Data Assistant):** Tích hợp Chatbot thông minh cho phép người dùng đặt câu hỏi trực tiếp về số liệu (ví dụ: "Doanh thu tháng này tăng bao nhiêu % so với tháng trước?") và nhận câu trả lời tức thì kèm biểu đồ minh họa.
+- **Data Connector Mở rộng:** Hỗ trợ kết nối trực tiếp với các cơ sở dữ liệu phổ biến như SQL Server, MySQL, PostgreSQL và MongoDB.
+
+---
+
+## 🤝 Đóng góp & Bản quyền
+
+Dự án được phát triển và duy trì bởi cộng đồng **TiniX.ai**.
+
+Chúng tôi hoan nghênh mọi sự đóng góp (Pull Request), báo lỗi (Issues) hoặc các ý tưởng cải tiến từ cộng đồng.
+
+---
+
+<div align="center">
+  <p>Được xây dựng với ❤️ nhằm mang lại sức mạnh dữ liệu cho mọi người.</p>
+  <p>© 2026 TiniX.ai - Powered by Dagoras</p>
+</div>
