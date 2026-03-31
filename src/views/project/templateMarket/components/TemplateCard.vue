@@ -90,7 +90,7 @@
 import { PropType, ref, onMounted } from 'vue'
 import { fetchPathByName, routerTurnByPath, getUUID, setSessionStorage, setLocalStorage, getLocalStorage, renderIcon, requireErrorImg, goDialog } from '@/utils'
 import { DialogEnum } from '@/enums/pluginEnum'
-import { ChartEnum } from '@/enums/pageEnum'
+import { ChartEnum, PreviewEnum } from '@/enums/pageEnum'
 import { StorageEnum } from '@/enums/storageEnum'
 import { icon } from '@/plugins'
 import { MacOsControlBtn } from '@/components/Tips/MacOsControlBtn'
@@ -140,11 +140,30 @@ const selectOptions = ref([
 
 const handleSelect = (key: string) => {
   if (key === 'preview') {
-    emit('preview', props.templateData)
+    handlePreview()
   } else if (key === 'edit_original') {
     handleEditOriginal()
   } else if (key === 'delete_override') {
     handleDeleteOverride()
+  }
+}
+
+// Xem trước Live Dashboard (mở tab mới)
+const handlePreview = () => {
+  if (!props.templateData || !props.templateData.config) {
+    window['$message'].warning('Mẫu này hiện chưa có cấu hình chi tiết để xem trước.')
+    return
+  }
+  const previewId = props.templateData.id
+  const previewData = {
+    id: previewId,
+    ...props.templateData.config
+  }
+  // Lưu vào SessionStorage để Preview route có thể đọc
+  setSessionStorage(StorageEnum.GO_CHART_STORAGE_LIST, [previewData])
+  const path = fetchPathByName(PreviewEnum.CHART_PREVIEW_NAME, 'href')
+  if (path) {
+    routerTurnByPath(path, [previewId], undefined, true)
   }
 }
 

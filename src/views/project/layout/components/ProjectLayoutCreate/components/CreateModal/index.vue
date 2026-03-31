@@ -66,7 +66,7 @@ const typeList = shallowRef([
     title: renderLang('project.template_market'),
     key: PageEnum.BASE_HOME_TEMPLATE_MARKET_NAME,
     icon: StoreIcon,
-    disabled: true
+    disabled: false
   }
 ])
 

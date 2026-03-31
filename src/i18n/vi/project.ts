@@ -6,7 +6,7 @@ export default {
   new_project: 'Dự án mới',
   all_project: 'Tất cả dự án',
   my_template: 'Mẫu của tôi',
-  template_market: 'Chợ Mẫu (Sắp ra mắt)',
+  template_market: 'Chợ Mẫu',
 
   // items 
   release: 'Đã phát hành',

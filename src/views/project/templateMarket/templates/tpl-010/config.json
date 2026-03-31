@@ -26,9 +26,9 @@
       "option": { "colors": ["#ffffff","#1e293b"], "backgroundColor": "#00000000" }
     },
     {
-      "id": "w-pie-stock", "key": "PieCircle",
+      "id": "w-pie-stock", "key": "PieCommon",
       "attr": { "x": 50, "y": 140, "w": 410, "h": 400, "zIndex": 2 },
-      "chartConfig": { "key": "PieCircle", "chartKey": "VPieCircle", "conKey": "VCPieCircle", "title": "Phân loại hàng tồn kho", "package": "Charts", "category": "Pies", "chartFrame": "echarts" },
+      "chartConfig": { "key": "PieCommon", "chartKey": "VPieCommon", "conKey": "VCPieCommon", "title": "Phân loại hàng tồn kho", "package": "Charts", "category": "Pies", "chartFrame": "echarts" },
       "option": {
         "legend": { "show": true, "bottom": 0, "textStyle": { "color": "#eee" } },
         "dataset": { "source": [
