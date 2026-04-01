@@ -30,7 +30,7 @@ import { downloadTextFile } from '@/utils/file'
 import { DialogEnum } from '@/enums/pluginEnum'
 import { getCanvasThumbnail } from '@/utils'
 import { useUserTemplateData } from '@/views/project/mtTemplate/hooks/useUserTemplateData.hook'
-import { saveSystemTemplateApi } from '@/api/storage.api'
+import { saveSystemTemplateApi, saveProjectApi } from '@/api/storage.api'
 
 const { saveUserTemplate } = useUserTemplateData()
 
@@ -74,27 +74,39 @@ const sendHandle = () => {
   goDialog({
     type: DialogEnum.SUCCESS,
     title: 'Phát hành Dự án & Nhúng website',
-    message: `Hệ thống sẽ trích xuất toàn bộ cấu hình Cụm Biểu Đồ (Dashboard) hiện hành thành tệp JSON. Ngoài ra, bạn có thể sử dụng đoạn mã sau để nhúng vào website khác:\n\n${embedCode}`,
-    positiveText: 'Tải JSON & Sao chép mã nhúng',
+    message: `Hệ thống sẽ lưu trữ Dashboard hiện tại và cung cấp link chia sẻ công khai. Bạn có thể sử dụng mã sau để nhúng vào website khác:\n\n${embedCode}`,
+    positiveText: 'Lưu & Sao chép mã nhúng',
     negativeText: 'Hủy bớt',
     onPositiveCallback: async () => {
       const storageInfo = chartEditStore.getStorageInfo()
-      const jsonContent = JSON.stringify(storageInfo, null, 2)
-      downloadTextFile(jsonContent, `tinix-dashboard-${new Date().getTime()}`, 'json')
       
-      // Sao chép mã nhúng
-      try {
-        await navigator.clipboard.writeText(embedCode)
-        window['$message'].success('Phát hành thành công! Tệp JSON đã được tải về và Mã nhúng Iframe đã được sao chép vào bộ nhớ tạm.')
-      } catch (e) {
-        window['$message'].success('Phát hành cục bộ thành công! Tệp JSON cấu hình đã được tải về máy.')
+      // 1. Lưu dự án lên Server (Cloud Publishing)
+      const saveRes = await saveProjectApi({
+        id: idStr,
+        ...storageInfo
+      })
+
+      if (saveRes) {
+        // 2. Tải JSON dự phòng
+        const jsonContent = JSON.stringify(storageInfo, null, 2)
+        downloadTextFile(jsonContent, `tinix-dashboard-${new Date().getTime()}`, 'json')
+        
+        // 3. Sao chép mã nhúng
+        try {
+          await navigator.clipboard.writeText(embedCode)
+          window['$message'].success('Phát hành thành công! Dashboard đã được lưu trực tuyến và Mã nhúng Iframe đã được sao chép.')
+        } catch (e) {
+          window['$message'].success('Phát hành thành công! Link xem trước đã sẵn sàng.')
+        }
+      } else {
+        window['$message'].error('Lỗi khi lưu Dashboard lên Server. Vui lòng kiểm tra lại kết nối.')
       }
     }
   })
 }
 
 // Lưu thành mẫu (Save as Template)
-const { DuplicateOutlineIcon, ShieldCheckmarkOutline } = icon.ionicons5
+const { DuplicateOutlineIcon, ShieldIcon } = icon.ionicons5
 const saveAsTemplateHandle = async () => {
   goDialog({
     type: DialogEnum.SUCCESS,
@@ -168,7 +180,7 @@ const btnList = [
   {
     admin: true,
     title: 'Lưu đè Mẫu Gốc',
-    icon: renderIcon(ShieldCheckmarkOutline),
+    icon: renderIcon(ShieldIcon),
     event: () => {
       saveToSystemHandle()
     }

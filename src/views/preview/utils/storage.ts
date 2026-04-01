@@ -14,8 +14,14 @@ export interface ChartEditStorageType extends ChartEditStorage {
 export const getSessionStorageInfo = async () => {
   const urlHash = document.location.hash
   const toPathArray = urlHash.split('/')
-  const idStr = toPathArray && toPathArray[toPathArray.length - 1]
+  let idStr = toPathArray && toPathArray[toPathArray.length - 1]
+  
   if (!idStr) return
+  
+  // Clean up ID (remove query parameters like ?foo=bar)
+  if (idStr.includes('?')) {
+    idStr = idStr.split('?')[0]
+  }
 
   // 1. Thử lấy từ SessionStorage (Dành cho xem trước nhanh từ Editor)
   const storageList: ChartEditStorageType[] = getSessionStorage(
