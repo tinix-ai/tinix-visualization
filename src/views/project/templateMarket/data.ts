@@ -1,32 +1,9 @@
 import { ChartEditStorage } from '@/store/modules/chartEditStore/chartEditStore.d'
 
-// Import all configurations (12 base templates)
-import tpl001Config from './templates/tpl-001/config.json'
-import tpl002Config from './templates/tpl-002/config.json'
-import tpl003Config from './templates/tpl-003/config.json'
-import tpl004Config from './templates/tpl-004/config.json'
-import tpl005Config from './templates/tpl-005/config.json'
-import tpl006Config from './templates/tpl-006/config.json'
-import tpl007Config from './templates/tpl-007/config.json'
-import tpl008Config from './templates/tpl-008/config.json'
-import tpl009Config from './templates/tpl-009/config.json'
-import tpl010Config from './templates/tpl-010/config.json'
-import tpl011Config from './templates/tpl-011/config.json'
-import tpl012Config from './templates/tpl-012/config.json'
-
-// Import all images (12 base images)
-import tpl001Image from './templates/tpl-001/image.png'
-import tpl002Image from './templates/tpl-002/image.png'
-import tpl003Image from './templates/tpl-003/moke.png'
-import tpl004Image from './templates/tpl-004/image.png'
-import tpl005Image from './templates/tpl-005/image.png'
-import tpl006Image from './templates/tpl-006/image.png'
-import tpl007Image from './templates/tpl-007/image.png'
-import tpl008Image from './templates/tpl-008/image.png'
-import tpl009Image from './templates/tpl-009/image.png'
-import tpl010Image from './templates/tpl-010/image.png'
-import tpl011Image from './templates/tpl-011/image.png'
-import tpl012Image from './templates/tpl-012/image.png'
+// Dynamically import all 100 configurations
+const configModules = import.meta.glob('./templates/*/config.json', { eager: true }) as Record<string, { default: any } | any>
+// Dynamically import all 100 images
+const imageModules = import.meta.glob('./templates/*/image.svg', { eager: true, as: 'url' }) as Record<string, string | { default: string }>
 
 export interface TemplateItem {
   id: string
@@ -49,23 +26,7 @@ export const templateCategoryMap = {
   8: 'Dịch vụ & Khác (Other Services)'
 }
 
-// Base configurations for mapping
-const baseConfigs = [
-  { config: tpl001Config, image: tpl001Image },
-  { config: tpl002Config, image: tpl002Image },
-  { config: tpl003Config, image: tpl003Image },
-  { config: tpl004Config, image: tpl004Image },
-  { config: tpl005Config, image: tpl005Image },
-  { config: tpl006Config, image: tpl006Image },
-  { config: tpl007Config, image: tpl007Image },
-  { config: tpl008Config, image: tpl008Image },
-  { config: tpl009Config, image: tpl009Image },
-  { config: tpl010Config, image: tpl010Image },
-  { config: tpl011Config, image: tpl011Image },
-  { config: tpl012Config, image: tpl012Image }
-]
-
-// Raw data for 50 templates
+// Raw data for 100 templates
 const rawTemplateTitles: { title: string; category: number }[] = [
   // 1: Tài chính (8)
   { title: 'Báo cáo Phân tích Tài chính 2024', category: 1 },
@@ -131,21 +92,93 @@ const rawTemplateTitles: { title: string; category: number }[] = [
   { title: 'Báo cáo Dịch vụ Khách hàng (CRM)', category: 8 },
   { title: 'Dashboard Quản lý Bất động sản', category: 8 },
   { title: 'Theo dõi Dự án Xây dựng & Tiến độ', category: 8 },
-  { title: 'Dashboard Du lịch & Khách sạn 2024', category: 8 }
+  { title: 'Dashboard Du lịch & Khách sạn 2024', category: 8 },
+
+  // --- Bổ sung thêm 50 templates mới ---
+  // 1: Tài chính (6)
+  { title: 'Báo cáo Quản trị Rủi ro Tài chính', category: 1 },
+  { title: 'Dashboard Lợi nhuận gộp theo Ngành', category: 1 },
+  { title: 'Theo dõi Biến động Tỷ giá Điện tử', category: 1 },
+  { title: 'Báo cáo Phân tích Điểm hoà vốn', category: 1 },
+  { title: 'Dashboard Nguồn vốn và Nợ vay', category: 1 },
+  { title: 'Phân bổ Ngân sách Marketing 2025', category: 1 },
+
+  // 2: Nhân sự (6)
+  { title: 'Dashboard Đánh giá Năng lực Nhân sự', category: 2 },
+  { title: 'Báo cáo Tỷ lệ Giữ chân Nhân viên', category: 2 },
+  { title: 'Theo dõi Chi phí Đào tạo Nội bộ', category: 2 },
+  { title: 'Dashboard Thống kê Thời giờ làm việc', category: 2 },
+  { title: 'Phân tích Mức độ Hài lòng Nhân viên', category: 2 },
+  { title: 'Báo cáo Tuổi nghề và Thâm niên', category: 2 },
+
+  // 3: Marketing (7)
+  { title: 'Dashboard Phân tích Từ khóa SEO', category: 3 },
+  { title: 'Theo dõi Chi phí Quảng cáo Đa kênh', category: 3 },
+  { title: 'Báo cáo Chuyển đổi Khách hàng Tiềm năng', category: 3 },
+  { title: 'Dashboard Email Marketing Khối', category: 3 },
+  { title: 'Phân tích Lượt truy cập App/Web', category: 3 },
+  { title: 'Theo dõi Nhận diện Thương hiệu', category: 3 },
+  { title: 'Báo cáo Doanh số Bán chéo (Cross-sell)', category: 3 },
+
+  // 4: Logistic (7)
+  { title: 'Dashboard Vận đơn và Trạng thái Giao hàng', category: 4 },
+  { title: 'Báo cáo Độ trễ Giao hàng (Lead Time)', category: 4 },
+  { title: 'Phân tích Chi phí Lưu kho Nâng cao', category: 4 },
+  { title: 'Dashboard Lộ trình Vận tải Biển', category: 4 },
+  { title: 'Theo dõi Khối lượng Hàng hóa Xuất nhập', category: 4 },
+  { title: 'Báo cáo Năng lực Đơn vị Vận chuyển', category: 4 },
+  { title: 'Dashboard Quản lý Trả hàng (Returns)', category: 4 },
+
+  // 5: Health & Environment (6)
+  { title: 'Báo cáo Tỷ lệ Lấp đầy Giường bệnh', category: 5 },
+  { title: 'Dashboard Quản lý Vật tư Y tế Tiêu hao', category: 5 },
+  { title: 'Theo dõi Rác thải Môi trường Công nghiệp', category: 5 },
+  { title: 'Phân tích Chi phí Khám chữa bệnh BHYT', category: 5 },
+  { title: 'Dashboard Mức độ Ô nhiễm Không khí PM2.5', category: 5 },
+  { title: 'Báo cáo Biến đổi Khí hậu Khu vực', category: 5 },
+
+  // 6: Manufacturing (6)
+  { title: 'Dashboard Sản lượng Bán thành phẩm', category: 6 },
+  { title: 'Báo cáo Tỷ lệ Phế phẩm (Scrap Rate)', category: 6 },
+  { title: 'Theo dõi Năng suất Dây chuyền Lắp ráp', category: 6 },
+  { title: 'Dashboard Chu kỳ Sản xuất (Cycle Time)', category: 6 },
+  { title: 'Phân tích Chi phí Tiêu hao Điện năng', category: 6 },
+  { title: 'Báo cáo Tồn kho Cụm chi tiết Máy', category: 6 },
+
+  // 7: Education (6)
+  { title: 'Dashboard Đánh giá Kết quả Luyện thi', category: 7 },
+  { title: 'Theo dõi Mức độ Tham gia Hoạt động Ngoại khóa', category: 7 },
+  { title: 'Báo cáo Tỷ lệ Tốt nghiệp Đại học', category: 7 },
+  { title: 'Phân tích Số lượng Tuyển sinh Đầu vào', category: 7 },
+  { title: 'Dashboard Đánh giá Chất lượng Giảng viên', category: 7 },
+  { title: 'Báo cáo Quản lý Ký túc xá Sinh viên', category: 7 },
+
+  // 8: Other Services (6)
+  { title: 'Dashboard Tỷ lệ Đặt phòng Khách sạn', category: 8 },
+  { title: 'Báo cáo Xử lý Khiếu nại Khách hàng', category: 8 },
+  { title: 'Phân tích Doanh thu Cửa hàng Tiện lợi', category: 8 },
+  { title: 'Theo dõi Bảo hành & Sửa chữa Thiết bị', category: 8 },
+  { title: 'Dashboard Quản lý Bãi đỗ xe Thông minh', category: 8 },
+  { title: 'Báo cáo Đánh giá Dịch vụ Giao đồ ăn', category: 8 }
 ]
 
-// Generate the final list of 50
+// Generate the final list of 100
 export const templateList: TemplateItem[] = rawTemplateTitles.map((item, index) => {
-  // Rotate through our 12 base configurations
-  const baseIndex = index % baseConfigs.length
-  const base = baseConfigs[baseIndex]
+  const tplId = `tpl-${String(index + 1).padStart(3, '0')}`
+  const configKey = `./templates/${tplId}/config.json`
+  const imageKey = `./templates/${tplId}/image.svg`
+
+  // Safely extract the default export depending on Vite's module resolution
+  const config = configModules[configKey]?.default || configModules[configKey]
+  // Because 'as url' might give us default string or direct mapping
+  const image = (imageModules[imageKey] as any)?.default || imageModules[imageKey]
 
   return {
-    id: `tpl-ext-${(index + 1).toString().padStart(3, '0')}`,
+    id: `tpl-ext-${String(index + 1).padStart(3, '0')}`,
     title: item.title,
     category: item.category,
-    image: base.image,
+    image: image,
     isPublished: index % 2 === 0, // Mix published/unpublished for visual variety
-    config: base.config
+    config: config
   }
 })

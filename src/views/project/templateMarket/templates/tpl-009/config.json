@@ -1,116 +1,523 @@
 {
   "editCanvasConfig": {
-    "projectName": "Phân tích Chiến dịch Marketing",
-    "width": 1920, "height": 1080,
+    "projectName": "Dashboard Quản lý Nhân sự Tổng hợp",
+    "width": 1920,
+    "height": 1080,
     "background": "#120021",
-    "selectColor": true, "chartThemeColor": "dark",
-    "vChartThemeName": "vScreenVolcanoBlue", "previewScaleType": "fit"
+    "selectColor": true,
+    "chartThemeColor": "dark",
+    "vChartThemeName": "vScreenVolcanoBlue",
+    "previewScaleType": "fit"
   },
   "componentList": [
     {
-      "id": "k-title", "key": "TextCommon",
-      "attr": { "x": 610, "y": 20, "w": 700, "h": 55, "zIndex": 10 },
-      "chartConfig": { "key": "TextCommon", "chartKey": "VTextCommon", "conKey": "VCTextCommon", "title": "Tiêu đề", "package": "Informations", "category": "Texts", "chartFrame": "common" },
-      "option": { "dataset": "BÁO CÁO HIỆU QUẢ CHIẾN DỊCH MARKETING", "fontSize": 34, "fontColor": "#ff00ff", "textAlign": "center", "fontWeight": "bold", "letterSpacing": 2 }
-    },
-    {
-      "id": "k-deco", "key": "Decorates01",
-      "attr": { "x": 460, "y": 78, "w": 1000, "h": 15, "zIndex": 9 },
-      "chartConfig": { "key": "Decorates01", "chartKey": "VDecorates01", "conKey": "VCDecorates01", "title": "Trang trí", "package": "Decorates", "category": "Decorates", "chartFrame": "static" },
-      "option": { "colors": ["#ff00ff","#7b00ff"], "dur": 3 }
-    },
-    {
-      "id": "k-bdr1", "key": "Border01",
-      "attr": { "x": 30, "y": 110, "w": 450, "h": 460, "zIndex": 1 },
-      "chartConfig": { "key": "Border01", "chartKey": "VBorder01", "conKey": "VCBorder01", "title": "Khung", "package": "Decorates", "category": "Borders", "chartFrame": "static" },
-      "option": { "colors": ["#ff00ff","#7b00ff"], "backgroundColor": "#00000000" }
-    },
-    {
-      "id": "k-funnel-conv", "key": "Funnel",
-      "attr": { "x": 50, "y": 140, "w": 410, "h": 400, "zIndex": 2 },
-      "chartConfig": { "key": "Funnel", "chartKey": "VFunnel", "conKey": "VCFunnel", "title": "Phễu Marketing", "package": "Charts", "category": "Mores", "chartFrame": "echarts" },
+      "id": "k-title",
+      "key": "TextCommon",
+      "attr": {
+        "x": 610,
+        "y": 20,
+        "w": 700,
+        "h": 55,
+        "zIndex": 10
+      },
+      "chartConfig": {
+        "key": "TextCommon",
+        "chartKey": "VTextCommon",
+        "conKey": "VCTextCommon",
+        "title": "Tiêu đề",
+        "package": "Informations",
+        "category": "Texts",
+        "chartFrame": "common"
+      },
       "option": {
-        "legend": { "show": true, "textStyle": { "color": "#eee" } },
-        "series": [{ "type": "funnel", "left": "10%", "top": 40, "bottom": 20, "width": "80%",
-          "sort": "descending", "label": { "show": true, "position": "inside", "color": "#fff" },
-          "data": [
-            { "value": 50000, "name": "Ấn tượng" }, { "value": 15000, "name": "Click" },
-            { "value": 3000, "name": "Lead" }, { "value": 800, "name": "Đăng ký" }, { "value": 250, "name": "Mua hàng" }
+        "dataset": "DASHBOARD QUẢN LÝ NHÂN SỰ TỔNG HỢP",
+        "fontSize": 34,
+        "fontColor": "#ff00ff",
+        "textAlign": "center",
+        "fontWeight": "bold",
+        "letterSpacing": 2
+      }
+    },
+    {
+      "id": "k-deco",
+      "key": "Decorates01",
+      "attr": {
+        "x": 460,
+        "y": 78,
+        "w": 1000,
+        "h": 15,
+        "zIndex": 9
+      },
+      "chartConfig": {
+        "key": "Decorates01",
+        "chartKey": "VDecorates01",
+        "conKey": "VCDecorates01",
+        "title": "Trang trí",
+        "package": "Decorates",
+        "category": "Decorates",
+        "chartFrame": "static"
+      },
+      "option": {
+        "colors": [
+          "#ff00ff",
+          "#7b00ff"
+        ],
+        "dur": 3
+      }
+    },
+    {
+      "id": "k-bdr1",
+      "key": "Border01",
+      "attr": {
+        "x": 30,
+        "y": 110,
+        "w": 450,
+        "h": 460,
+        "zIndex": 1
+      },
+      "chartConfig": {
+        "key": "Border01",
+        "chartKey": "VBorder01",
+        "conKey": "VCBorder01",
+        "title": "Khung",
+        "package": "Decorates",
+        "category": "Borders",
+        "chartFrame": "static"
+      },
+      "option": {
+        "colors": [
+          "#ff00ff",
+          "#7b00ff"
+        ],
+        "backgroundColor": "#00000000"
+      }
+    },
+    {
+      "id": "k-funnel-conv",
+      "key": "Funnel",
+      "attr": {
+        "x": 50,
+        "y": 140,
+        "w": 410,
+        "h": 400,
+        "zIndex": 2
+      },
+      "chartConfig": {
+        "key": "Funnel",
+        "chartKey": "VFunnel",
+        "conKey": "VCFunnel",
+        "title": "Phễu Marketing",
+        "package": "Charts",
+        "category": "Mores",
+        "chartFrame": "echarts"
+      },
+      "option": {
+        "legend": {
+          "show": true,
+          "textStyle": {
+            "color": "#eee"
+          }
+        },
+        "series": [
+          {
+            "type": "funnel",
+            "left": "10%",
+            "top": 40,
+            "bottom": 20,
+            "width": "80%",
+            "sort": "descending",
+            "label": {
+              "show": true,
+              "position": "inside",
+              "color": "#fff"
+            },
+            "data": [
+              {
+                "value": 50000,
+                "name": "Lượt xem"
+              },
+              {
+                "value": 15000,
+                "name": "Nộp CV"
+              },
+              {
+                "value": 3000,
+                "name": "Phỏng vấn"
+              },
+              {
+                "value": 800,
+                "name": "Đạt yêu cầu"
+              },
+              {
+                "value": 250,
+                "name": "Nhận việc"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "k-bdr2",
+      "key": "Border01",
+      "attr": {
+        "x": 500,
+        "y": 110,
+        "w": 940,
+        "h": 460,
+        "zIndex": 1
+      },
+      "chartConfig": {
+        "key": "Border01",
+        "chartKey": "VBorder01",
+        "conKey": "VCBorder01",
+        "title": "Khung",
+        "package": "Decorates",
+        "category": "Borders",
+        "chartFrame": "static"
+      },
+      "option": {
+        "colors": [
+          "#ff00ff",
+          "#7b00ff"
+        ],
+        "backgroundColor": "#00000000"
+      }
+    },
+    {
+      "id": "k-line-traffic",
+      "key": "LineCommon",
+      "attr": {
+        "x": 520,
+        "y": 140,
+        "w": 900,
+        "h": 400,
+        "zIndex": 2
+      },
+      "chartConfig": {
+        "key": "LineCommon",
+        "chartKey": "VLineCommon",
+        "conKey": "VCLineCommon",
+        "title": "Nguồn lưu lượng truy cập",
+        "package": "Charts",
+        "category": "Lines",
+        "chartFrame": "echarts"
+      },
+      "option": {
+        "xAxis": {
+          "show": true,
+          "type": "category"
+        },
+        "yAxis": {
+          "show": true,
+          "type": "value"
+        },
+        "dataset": {
+          "dimensions": [
+            "product",
+            "Thâm niên",
+            "Mới vào",
+            "Đã nghỉ"
+          ],
+          "source": [
+            {
+              "product": "Mon",
+              "Thâm niên": 1200,
+              "Mới vào": 800,
+              "Đã nghỉ": 1500
+            },
+            {
+              "product": "Tue",
+              "Thâm niên": 1100,
+              "Mới vào": 850,
+              "Đã nghỉ": 1300
+            },
+            {
+              "product": "Wed",
+              "Thâm niên": 1400,
+              "Mới vào": 900,
+              "Đã nghỉ": 1600
+            },
+            {
+              "product": "Thu",
+              "Thâm niên": 1300,
+              "Mới vào": 950,
+              "Đã nghỉ": 1800
+            },
+            {
+              "product": "Fri",
+              "Thâm niên": 1500,
+              "Mới vào": 1100,
+              "Đã nghỉ": 2200
+            }
           ]
-        }]
+        },
+        "series": [
+          {
+            "type": "line",
+            "smooth": true
+          },
+          {
+            "type": "line",
+            "smooth": true
+          },
+          {
+            "type": "line",
+            "smooth": true
+          }
+        ]
       }
     },
     {
-      "id": "k-bdr2", "key": "Border01",
-      "attr": { "x": 500, "y": 110, "w": 940, "h": 460, "zIndex": 1 },
-      "chartConfig": { "key": "Border01", "chartKey": "VBorder01", "conKey": "VCBorder01", "title": "Khung", "package": "Decorates", "category": "Borders", "chartFrame": "static" },
-      "option": { "colors": ["#ff00ff","#7b00ff"], "backgroundColor": "#00000000" }
-    },
-    {
-      "id": "k-line-traffic", "key": "LineCommon",
-      "attr": { "x": 520, "y": 140, "w": 900, "h": 400, "zIndex": 2 },
-      "chartConfig": { "key": "LineCommon", "chartKey": "VLineCommon", "conKey": "VCLineCommon", "title": "Nguồn lưu lượng truy cập", "package": "Charts", "category": "Lines", "chartFrame": "echarts" },
+      "id": "k-bdr3",
+      "key": "Border01",
+      "attr": {
+        "x": 1460,
+        "y": 110,
+        "w": 430,
+        "h": 460,
+        "zIndex": 1
+      },
+      "chartConfig": {
+        "key": "Border01",
+        "chartKey": "VBorder01",
+        "conKey": "VCBorder01",
+        "title": "Khung",
+        "package": "Decorates",
+        "category": "Borders",
+        "chartFrame": "static"
+      },
       "option": {
-        "xAxis": { "show": true, "type": "category" }, "yAxis": { "show": true, "type": "value" },
-        "dataset": { "dimensions": ["product","Facebook","Google","Tiktok"], "source": [
-          { "product": "Mon", "Facebook": 1200, "Google": 800, "Tiktok": 1500 }, { "product": "Tue", "Facebook": 1100, "Google": 850, "Tiktok": 1300 },
-          { "product": "Wed", "Facebook": 1400, "Google": 900, "Tiktok": 1600 }, { "product": "Thu", "Facebook": 1300, "Google": 950, "Tiktok": 1800 },
-          { "product": "Fri", "Facebook": 1500, "Google": 1100, "Tiktok": 2200 }
-        ]},
-        "series": [{ "type": "line", "smooth": true }, { "type": "line", "smooth": true }, { "type": "line", "smooth": true }]
+        "colors": [
+          "#ff00ff",
+          "#7b00ff"
+        ],
+        "backgroundColor": "#00000000"
       }
     },
     {
-      "id": "k-bdr3", "key": "Border01",
-      "attr": { "x": 1460, "y": 110, "w": 430, "h": 460, "zIndex": 1 },
-      "chartConfig": { "key": "Border01", "chartKey": "VBorder01", "conKey": "VCBorder01", "title": "Khung", "package": "Decorates", "category": "Borders", "chartFrame": "static" },
-      "option": { "colors": ["#ff00ff","#7b00ff"], "backgroundColor": "#00000000" }
-    },
-    {
-      "id": "k-water-budget", "key": "WaterPolo",
-      "attr": { "x": 1520, "y": 130, "w": 310, "h": 400, "zIndex": 2 },
-      "chartConfig": { "key": "WaterPolo", "chartKey": "VWaterPolo", "conKey": "VCWaterPolo", "title": "Ngân sách đã sử dụng", "package": "Charts", "category": "Mores", "chartFrame": "common" },
-      "option": { "dataset": 0.58, "series": [{ "type": "liquidFill", "shape": "circle", "radius": "90%", "data": [0], "center": ["50%","50%"],
-        "color": [{ "type": "linear", "x": 0, "y": 0, "x2": 0, "y2": 1, "colorStops": [{ "offset": 0, "color": "#ff00ff" }, { "offset": 1, "color": "#7b00ff" }] }],
-        "backgroundStyle": { "borderWidth": 1, "color": "rgba(123,0,255,0.2)" },
-        "label": { "normal": { "textStyle": { "fontSize": 28, "color": "#fff" } } }, "outline": { "show": false }
-      }] }
-    },
-    {
-      "id": "k-bdr-bot", "key": "Border01",
-      "attr": { "x": 30, "y": 590, "w": 1860, "h": 470, "zIndex": 1 },
-      "chartConfig": { "key": "Border01", "chartKey": "VBorder01", "conKey": "VCBorder01", "title": "Khung", "package": "Decorates", "category": "Borders", "chartFrame": "static" },
-      "option": { "colors": ["#ff00ff","#7b00ff"], "backgroundColor": "#00000000" }
-    },
-    {
-      "id": "k-bar-campaign", "key": "BarCommon",
-      "attr": { "x": 50, "y": 620, "w": 1200, "h": 420, "zIndex": 2 },
-      "chartConfig": { "key": "BarCommon", "chartKey": "VBarCommon", "conKey": "VCBarCommon", "title": "ROI theo chiến dịch (%)", "package": "Charts", "category": "Bars", "chartFrame": "echarts" },
+      "id": "k-water-budget",
+      "key": "WaterPolo",
+      "attr": {
+        "x": 1520,
+        "y": 130,
+        "w": 310,
+        "h": 400,
+        "zIndex": 2
+      },
+      "chartConfig": {
+        "key": "WaterPolo",
+        "chartKey": "VWaterPolo",
+        "conKey": "VCWaterPolo",
+        "title": "Ngân sách đã sử dụng",
+        "package": "Charts",
+        "category": "Mores",
+        "chartFrame": "common"
+      },
       "option": {
-        "xAxis": { "show": true, "type": "category" }, "yAxis": { "show": true, "type": "value" },
-        "dataset": { "dimensions": ["product","ROI"], "source": [
-          { "product": "Tết Giáp Thìn", "ROI": 320 }, { "product": "Sale 3.3", "ROI": 150 },
-          { "product": "Summer Vibe", "ROI": 280 }, { "product": "Back to School", "ROI": 190 }
-        ]},
-        "series": [{ "type": "bar", "itemStyle": { "color": "#ff00ff" } }]
+        "dataset": 0.58,
+        "series": [
+          {
+            "type": "liquidFill",
+            "shape": "circle",
+            "radius": "90%",
+            "data": [
+              0
+            ],
+            "center": [
+              "50%",
+              "50%"
+            ],
+            "color": [
+              {
+                "type": "linear",
+                "x": 0,
+                "y": 0,
+                "x2": 0,
+                "y2": 1,
+                "colorStops": [
+                  {
+                    "offset": 0,
+                    "color": "#ff00ff"
+                  },
+                  {
+                    "offset": 1,
+                    "color": "#7b00ff"
+                  }
+                ]
+              }
+            ],
+            "backgroundStyle": {
+              "borderWidth": 1,
+              "color": "rgba(123,0,255,0.2)"
+            },
+            "label": {
+              "fontSize": 28,
+              "color": "#fff"
+            },
+            "outline": {
+              "show": false
+            }
+          }
+        ]
       }
     },
     {
-      "id": "k-table-keywords", "key": "TableList",
-      "attr": { "x": 1280, "y": 620, "w": 580, "h": 420, "zIndex": 2 },
-      "chartConfig": { "key": "TableList", "chartKey": "VTableList", "conKey": "VCTableList", "title": "Top Từ khóa tìm kiếm", "package": "Tables", "category": "Tables", "chartFrame": "common" },
+      "id": "k-bdr-bot",
+      "key": "Border01",
+      "attr": {
+        "x": 30,
+        "y": 590,
+        "w": 1860,
+        "h": 470,
+        "zIndex": 1
+      },
+      "chartConfig": {
+        "key": "Border01",
+        "chartKey": "VBorder01",
+        "conKey": "VCBorder01",
+        "title": "Khung",
+        "package": "Decorates",
+        "category": "Borders",
+        "chartFrame": "static"
+      },
+      "option": {
+        "colors": [
+          "#ff00ff",
+          "#7b00ff"
+        ],
+        "backgroundColor": "#00000000"
+      }
+    },
+    {
+      "id": "k-bar-campaign",
+      "key": "BarCommon",
+      "attr": {
+        "x": 50,
+        "y": 620,
+        "w": 1200,
+        "h": 420,
+        "zIndex": 2
+      },
+      "chartConfig": {
+        "key": "BarCommon",
+        "chartKey": "VBarCommon",
+        "conKey": "VCBarCommon",
+        "title": "Hiệu suất theo chiến dịch (%)",
+        "package": "Charts",
+        "category": "Bars",
+        "chartFrame": "echarts"
+      },
+      "option": {
+        "xAxis": {
+          "show": true,
+          "type": "category"
+        },
+        "yAxis": {
+          "show": true,
+          "type": "value"
+        },
+        "dataset": {
+          "dimensions": [
+            "product",
+            "Hiệu suất"
+          ],
+          "source": [
+            {
+              "product": "Quý 1",
+              "Hiệu suất": 320
+            },
+            {
+              "product": "Quý 2",
+              "Hiệu suất": 150
+            },
+            {
+              "product": "Quý 3",
+              "Hiệu suất": 280
+            },
+            {
+              "product": "Quý 4",
+              "Hiệu suất": 190
+            }
+          ]
+        },
+        "series": [
+          {
+            "type": "bar",
+            "itemStyle": {
+              "color": "#ff00ff"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "k-table-keywords",
+      "key": "TableList",
+      "attr": {
+        "x": 1280,
+        "y": 620,
+        "w": 580,
+        "h": 420,
+        "zIndex": 2
+      },
+      "chartConfig": {
+        "key": "TableList",
+        "chartKey": "VTableList",
+        "conKey": "VCTableList",
+        "title": "Top Từ khóa tìm kiếm",
+        "package": "Tables",
+        "category": "Tables",
+        "chartFrame": "common"
+      },
       "option": {
         "dataset": [
-          { "name": "Tinix Visualization", "value": 1500, "id": "k1" },
-          { "name": "Dashboard Template", "value": 1200, "id": "k2" },
-          { "name": "Dữ liệu lớn", "value": 980, "id": "k3" },
-          { "name": "Phân tích dữ liệu", "value": 850, "id": "k4" },
-          { "name": "AI Studio", "value": 720, "id": "k5" }
+          {
+            "name": "Phòng Kinh Doanh",
+            "value": 1500,
+            "id": "k1"
+          },
+          {
+            "name": "Phòng Kỹ Thuật",
+            "value": 1200,
+            "id": "k2"
+          },
+          {
+            "name": "Phòng Marketing",
+            "value": 980,
+            "id": "k3"
+          },
+          {
+            "name": "Phòng Nhân Sự",
+            "value": 850,
+            "id": "k4"
+          },
+          {
+            "name": "Phòng Kế Toán",
+            "value": 720,
+            "id": "k5"
+          }
         ],
-        "waitTime": 2, "rowNum": 5, "unit": "click", "sort": true,
-        "color": "#ff00ff", "textColor": "#eee", "borderColor": "#ff00ff80",
-        "indexFontSize": 12, "leftFontSize": 12, "rightFontSize": 12, "carousel": "single"
+        "waitTime": 2,
+        "rowNum": 5,
+        "unit": "click",
+        "sort": true,
+        "color": "#ff00ff",
+        "textColor": "#eee",
+        "borderColor": "#ff00ff80",
+        "indexFontSize": 12,
+        "leftFontSize": 12,
+        "rightFontSize": 12,
+        "carousel": "single"
       }
     }
-  ]
+  ],
+  "geo": {
+    "show": false,
+    "type": "map",
+    "roam": false,
+    "map": "vietnam",
+    "selectedMode": false,
+    "zoom": 1
+  }
 }

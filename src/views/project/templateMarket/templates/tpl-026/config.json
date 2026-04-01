@@ -1,0 +1,819 @@
+{
+  "editCanvasConfig": {
+    "projectName": "Theo dõi Chuỗi Cung ứng Toàn cầu",
+    "width": 1920,
+    "height": 1080,
+    "background": "#0b1120",
+    "selectColor": true,
+    "chartThemeColor": "dark",
+    "vChartThemeName": "vScreenVolcanoBlue",
+    "previewScaleType": "fit"
+  },
+  "componentList": [
+    {
+      "id": "h-title",
+      "key": "TextCommon",
+      "attr": {
+        "x": 610,
+        "y": 20,
+        "w": 700,
+        "h": 55,
+        "zIndex": 10
+      },
+      "chartConfig": {
+        "key": "TextCommon",
+        "chartKey": "VTextCommon",
+        "conKey": "VCTextCommon",
+        "title": "Tiêu đề",
+        "package": "Informations",
+        "category": "Texts",
+        "chartFrame": "common"
+      },
+      "option": {
+        "dataset": "THEO DÕI CHUỖI CUNG ỨNG TOÀN CẦU",
+        "fontSize": 36,
+        "fontColor": "#ffffff",
+        "textAlign": "center",
+        "fontWeight": "bold",
+        "letterSpacing": 6
+      }
+    },
+    {
+      "id": "h-deco",
+      "key": "Decorates01",
+      "attr": {
+        "x": 460,
+        "y": 78,
+        "w": 1000,
+        "h": 18,
+        "zIndex": 9
+      },
+      "chartConfig": {
+        "key": "Decorates01",
+        "chartKey": "VDecorates01",
+        "conKey": "VCDecorates01",
+        "title": "Trang trí",
+        "package": "Decorates",
+        "category": "Decorates",
+        "chartFrame": "static"
+      },
+      "option": {
+        "colors": [
+          "#a29bfe",
+          "#6c5ce7"
+        ],
+        "dur": 3
+      }
+    },
+    {
+      "id": "h-bdr1",
+      "key": "Border01",
+      "attr": {
+        "x": 30,
+        "y": 110,
+        "w": 450,
+        "h": 460,
+        "zIndex": 1
+      },
+      "chartConfig": {
+        "key": "Border01",
+        "chartKey": "VBorder01",
+        "conKey": "VCBorder01",
+        "title": "Khung",
+        "package": "Decorates",
+        "category": "Borders",
+        "chartFrame": "static"
+      },
+      "option": {
+        "colors": [
+          "#a29bfe",
+          "#6c5ce7"
+        ],
+        "backgroundColor": "#00000000"
+      }
+    },
+    {
+      "id": "h-pie",
+      "key": "PieCommon",
+      "attr": {
+        "x": 50,
+        "y": 140,
+        "w": 410,
+        "h": 400,
+        "zIndex": 2
+      },
+      "chartConfig": {
+        "key": "PieCommon",
+        "chartKey": "VPieCommon",
+        "conKey": "VCPieCommon",
+        "title": "Phân bổ nhân sự",
+        "package": "Charts",
+        "category": "Pies",
+        "chartFrame": "echarts"
+      },
+      "option": {
+        "tooltip": {
+          "show": true,
+          "trigger": "item"
+        },
+        "legend": {
+          "show": true,
+          "bottom": 0,
+          "textStyle": {
+            "color": "#eee"
+          }
+        },
+        "dataset": {
+          "source": [
+            {
+              "product": "Nợ dài hạn",
+              "data": 120
+            },
+            {
+              "product": "Vốn CSH",
+              "data": 85
+            },
+            {
+              "product": "Quỹ dự phòng",
+              "data": 25
+            },
+            {
+              "product": "Kế toán",
+              "data": 30
+            },
+            {
+              "product": "Nợ ngắn hạn",
+              "data": 40
+            }
+          ]
+        },
+        "series": [
+          {
+            "type": "pie",
+            "radius": [
+              "30%",
+              "55%"
+            ],
+            "center": [
+              "50%",
+              "45%"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "h-bdr2",
+      "key": "Border01",
+      "attr": {
+        "x": 500,
+        "y": 110,
+        "w": 450,
+        "h": 460,
+        "zIndex": 1
+      },
+      "chartConfig": {
+        "key": "Border01",
+        "chartKey": "VBorder01",
+        "conKey": "VCBorder01",
+        "title": "Khung",
+        "package": "Decorates",
+        "category": "Borders",
+        "chartFrame": "static"
+      },
+      "option": {
+        "colors": [
+          "#a29bfe",
+          "#6c5ce7"
+        ],
+        "backgroundColor": "#00000000"
+      }
+    },
+    {
+      "id": "h-radar",
+      "key": "Radar",
+      "attr": {
+        "x": 520,
+        "y": 140,
+        "w": 410,
+        "h": 400,
+        "zIndex": 2
+      },
+      "chartConfig": {
+        "key": "Radar",
+        "chartKey": "VRadar",
+        "conKey": "VCRadar",
+        "title": "Đánh giá năng lực",
+        "package": "Charts",
+        "category": "Mores",
+        "chartFrame": "common"
+      },
+      "option": {
+        "dataset": {
+          "dimensions": [
+            "product",
+            "Kỹ năng chuyên môn",
+            "Giao tiếp",
+            "Sáng tạo",
+            "Lãnh đạo",
+            "Teamwork"
+          ],
+          "source": [
+            {
+              "product": "Trung bình",
+              "Kỹ năng chuyên môn": 85,
+              "Giao tiếp": 70,
+              "Sáng tạo": 65,
+              "Lãnh đạo": 55,
+              "Teamwork": 90
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "h-bdr3",
+      "key": "Border01",
+      "attr": {
+        "x": 970,
+        "y": 110,
+        "w": 470,
+        "h": 460,
+        "zIndex": 1
+      },
+      "chartConfig": {
+        "key": "Border01",
+        "chartKey": "VBorder01",
+        "conKey": "VCBorder01",
+        "title": "Khung",
+        "package": "Decorates",
+        "category": "Borders",
+        "chartFrame": "static"
+      },
+      "option": {
+        "colors": [
+          "#a29bfe",
+          "#6c5ce7"
+        ],
+        "backgroundColor": "#00000000"
+      }
+    },
+    {
+      "id": "h-bar",
+      "key": "BarCommon",
+      "attr": {
+        "x": 990,
+        "y": 140,
+        "w": 430,
+        "h": 400,
+        "zIndex": 2
+      },
+      "chartConfig": {
+        "key": "BarCommon",
+        "chartKey": "VBarCommon",
+        "conKey": "VCBarCommon",
+        "title": "Tuyển dụng theo phòng ban",
+        "package": "Charts",
+        "category": "Bars",
+        "chartFrame": "echarts"
+      },
+      "option": {
+        "xAxis": {
+          "show": true,
+          "type": "category"
+        },
+        "yAxis": {
+          "show": true,
+          "type": "value"
+        },
+        "dataset": {
+          "dimensions": [
+            "product",
+            "Số lượng"
+          ],
+          "source": [
+            {
+              "product": "IT",
+              "Số lượng": 15
+            },
+            {
+              "product": "Sales",
+              "Số lượng": 10
+            },
+            {
+              "product": "HR",
+              "Số lượng": 5
+            },
+            {
+              "product": "Mkt",
+              "Số lượng": 8
+            }
+          ]
+        },
+        "series": [
+          {
+            "type": "bar",
+            "barWidth": 25
+          }
+        ]
+      }
+    },
+    {
+      "id": "h-bdr4",
+      "key": "Border01",
+      "attr": {
+        "x": 1460,
+        "y": 110,
+        "w": 430,
+        "h": 460,
+        "zIndex": 1
+      },
+      "chartConfig": {
+        "key": "Border01",
+        "chartKey": "VBorder01",
+        "conKey": "VCBorder01",
+        "title": "Khung",
+        "package": "Decorates",
+        "category": "Borders",
+        "chartFrame": "static"
+      },
+      "option": {
+        "colors": [
+          "#a29bfe",
+          "#6c5ce7"
+        ],
+        "backgroundColor": "#00000000"
+      }
+    },
+    {
+      "id": "h-water1",
+      "key": "WaterPolo",
+      "attr": {
+        "x": 1520,
+        "y": 130,
+        "w": 160,
+        "h": 130,
+        "zIndex": 2
+      },
+      "chartConfig": {
+        "key": "WaterPolo",
+        "chartKey": "VWaterPolo",
+        "conKey": "VCWaterPolo",
+        "title": "Tỉ lệ giữ chân",
+        "package": "Charts",
+        "category": "Mores",
+        "chartFrame": "common"
+      },
+      "option": {
+        "dataset": 0.92,
+        "series": [
+          {
+            "type": "liquidFill",
+            "shape": "circle",
+            "radius": "90%",
+            "data": [
+              0
+            ],
+            "center": [
+              "50%",
+              "50%"
+            ],
+            "color": [
+              {
+                "type": "linear",
+                "x": 0,
+                "y": 0,
+                "x2": 0,
+                "y2": 1,
+                "colorStops": [
+                  {
+                    "offset": 0,
+                    "color": "#00b894"
+                  },
+                  {
+                    "offset": 1,
+                    "color": "#00cec9"
+                  }
+                ]
+              }
+            ],
+            "backgroundStyle": {
+              "borderWidth": 1,
+              "color": "rgba(0,80,60,0.5)"
+            },
+            "label": {
+              "fontSize": 24,
+              "color": "#fff"
+            },
+            "outline": {
+              "show": false
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "h-lbl1",
+      "key": "TextCommon",
+      "attr": {
+        "x": 1520,
+        "y": 265,
+        "w": 160,
+        "h": 25,
+        "zIndex": 3
+      },
+      "chartConfig": {
+        "key": "TextCommon",
+        "chartKey": "VTextCommon",
+        "conKey": "VCTextCommon",
+        "title": "Label",
+        "package": "Informations",
+        "category": "Texts",
+        "chartFrame": "common"
+      },
+      "option": {
+        "dataset": "Giữ chân NV",
+        "fontSize": 13,
+        "fontColor": "#aaa",
+        "textAlign": "center"
+      }
+    },
+    {
+      "id": "h-water2",
+      "key": "WaterPolo",
+      "attr": {
+        "x": 1700,
+        "y": 130,
+        "w": 160,
+        "h": 130,
+        "zIndex": 2
+      },
+      "chartConfig": {
+        "key": "WaterPolo",
+        "chartKey": "VWaterPolo",
+        "conKey": "VCWaterPolo",
+        "title": "Hài lòng",
+        "package": "Charts",
+        "category": "Mores",
+        "chartFrame": "common"
+      },
+      "option": {
+        "dataset": 0.81,
+        "series": [
+          {
+            "type": "liquidFill",
+            "shape": "circle",
+            "radius": "90%",
+            "data": [
+              0
+            ],
+            "center": [
+              "50%",
+              "50%"
+            ],
+            "color": [
+              {
+                "type": "linear",
+                "x": 0,
+                "y": 0,
+                "x2": 0,
+                "y2": 1,
+                "colorStops": [
+                  {
+                    "offset": 0,
+                    "color": "#6c5ce7"
+                  },
+                  {
+                    "offset": 1,
+                    "color": "#a29bfe"
+                  }
+                ]
+              }
+            ],
+            "backgroundStyle": {
+              "borderWidth": 1,
+              "color": "rgba(60,40,120,0.5)"
+            },
+            "label": {
+              "fontSize": 24,
+              "color": "#fff"
+            },
+            "outline": {
+              "show": false
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "h-lbl2",
+      "key": "TextCommon",
+      "attr": {
+        "x": 1700,
+        "y": 265,
+        "w": 160,
+        "h": 25,
+        "zIndex": 3
+      },
+      "chartConfig": {
+        "key": "TextCommon",
+        "chartKey": "VTextCommon",
+        "conKey": "VCTextCommon",
+        "title": "Label",
+        "package": "Informations",
+        "category": "Texts",
+        "chartFrame": "common"
+      },
+      "option": {
+        "dataset": "Hài lòng NV",
+        "fontSize": 13,
+        "fontColor": "#aaa",
+        "textAlign": "center"
+      }
+    },
+    {
+      "id": "h-capsule",
+      "key": "CapsuleChart",
+      "attr": {
+        "x": 1480,
+        "y": 310,
+        "w": 400,
+        "h": 240,
+        "zIndex": 2
+      },
+      "chartConfig": {
+        "key": "CapsuleChart",
+        "chartKey": "VCapsuleChart",
+        "conKey": "VCCapsuleChart",
+        "title": "Lương TB theo cấp bậc",
+        "package": "Charts",
+        "category": "Bars",
+        "chartFrame": "common"
+      },
+      "option": {
+        "dataset": [
+          {
+            "name": "Giám đốc",
+            "value": 80
+          },
+          {
+            "name": "Trưởng phòng",
+            "value": 50
+          },
+          {
+            "name": "Chuyên viên",
+            "value": 25
+          },
+          {
+            "name": "Thực tập",
+            "value": 8
+          }
+        ],
+        "colors": [
+          "#dfe6e9",
+          "#b2bec3",
+          "#636e72",
+          "#2d3436"
+        ],
+        "unit": "Tr",
+        "itemHeight": 10,
+        "valueFontSize": 13,
+        "showValue": true
+      }
+    },
+    {
+      "id": "h-bdr-bot",
+      "key": "Border01",
+      "attr": {
+        "x": 30,
+        "y": 590,
+        "w": 1860,
+        "h": 470,
+        "zIndex": 1
+      },
+      "chartConfig": {
+        "key": "Border01",
+        "chartKey": "VBorder01",
+        "conKey": "VCBorder01",
+        "title": "Khung",
+        "package": "Decorates",
+        "category": "Borders",
+        "chartFrame": "static"
+      },
+      "option": {
+        "colors": [
+          "#a29bfe",
+          "#6c5ce7"
+        ],
+        "backgroundColor": "#00000000"
+      }
+    },
+    {
+      "id": "h-table",
+      "key": "TableList",
+      "attr": {
+        "x": 50,
+        "y": 620,
+        "w": 580,
+        "h": 420,
+        "zIndex": 2
+      },
+      "chartConfig": {
+        "key": "TableList",
+        "chartKey": "VTableList",
+        "conKey": "VCTableList",
+        "title": "Nhân viên xuất sắc",
+        "package": "Tables",
+        "category": "Tables",
+        "chartFrame": "common"
+      },
+      "option": {
+        "dataset": [
+          {
+            "name": "Nguyên Văn A",
+            "value": 98,
+            "id": "1"
+          },
+          {
+            "name": "Trần Thị B",
+            "value": 95,
+            "id": "2"
+          },
+          {
+            "name": "Lê Văn C",
+            "value": 92,
+            "id": "3"
+          },
+          {
+            "name": "Phạm Minh D",
+            "value": 89,
+            "id": "4"
+          },
+          {
+            "name": "Hoàng Anh E",
+            "value": 87,
+            "id": "5"
+          }
+        ],
+        "waitTime": 2,
+        "rowNum": 5,
+        "unit": "Điểm",
+        "sort": true,
+        "color": "#1370fb",
+        "textColor": "#CDD2F8FF",
+        "borderColor": "#1370fb80",
+        "indexFontSize": 12,
+        "leftFontSize": 12,
+        "rightFontSize": 12,
+        "carousel": "single"
+      }
+    },
+    {
+      "id": "h-line-bot",
+      "key": "LineCommon",
+      "attr": {
+        "x": 660,
+        "y": 620,
+        "w": 600,
+        "h": 420,
+        "zIndex": 2
+      },
+      "chartConfig": {
+        "key": "LineCommon",
+        "chartKey": "VLineCommon",
+        "conKey": "VCLineCommon",
+        "title": "Biến động nhân sự 12 tháng",
+        "package": "Charts",
+        "category": "Lines",
+        "chartFrame": "echarts"
+      },
+      "option": {
+        "xAxis": {
+          "show": true,
+          "type": "category"
+        },
+        "yAxis": {
+          "show": true,
+          "type": "value"
+        },
+        "dataset": {
+          "dimensions": [
+            "product",
+            "Vào",
+            "Ra"
+          ],
+          "source": [
+            {
+              "product": "T1",
+              "Vào": 12,
+              "Ra": 3
+            },
+            {
+              "product": "T3",
+              "Vào": 8,
+              "Ra": 5
+            },
+            {
+              "product": "T6",
+              "Vào": 15,
+              "Ra": 4
+            },
+            {
+              "product": "T9",
+              "Vào": 10,
+              "Ra": 6
+            },
+            {
+              "product": "T12",
+              "Vào": 20,
+              "Ra": 2
+            }
+          ]
+        },
+        "series": [
+          {
+            "type": "line",
+            "smooth": true
+          },
+          {
+            "type": "line",
+            "smooth": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "h-funnel-bot",
+      "key": "Funnel",
+      "attr": {
+        "x": 1290,
+        "y": 620,
+        "w": 580,
+        "h": 420,
+        "zIndex": 2
+      },
+      "chartConfig": {
+        "key": "Funnel",
+        "chartKey": "VFunnel",
+        "conKey": "VCFunnel",
+        "title": "Phễu tuyển dụng",
+        "package": "Charts",
+        "category": "Mores",
+        "chartFrame": "echarts"
+      },
+      "option": {
+        "legend": {
+          "show": true,
+          "textStyle": {
+            "color": "#eee"
+          }
+        },
+        "series": [
+          {
+            "type": "funnel",
+            "left": "10%",
+            "top": 40,
+            "bottom": 20,
+            "width": "80%",
+            "sort": "descending",
+            "label": {
+              "show": true,
+              "position": "inside",
+              "color": "#fff"
+            },
+            "data": [
+              {
+                "value": 500,
+                "name": "Ứng viên"
+              },
+              {
+                "value": 200,
+                "name": "Phỏng vấn"
+              },
+              {
+                "value": 80,
+                "name": "Vòng 2"
+              },
+              {
+                "value": 30,
+                "name": "Offer"
+              },
+              {
+                "value": 25,
+                "name": "Nhận việc"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "geo": {
+    "show": false,
+    "type": "map",
+    "roam": false,
+    "map": "vietnam",
+    "selectedMode": false,
+    "zoom": 1
+  }
+}

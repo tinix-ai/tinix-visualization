@@ -1,0 +1,502 @@
+{
+  "editCanvasConfig": {
+    "projectName": "Dashboard Smarthome & IoT",
+    "width": 1920,
+    "height": 1080,
+    "background": "#0b1120",
+    "selectColor": true,
+    "chartThemeColor": "dark",
+    "vChartThemeName": "vScreenVolcanoBlue",
+    "previewScaleType": "fit"
+  },
+  "componentList": [
+    {
+      "id": "w-title",
+      "key": "TextCommon",
+      "attr": {
+        "x": 610,
+        "y": 20,
+        "w": 700,
+        "h": 55,
+        "zIndex": 10
+      },
+      "chartConfig": {
+        "key": "TextCommon",
+        "chartKey": "VTextCommon",
+        "conKey": "VCTextCommon",
+        "title": "Tiêu đề",
+        "package": "Informations",
+        "category": "Texts",
+        "chartFrame": "common"
+      },
+      "option": {
+        "dataset": "DASHBOARD SMARTHOME & IOT",
+        "fontSize": 34,
+        "fontColor": "#ffffff",
+        "textAlign": "center",
+        "fontWeight": "bold",
+        "letterSpacing": 2
+      }
+    },
+    {
+      "id": "w-deco",
+      "key": "Decorates01",
+      "attr": {
+        "x": 460,
+        "y": 78,
+        "w": 1000,
+        "h": 15,
+        "zIndex": 9
+      },
+      "chartConfig": {
+        "key": "Decorates01",
+        "chartKey": "VDecorates01",
+        "conKey": "VCDecorates01",
+        "title": "Trang trí",
+        "package": "Decorates",
+        "category": "Decorates",
+        "chartFrame": "static"
+      },
+      "option": {
+        "colors": [
+          "#ffffff",
+          "#1e293b"
+        ],
+        "dur": 3
+      }
+    },
+    {
+      "id": "w-bdr1",
+      "key": "Border01",
+      "attr": {
+        "x": 30,
+        "y": 110,
+        "w": 450,
+        "h": 460,
+        "zIndex": 1
+      },
+      "chartConfig": {
+        "key": "Border01",
+        "chartKey": "VBorder01",
+        "conKey": "VCBorder01",
+        "title": "Khung",
+        "package": "Decorates",
+        "category": "Borders",
+        "chartFrame": "static"
+      },
+      "option": {
+        "colors": [
+          "#ffffff",
+          "#1e293b"
+        ],
+        "backgroundColor": "#00000000"
+      }
+    },
+    {
+      "id": "w-pie-stock",
+      "key": "PieCommon",
+      "attr": {
+        "x": 50,
+        "y": 140,
+        "w": 410,
+        "h": 400,
+        "zIndex": 2
+      },
+      "chartConfig": {
+        "key": "PieCommon",
+        "chartKey": "VPieCommon",
+        "conKey": "VCPieCommon",
+        "title": "Phân loại hàng tồn kho",
+        "package": "Charts",
+        "category": "Pies",
+        "chartFrame": "echarts"
+      },
+      "option": {
+        "legend": {
+          "show": true,
+          "bottom": 0,
+          "textStyle": {
+            "color": "#eee"
+          }
+        },
+        "dataset": {
+          "source": [
+            {
+              "product": "Nguyên liệu",
+              "data": 45
+            },
+            {
+              "product": "Bán thành phẩm",
+              "data": 25
+            },
+            {
+              "product": "Thành phẩm",
+              "data": 30
+            }
+          ]
+        },
+        "series": [
+          {
+            "type": "pie",
+            "radius": [
+              "40%",
+              "70%"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "w-bdr2",
+      "key": "Border01",
+      "attr": {
+        "x": 500,
+        "y": 110,
+        "w": 940,
+        "h": 460,
+        "zIndex": 1
+      },
+      "chartConfig": {
+        "key": "Border01",
+        "chartKey": "VBorder01",
+        "conKey": "VCBorder01",
+        "title": "Khung",
+        "package": "Decorates",
+        "category": "Borders",
+        "chartFrame": "static"
+      },
+      "option": {
+        "colors": [
+          "#ffffff",
+          "#1e293b"
+        ],
+        "backgroundColor": "#00000000"
+      }
+    },
+    {
+      "id": "w-line-io",
+      "key": "LineCommon",
+      "attr": {
+        "x": 520,
+        "y": 140,
+        "w": 900,
+        "h": 400,
+        "zIndex": 2
+      },
+      "chartConfig": {
+        "key": "LineCommon",
+        "chartKey": "VLineCommon",
+        "conKey": "VCLineCommon",
+        "title": "Lưu lượng Nhập/Xuất kho hàng ngày",
+        "package": "Charts",
+        "category": "Lines",
+        "chartFrame": "echarts"
+      },
+      "option": {
+        "xAxis": {
+          "show": true,
+          "type": "category"
+        },
+        "yAxis": {
+          "show": true,
+          "type": "value"
+        },
+        "dataset": {
+          "dimensions": [
+            "product",
+            "Nhập",
+            "Xuất"
+          ],
+          "source": [
+            {
+              "product": "01/03",
+              "Nhập": 450,
+              "Xuất": 380
+            },
+            {
+              "product": "02/03",
+              "Nhập": 520,
+              "Xuất": 410
+            },
+            {
+              "product": "03/03",
+              "Nhập": 300,
+              "Xuất": 550
+            },
+            {
+              "product": "04/03",
+              "Nhập": 610,
+              "Xuất": 420
+            },
+            {
+              "product": "05/03",
+              "Nhập": 580,
+              "Xuất": 390
+            }
+          ]
+        },
+        "series": [
+          {
+            "type": "line",
+            "smooth": true
+          },
+          {
+            "type": "line",
+            "smooth": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "w-bdr3",
+      "key": "Border01",
+      "attr": {
+        "x": 1460,
+        "y": 110,
+        "w": 430,
+        "h": 460,
+        "zIndex": 1
+      },
+      "chartConfig": {
+        "key": "Border01",
+        "chartKey": "VBorder01",
+        "conKey": "VCBorder01",
+        "title": "Khung",
+        "package": "Decorates",
+        "category": "Borders",
+        "chartFrame": "static"
+      },
+      "option": {
+        "colors": [
+          "#ffffff",
+          "#1e293b"
+        ],
+        "backgroundColor": "#00000000"
+      }
+    },
+    {
+      "id": "w-water-capacity",
+      "key": "WaterPolo",
+      "attr": {
+        "x": 1520,
+        "y": 130,
+        "w": 310,
+        "h": 400,
+        "zIndex": 2
+      },
+      "chartConfig": {
+        "key": "WaterPolo",
+        "chartKey": "VWaterPolo",
+        "conKey": "VCWaterPolo",
+        "title": "Tỉ lệ lấp đầy kho",
+        "package": "Charts",
+        "category": "Mores",
+        "chartFrame": "common"
+      },
+      "option": {
+        "dataset": 0.82,
+        "series": [
+          {
+            "type": "liquidFill",
+            "shape": "rect",
+            "radius": "90%",
+            "data": [
+              0
+            ],
+            "center": [
+              "50%",
+              "50%"
+            ],
+            "color": [
+              {
+                "type": "linear",
+                "x": 0,
+                "y": 0,
+                "x2": 0,
+                "y2": 1,
+                "colorStops": [
+                  {
+                    "offset": 0,
+                    "color": "#0066ff"
+                  },
+                  {
+                    "offset": 1,
+                    "color": "#1e293b"
+                  }
+                ]
+              }
+            ],
+            "backgroundStyle": {
+              "borderWidth": 1,
+              "color": "rgba(30,41,59,0.3)"
+            },
+            "label": {
+              "fontSize": 28,
+              "color": "#fff"
+            },
+            "outline": {
+              "show": false
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "w-bdr-bot",
+      "key": "Border01",
+      "attr": {
+        "x": 30,
+        "y": 590,
+        "w": 1860,
+        "h": 470,
+        "zIndex": 1
+      },
+      "chartConfig": {
+        "key": "Border01",
+        "chartKey": "VBorder01",
+        "conKey": "VCBorder01",
+        "title": "Khung",
+        "package": "Decorates",
+        "category": "Borders",
+        "chartFrame": "static"
+      },
+      "option": {
+        "colors": [
+          "#ffffff",
+          "#1e293b"
+        ],
+        "backgroundColor": "#00000000"
+      }
+    },
+    {
+      "id": "w-table-low-stock",
+      "key": "TableList",
+      "attr": {
+        "x": 1280,
+        "y": 620,
+        "w": 580,
+        "h": 420,
+        "zIndex": 2
+      },
+      "chartConfig": {
+        "key": "TableList",
+        "chartKey": "VTableList",
+        "conKey": "VCTableList",
+        "title": "Cảnh báo tồn kho thấp",
+        "package": "Tables",
+        "category": "Tables",
+        "chartFrame": "common"
+      },
+      "option": {
+        "dataset": [
+          {
+            "name": "Bánh Xe 15 inch",
+            "value": 5,
+            "id": "i1"
+          },
+          {
+            "name": "Chip xử lý CPU X1",
+            "value": 12,
+            "id": "i2"
+          },
+          {
+            "name": "Màn Hình 24' LCD",
+            "value": 8,
+            "id": "i3"
+          },
+          {
+            "name": "Cáp HDMI 2.0",
+            "value": 3,
+            "id": "i4"
+          },
+          {
+            "name": "Pin Lithium 5Ah",
+            "value": 15,
+            "id": "i5"
+          }
+        ],
+        "waitTime": 2,
+        "rowNum": 5,
+        "unit": "pcs",
+        "sort": true,
+        "color": "#ff4d4f",
+        "textColor": "#eee",
+        "borderColor": "#ff4d4f80",
+        "indexFontSize": 12,
+        "leftFontSize": 12,
+        "rightFontSize": 12,
+        "carousel": "single"
+      }
+    },
+    {
+      "id": "w-bar-warehouse",
+      "key": "BarCommon",
+      "attr": {
+        "x": 50,
+        "y": 620,
+        "w": 1200,
+        "h": 420,
+        "zIndex": 2
+      },
+      "chartConfig": {
+        "key": "BarCommon",
+        "chartKey": "VBarCommon",
+        "conKey": "VCBarCommon",
+        "title": "Tồn kho theo phân khu (m3)",
+        "package": "Charts",
+        "category": "Bars",
+        "chartFrame": "echarts"
+      },
+      "option": {
+        "xAxis": {
+          "show": true,
+          "type": "category"
+        },
+        "yAxis": {
+          "show": true,
+          "type": "value"
+        },
+        "dataset": {
+          "dimensions": [
+            "product",
+            "Thể tích"
+          ],
+          "source": [
+            {
+              "product": "Khu A (Lạnh)",
+              "Thể tích": 1200
+            },
+            {
+              "product": "Khu B (Khô)",
+              "Thể tích": 4500
+            },
+            {
+              "product": "Khu C (Hóa chất)",
+              "Thể tích": 850
+            },
+            {
+              "product": "Khu D (Linh kiện)",
+              "Thể tích": 3200
+            }
+          ]
+        },
+        "series": [
+          {
+            "type": "bar",
+            "itemStyle": {
+              "color": "#0066ff"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "geo": {
+    "show": false,
+    "type": "map",
+    "roam": false,
+    "map": "vietnam",
+    "selectedMode": false,
+    "zoom": 1
+  }
+}

@@ -39,12 +39,19 @@ export const option = {
     }
   },
   geo: {
-    show: false,
+    show: true,
     type: 'map',
-    roam: false,
-    map: 'china',
-    selectedMode: false, //Nó có được phép không?Trạng Trái Hover ActiveNhiều khu vực
-    zoom: 1
+    roam: true,
+    map: 'world',
+    selectedMode: false,
+    zoom: 1,
+    layoutCenter: ['50%', '50%'],
+    layoutSize: '160%', // Scale up to fill container better
+    itemStyle: {
+      borderColor: '#93EBF880',
+      borderWidth: 1,
+      areaColor: '#0c1b33' // Deep background color
+    }
   },
   series: [
     {
@@ -98,7 +105,7 @@ export const option = {
       data: [],
       selectedMode: false,
       zoom: 1,
-      geoIndex: 1,
+      geoIndex: 0,
       tooltip: {
         show: true,
         backgroundColor: '#00000060',
@@ -136,11 +143,11 @@ export const option = {
           colorStops: [
             {
               offset: 0,
-              color: '#93ebf800' // 0% củaMàu sắc
+              color: '#93ebf820' // Increased from 00
             },
             {
               offset: 1,
-              color: '#93ebf820' // 100% củaMàu sắc
+              color: '#93ebf880' // Increased from 20
             }
           ],
           globalCoord: false
@@ -153,6 +160,7 @@ export const option = {
     },
     {
       type: 'lines',
+      coordinateSystem: 'geo',
       zlevel: 2,
       effect: {
         show: true,

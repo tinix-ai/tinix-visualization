@@ -1,0 +1,926 @@
+{
+  "editCanvasConfig": {
+    "projectName": "Báo cáo Hiệu suất Thiết bị (OEE)",
+    "width": 1920,
+    "height": 1080,
+    "background": "#050a18",
+    "selectColor": true,
+    "chartThemeColor": "dark",
+    "vChartThemeName": "vScreenVolcanoBlue",
+    "previewScaleType": "fit"
+  },
+  "componentList": [
+    {
+      "id": "f-title",
+      "key": "TextCommon",
+      "attr": {
+        "x": 610,
+        "y": 20,
+        "w": 700,
+        "h": 55,
+        "zIndex": 10
+      },
+      "chartConfig": {
+        "key": "TextCommon",
+        "chartKey": "VTextCommon",
+        "conKey": "VCTextCommon",
+        "title": "Tiêu đề",
+        "package": "Informations",
+        "category": "Texts",
+        "chartFrame": "common"
+      },
+      "option": {
+        "dataset": "BÁO CÁO HIỆU SUẤT THIẾT BỊ (OEE)",
+        "fontSize": 36,
+        "fontColor": "#ffffff",
+        "textAlign": "center",
+        "fontWeight": "bold",
+        "letterSpacing": 8
+      }
+    },
+    {
+      "id": "f-deco1",
+      "key": "Decorates01",
+      "attr": {
+        "x": 460,
+        "y": 78,
+        "w": 1000,
+        "h": 18,
+        "zIndex": 9
+      },
+      "chartConfig": {
+        "key": "Decorates01",
+        "chartKey": "VDecorates01",
+        "conKey": "VCDecorates01",
+        "title": "Trang trí",
+        "package": "Decorates",
+        "category": "Decorates",
+        "chartFrame": "static"
+      },
+      "option": {
+        "colors": [
+          "#00c6ff",
+          "#0072ff"
+        ],
+        "dur": 3
+      }
+    },
+    {
+      "id": "f-border-left",
+      "key": "Border01",
+      "attr": {
+        "x": 30,
+        "y": 110,
+        "w": 610,
+        "h": 460,
+        "zIndex": 1
+      },
+      "chartConfig": {
+        "key": "Border01",
+        "chartKey": "VBorder01",
+        "conKey": "VCBorder01",
+        "title": "Khung viền",
+        "package": "Decorates",
+        "category": "Borders",
+        "chartFrame": "static"
+      },
+      "option": {
+        "colors": [
+          "#4facfe",
+          "#00f2fe"
+        ],
+        "backgroundColor": "#00000000"
+      }
+    },
+    {
+      "id": "f-bar",
+      "key": "BarCommon",
+      "attr": {
+        "x": 50,
+        "y": 140,
+        "w": 570,
+        "h": 400,
+        "zIndex": 2
+      },
+      "chartConfig": {
+        "key": "BarCommon",
+        "chartKey": "VBarCommon",
+        "conKey": "VCBarCommon",
+        "title": "Dòng tiền vào & Lãi/Lỗ theo Quý",
+        "package": "Charts",
+        "category": "Bars",
+        "chartFrame": "echarts"
+      },
+      "option": {
+        "tooltip": {
+          "show": true,
+          "trigger": "axis"
+        },
+        "legend": {
+          "show": true,
+          "textStyle": {
+            "color": "#eee"
+          }
+        },
+        "xAxis": {
+          "show": true,
+          "type": "category"
+        },
+        "yAxis": {
+          "show": true,
+          "type": "value"
+        },
+        "dataset": {
+          "dimensions": [
+            "product",
+            "Dòng tiền vào",
+            "Lãi/Lỗ"
+          ],
+          "source": [
+            {
+              "product": "Q1",
+              "Dòng tiền vào": 1200,
+              "Lãi/Lỗ": 200
+            },
+            {
+              "product": "Q2",
+              "Dòng tiền vào": 1500,
+              "Lãi/Lỗ": 400
+            },
+            {
+              "product": "Q3",
+              "Dòng tiền vào": 1300,
+              "Lãi/Lỗ": 300
+            },
+            {
+              "product": "Q4",
+              "Dòng tiền vào": 1800,
+              "Lãi/Lỗ": 600
+            }
+          ]
+        },
+        "series": [
+          {
+            "type": "bar",
+            "barWidth": 20
+          },
+          {
+            "type": "bar",
+            "barWidth": 20
+          }
+        ]
+      }
+    },
+    {
+      "id": "f-map-vn",
+      "key": "MapBase",
+      "attr": {
+        "x": 670,
+        "y": 110,
+        "w": 610,
+        "h": 460,
+        "zIndex": 2
+      },
+      "chartConfig": {
+        "key": "MapBase",
+        "chartKey": "VMapBase",
+        "conKey": "VCMapBase",
+        "title": "Bản đồ Thị trường Việt Nam",
+        "package": "Charts",
+        "category": "Maps",
+        "chartFrame": "common"
+      },
+      "option": {
+        "mapRegion": {
+          "adcode": "vietnam",
+          "showHainanIsLands": true,
+          "enter": false
+        },
+        "dataset": {
+          "point": [
+            {
+              "name": "Hà Nội",
+              "value": [
+                105.854444,
+                21.028511,
+                950
+              ]
+            },
+            {
+              "name": "London",
+              "value": [
+                -0.127758,
+                51.507351,
+                820
+              ]
+            },
+            {
+              "name": "New York",
+              "value": [
+                -74.005973,
+                40.712775,
+                888
+              ]
+            },
+            {
+              "name": "Tokyo",
+              "value": [
+                139.691706,
+                35.689487,
+                750
+              ]
+            },
+            {
+              "name": "Sydney",
+              "value": [
+                151.209296,
+                -33.86882,
+                660
+              ]
+            },
+            {
+              "name": "Paris",
+              "value": [
+                2.352222,
+                48.856614,
+                780
+              ]
+            }
+          ],
+          "line": [
+            {
+              "coords": [
+                [
+                  105.854444,
+                  21.028511
+                ],
+                [
+                  -0.127758,
+                  51.507351
+                ]
+              ]
+            },
+            {
+              "coords": [
+                [
+                  105.854444,
+                  21.028511
+                ],
+                [
+                  -74.005973,
+                  40.712775
+                ]
+              ]
+            },
+            {
+              "coords": [
+                [
+                  105.854444,
+                  21.028511
+                ],
+                [
+                  139.691706,
+                  35.689487
+                ]
+              ]
+            },
+            {
+              "coords": [
+                [
+                  105.854444,
+                  21.028511
+                ],
+                [
+                  151.209296,
+                  -33.86882
+                ]
+              ]
+            }
+          ],
+          "map": [
+            {
+              "name": "Vietnam",
+              "value": 1100
+            },
+            {
+              "name": "China",
+              "value": 850
+            },
+            {
+              "name": "USA",
+              "value": 1200
+            },
+            {
+              "name": "Russia",
+              "value": 700
+            },
+            {
+              "name": "Brazil",
+              "value": 600
+            },
+            {
+              "name": "Australia",
+              "value": 500
+            },
+            {
+              "name": "Canada",
+              "value": 400
+            },
+            {
+              "name": "France",
+              "value": 300
+            },
+            {
+              "name": "Germany",
+              "value": 200
+            }
+          ],
+          "pieces": [
+            {
+              "gte": 1000,
+              "label": ">1000"
+            },
+            {
+              "gte": 600,
+              "lte": 999,
+              "label": "600-999"
+            },
+            {
+              "gte": 200,
+              "lte": 599,
+              "label": "200-599"
+            },
+            {
+              "gte": 50,
+              "lte": 199,
+              "label": "49-199"
+            },
+            {
+              "gte": 10,
+              "lte": 49,
+              "label": "10-49"
+            },
+            {
+              "lte": 9,
+              "label": "<9"
+            }
+          ]
+        },
+        "series": [
+          {
+            "type": "effectScatter",
+            "coordinateSystem": "geo",
+            "data": []
+          },
+          {
+            "name": "Thị trường",
+            "type": "map",
+            "map": "vietnam",
+            "data": [
+              {
+                "name": "Hà Nội",
+                "value": 120
+              },
+              {
+                "name": "TP. Hồ Chí Minh",
+                "value": 150
+              },
+              {
+                "name": "Đà Nẵng",
+                "value": 90
+              },
+              {
+                "name": "Hải Phòng",
+                "value": 80
+              },
+              {
+                "name": "Cần Thơ",
+                "value": 70
+              }
+            ]
+          },
+          {
+            "type": "lines",
+            "coordinateSystem": "geo",
+            "lineStyle": {
+              "color": "#4fb6d2",
+              "width": 1,
+              "opacity": 0.1,
+              "curveness": 0.3
+            },
+            "data": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "f-border-br",
+      "key": "Border01",
+      "attr": {
+        "x": 1310,
+        "y": 110,
+        "w": 580,
+        "h": 460,
+        "zIndex": 1
+      },
+      "chartConfig": {
+        "key": "Border01",
+        "chartKey": "VBorder01",
+        "conKey": "VCBorder01",
+        "title": "Khung viền",
+        "package": "Decorates",
+        "category": "Borders",
+        "chartFrame": "static"
+      },
+      "option": {
+        "colors": [
+          "#4facfe",
+          "#00f2fe"
+        ],
+        "backgroundColor": "#00000000"
+      }
+    },
+    {
+      "id": "f-water",
+      "key": "WaterPolo",
+      "attr": {
+        "x": 1380,
+        "y": 140,
+        "w": 220,
+        "h": 180,
+        "zIndex": 2
+      },
+      "chartConfig": {
+        "key": "WaterPolo",
+        "chartKey": "VWaterPolo",
+        "conKey": "VCWaterPolo",
+        "title": "Tỉ lệ hoàn thành KPI",
+        "package": "Charts",
+        "category": "Mores",
+        "chartFrame": "common"
+      },
+      "option": {
+        "dataset": 0.78,
+        "series": [
+          {
+            "type": "liquidFill",
+            "shape": "circle",
+            "radius": "90%",
+            "data": [
+              0
+            ],
+            "center": [
+              "50%",
+              "50%"
+            ],
+            "color": [
+              {
+                "type": "linear",
+                "x": 0,
+                "y": 0,
+                "x2": 0,
+                "y2": 1,
+                "colorStops": [
+                  {
+                    "offset": 0,
+                    "color": "#446bf5"
+                  },
+                  {
+                    "offset": 1,
+                    "color": "#2ca3e2"
+                  }
+                ]
+              }
+            ],
+            "backgroundStyle": {
+              "borderWidth": 1,
+              "color": "rgba(51,66,127,0.7)"
+            },
+            "label": {
+              "fontSize": 30,
+              "color": "#fff"
+            },
+            "outline": {
+              "show": false
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "f-water2",
+      "key": "WaterPolo",
+      "attr": {
+        "x": 1620,
+        "y": 140,
+        "w": 220,
+        "h": 180,
+        "zIndex": 2
+      },
+      "chartConfig": {
+        "key": "WaterPolo",
+        "chartKey": "VWaterPolo",
+        "conKey": "VCWaterPolo",
+        "title": "Biên lợi nhuận",
+        "package": "Charts",
+        "category": "Mores",
+        "chartFrame": "common"
+      },
+      "option": {
+        "dataset": 0.45,
+        "series": [
+          {
+            "type": "liquidFill",
+            "shape": "circle",
+            "radius": "90%",
+            "data": [
+              0
+            ],
+            "center": [
+              "50%",
+              "50%"
+            ],
+            "color": [
+              {
+                "type": "linear",
+                "x": 0,
+                "y": 0,
+                "x2": 0,
+                "y2": 1,
+                "colorStops": [
+                  {
+                    "offset": 0,
+                    "color": "#f093fb"
+                  },
+                  {
+                    "offset": 1,
+                    "color": "#f5576c"
+                  }
+                ]
+              }
+            ],
+            "backgroundStyle": {
+              "borderWidth": 1,
+              "color": "rgba(127,51,76,0.7)"
+            },
+            "label": {
+              "fontSize": 30,
+              "color": "#fff"
+            },
+            "outline": {
+              "show": false
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "f-lbl-kpi",
+      "key": "TextCommon",
+      "attr": {
+        "x": 1380,
+        "y": 325,
+        "w": 220,
+        "h": 30,
+        "zIndex": 3
+      },
+      "chartConfig": {
+        "key": "TextCommon",
+        "chartKey": "VTextCommon",
+        "conKey": "VCTextCommon",
+        "title": "Label",
+        "package": "Informations",
+        "category": "Texts",
+        "chartFrame": "common"
+      },
+      "option": {
+        "dataset": "Kế hoạch LN",
+        "fontSize": 14,
+        "fontColor": "#aaaaaa",
+        "textAlign": "center",
+        "fontWeight": "normal"
+      }
+    },
+    {
+      "id": "f-lbl-profit",
+      "key": "TextCommon",
+      "attr": {
+        "x": 1620,
+        "y": 325,
+        "w": 220,
+        "h": 30,
+        "zIndex": 3
+      },
+      "chartConfig": {
+        "key": "TextCommon",
+        "chartKey": "VTextCommon",
+        "conKey": "VCTextCommon",
+        "title": "Label",
+        "package": "Informations",
+        "category": "Texts",
+        "chartFrame": "common"
+      },
+      "option": {
+        "dataset": "Biên lợi nhuận",
+        "fontSize": 14,
+        "fontColor": "#aaaaaa",
+        "textAlign": "center",
+        "fontWeight": "normal"
+      }
+    },
+    {
+      "id": "f-line-bottom",
+      "key": "LineCommon",
+      "attr": {
+        "x": 1330,
+        "y": 370,
+        "w": 540,
+        "h": 190,
+        "zIndex": 2
+      },
+      "chartConfig": {
+        "key": "LineCommon",
+        "chartKey": "VLineCommon",
+        "conKey": "VCLineCommon",
+        "title": "Xu hướng dòng tiền",
+        "package": "Charts",
+        "category": "Lines",
+        "chartFrame": "echarts"
+      },
+      "option": {
+        "tooltip": {
+          "show": true,
+          "trigger": "axis"
+        },
+        "xAxis": {
+          "show": true,
+          "type": "category"
+        },
+        "yAxis": {
+          "show": true,
+          "type": "value"
+        },
+        "dataset": {
+          "dimensions": [
+            "product",
+            "Thu",
+            "Chi"
+          ],
+          "source": [
+            {
+              "product": "T1",
+              "Thu": 500,
+              "Chi": 420
+            },
+            {
+              "product": "T2",
+              "Thu": 620,
+              "Chi": 480
+            },
+            {
+              "product": "T3",
+              "Thu": 580,
+              "Chi": 510
+            },
+            {
+              "product": "T4",
+              "Thu": 750,
+              "Chi": 490
+            }
+          ]
+        },
+        "series": [
+          {
+            "type": "line",
+            "smooth": true
+          },
+          {
+            "type": "line",
+            "smooth": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "f-border-bottom",
+      "key": "Border01",
+      "attr": {
+        "x": 30,
+        "y": 590,
+        "w": 1860,
+        "h": 470,
+        "zIndex": 1
+      },
+      "chartConfig": {
+        "key": "Border01",
+        "chartKey": "VBorder01",
+        "conKey": "VCBorder01",
+        "title": "Khung viền",
+        "package": "Decorates",
+        "category": "Borders",
+        "chartFrame": "static"
+      },
+      "option": {
+        "colors": [
+          "#4facfe",
+          "#00f2fe"
+        ],
+        "backgroundColor": "#00000000"
+      }
+    },
+    {
+      "id": "f-capsule",
+      "key": "CapsuleChart",
+      "attr": {
+        "x": 50,
+        "y": 620,
+        "w": 580,
+        "h": 420,
+        "zIndex": 2
+      },
+      "chartConfig": {
+        "key": "CapsuleChart",
+        "chartKey": "VCapsuleChart",
+        "conKey": "VCCapsuleChart",
+        "title": "Cơ cấu nguồn vốn",
+        "package": "Charts",
+        "category": "Bars",
+        "chartFrame": "common"
+      },
+      "option": {
+        "dataset": [
+          {
+            "name": "Vốn CSH",
+            "value": 850
+          },
+          {
+            "name": "Nợ dài hạn",
+            "value": 720
+          },
+          {
+            "name": "Nợ ngắn hạn",
+            "value": 530
+          },
+          {
+            "name": "Quỹ dự phòng",
+            "value": 310
+          },
+          {
+            "name": "Ký quỹ",
+            "value": 220
+          }
+        ],
+        "colors": [
+          "#37a2da",
+          "#32c5e9",
+          "#67e0e3",
+          "#9fe6b8",
+          "#ffdb5c"
+        ],
+        "unit": "Tr.VNĐ",
+        "itemHeight": 12,
+        "valueFontSize": 14,
+        "showValue": true
+      }
+    },
+    {
+      "id": "f-table",
+      "key": "TableList",
+      "attr": {
+        "x": 660,
+        "y": 620,
+        "w": 580,
+        "h": 420,
+        "zIndex": 2
+      },
+      "chartConfig": {
+        "key": "TableList",
+        "chartKey": "VTableList",
+        "conKey": "VCTableList",
+        "title": "Top KPI nhân viên",
+        "package": "Tables",
+        "category": "Tables",
+        "chartFrame": "common"
+      },
+      "option": {
+        "dataset": [
+          {
+            "name": "Nguyễn Văn A",
+            "value": 98,
+            "id": "1"
+          },
+          {
+            "name": "Trần Thị B",
+            "value": 95,
+            "id": "2"
+          },
+          {
+            "name": "Lê Văn C",
+            "value": 91,
+            "id": "3"
+          },
+          {
+            "name": "Phạm Minh D",
+            "value": 88,
+            "id": "4"
+          },
+          {
+            "name": "Hoàng Anh E",
+            "value": 85,
+            "id": "5"
+          }
+        ],
+        "waitTime": 2,
+        "rowNum": 5,
+        "unit": "Điểm",
+        "sort": true,
+        "color": "#1370fb",
+        "textColor": "#CDD2F8FF",
+        "borderColor": "#1370fb80",
+        "indexFontSize": 12,
+        "leftFontSize": 12,
+        "rightFontSize": 12,
+        "carousel": "single"
+      }
+    },
+    {
+      "id": "f-funnel",
+      "key": "Funnel",
+      "attr": {
+        "x": 1270,
+        "y": 620,
+        "w": 580,
+        "h": 420,
+        "zIndex": 2
+      },
+      "chartConfig": {
+        "key": "Funnel",
+        "chartKey": "VFunnel",
+        "conKey": "VCFunnel",
+        "title": "Phễu chuyển đổi khách hàng",
+        "package": "Charts",
+        "category": "Mores",
+        "chartFrame": "echarts"
+      },
+      "option": {
+        "tooltip": {
+          "show": true,
+          "trigger": "item"
+        },
+        "legend": {
+          "show": true,
+          "textStyle": {
+            "color": "#eee"
+          }
+        },
+        "series": [
+          {
+            "type": "funnel",
+            "left": "10%",
+            "top": 40,
+            "bottom": 20,
+            "width": "80%",
+            "min": 0,
+            "max": 100,
+            "sort": "descending",
+            "label": {
+              "show": true,
+              "position": "inside",
+              "color": "#fff"
+            },
+            "data": [
+              {
+                "value": 100,
+                "name": "Tiếp cận"
+              },
+              {
+                "value": 80,
+                "name": "Quan tâm"
+              },
+              {
+                "value": 60,
+                "name": "Tư vấn"
+              },
+              {
+                "value": 40,
+                "name": "Đàm phán"
+              },
+              {
+                "value": 20,
+                "name": "Chốt đơn"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "geo": {
+    "show": false,
+    "type": "map",
+    "roam": false,
+    "map": "vietnam",
+    "selectedMode": false,
+    "zoom": 1
+  }
+}

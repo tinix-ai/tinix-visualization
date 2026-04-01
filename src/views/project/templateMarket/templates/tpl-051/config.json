@@ -1,0 +1,584 @@
+{
+  "editCanvasConfig": {
+    "projectName": "Báo cáo Quản trị Rủi ro Tài chính",
+    "width": 1920,
+    "height": 1080,
+    "background": "#0a0a0a",
+    "selectColor": true,
+    "chartThemeColor": "dark",
+    "vChartThemeName": "vScreenVolcanoBlue",
+    "previewScaleType": "fit"
+  },
+  "componentList": [
+    {
+      "id": "s-title",
+      "key": "TextCommon",
+      "attr": {
+        "x": 610,
+        "y": 20,
+        "w": 700,
+        "h": 55,
+        "zIndex": 10
+      },
+      "chartConfig": {
+        "key": "TextCommon",
+        "chartKey": "VTextCommon",
+        "conKey": "VCTextCommon",
+        "title": "Tiêu đề",
+        "package": "Informations",
+        "category": "Texts",
+        "chartFrame": "common"
+      },
+      "option": {
+        "dataset": "BÁO CÁO QUẢN TRỊ RỦI RO TÀI CHÍNH",
+        "fontSize": 36,
+        "fontColor": "#ffd700",
+        "textAlign": "center",
+        "fontWeight": "bold",
+        "letterSpacing": 4
+      }
+    },
+    {
+      "id": "s-deco",
+      "key": "Decorates01",
+      "attr": {
+        "x": 460,
+        "y": 78,
+        "w": 1000,
+        "h": 22,
+        "zIndex": 9
+      },
+      "chartConfig": {
+        "key": "Decorates01",
+        "chartKey": "VDecorates01",
+        "conKey": "VCDecorates01",
+        "title": "Trang trí",
+        "package": "Decorates",
+        "category": "Decorates",
+        "chartFrame": "static"
+      },
+      "option": {
+        "colors": [
+          "#ffd700",
+          "#ffa500"
+        ],
+        "dur": 3
+      }
+    },
+    {
+      "id": "s-bdr1",
+      "key": "Border01",
+      "attr": {
+        "x": 30,
+        "y": 110,
+        "w": 610,
+        "h": 320,
+        "zIndex": 1
+      },
+      "chartConfig": {
+        "key": "Border01",
+        "chartKey": "VBorder01",
+        "conKey": "VCBorder01",
+        "title": "Khung",
+        "package": "Decorates",
+        "category": "Borders",
+        "chartFrame": "static"
+      },
+      "option": {
+        "colors": [
+          "#ffd700",
+          "#ffa500"
+        ],
+        "backgroundColor": "#00000000"
+      }
+    },
+    {
+      "id": "s-bar-revenue",
+      "key": "BarCommon",
+      "attr": {
+        "x": 50,
+        "y": 140,
+        "w": 570,
+        "h": 260,
+        "zIndex": 2
+      },
+      "chartConfig": {
+        "key": "BarCommon",
+        "chartKey": "VBarCommon",
+        "conKey": "VCBarCommon",
+        "title": "Dòng tiền vào theo vùng",
+        "package": "Charts",
+        "category": "Bars",
+        "chartFrame": "echarts"
+      },
+      "option": {
+        "xAxis": {
+          "show": true,
+          "type": "category"
+        },
+        "yAxis": {
+          "show": true,
+          "type": "value"
+        },
+        "dataset": {
+          "dimensions": [
+            "product",
+            "Dòng tiền vào"
+          ],
+          "source": [
+            {
+              "product": "Miền Bắc",
+              "Dòng tiền vào": 850
+            },
+            {
+              "product": "Miền Trung",
+              "Dòng tiền vào": 420
+            },
+            {
+              "product": "Miền Nam",
+              "Dòng tiền vào": 980
+            },
+            {
+              "product": "Xuất khẩu",
+              "Dòng tiền vào": 310
+            }
+          ]
+        },
+        "series": [
+          {
+            "type": "bar",
+            "itemStyle": {
+              "color": "#ffd700"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "s-bdr2",
+      "key": "Border01",
+      "attr": {
+        "x": 670,
+        "y": 110,
+        "w": 580,
+        "h": 320,
+        "zIndex": 1
+      },
+      "chartConfig": {
+        "key": "Border01",
+        "chartKey": "VBorder01",
+        "conKey": "VCBorder01",
+        "title": "Khung",
+        "package": "Decorates",
+        "category": "Borders",
+        "chartFrame": "static"
+      },
+      "option": {
+        "colors": [
+          "#ffd700",
+          "#ffa500"
+        ],
+        "backgroundColor": "#00000000"
+      }
+    },
+    {
+      "id": "s-pie-share",
+      "key": "PieCircle",
+      "attr": {
+        "x": 690,
+        "y": 140,
+        "w": 540,
+        "h": 260,
+        "zIndex": 2
+      },
+      "chartConfig": {
+        "key": "PieCircle",
+        "chartKey": "VPieCircle",
+        "conKey": "VCPieCircle",
+        "title": "Tỉ trọng sản phẩm",
+        "package": "Charts",
+        "category": "Pies",
+        "chartFrame": "echarts"
+      },
+      "option": {
+        "legend": {
+          "show": true,
+          "textStyle": {
+            "color": "#eee"
+          }
+        },
+        "dataset": {
+          "source": [
+            {
+              "product": "Điện tử",
+              "data": 45
+            },
+            {
+              "product": "Gia dụng",
+              "data": 25
+            },
+            {
+              "product": "Thời trang",
+              "data": 20
+            },
+            {
+              "product": "Khác",
+              "data": 10
+            }
+          ]
+        },
+        "series": [
+          {
+            "type": "pie",
+            "radius": [
+              "40%",
+              "70%"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "s-bdr3",
+      "key": "Border01",
+      "attr": {
+        "x": 1280,
+        "y": 110,
+        "w": 610,
+        "h": 320,
+        "zIndex": 1
+      },
+      "chartConfig": {
+        "key": "Border01",
+        "chartKey": "VBorder01",
+        "conKey": "VCBorder01",
+        "title": "Khung",
+        "package": "Decorates",
+        "category": "Borders",
+        "chartFrame": "static"
+      },
+      "option": {
+        "colors": [
+          "#ffd700",
+          "#ffa500"
+        ],
+        "backgroundColor": "#00000000"
+      }
+    },
+    {
+      "id": "s-dial",
+      "key": "Dial",
+      "attr": {
+        "x": 1300,
+        "y": 140,
+        "w": 570,
+        "h": 260,
+        "zIndex": 2
+      },
+      "chartConfig": {
+        "key": "Dial",
+        "chartKey": "VDial",
+        "conKey": "VCDial",
+        "title": "Tiến độ mục tiêu năm",
+        "package": "Charts",
+        "category": "Mores",
+        "chartFrame": "common"
+      },
+      "option": {
+        "dataset": 75
+      }
+    },
+    {
+      "id": "s-bdr-mid",
+      "key": "Border01",
+      "attr": {
+        "x": 30,
+        "y": 450,
+        "w": 1860,
+        "h": 320,
+        "zIndex": 1
+      },
+      "chartConfig": {
+        "key": "Border01",
+        "chartKey": "VBorder01",
+        "conKey": "VCBorder01",
+        "title": "Khung",
+        "package": "Decorates",
+        "category": "Borders",
+        "chartFrame": "static"
+      },
+      "option": {
+        "colors": [
+          "#ffd700",
+          "#ffa500"
+        ],
+        "backgroundColor": "#00000000"
+      }
+    },
+    {
+      "id": "s-line-trend",
+      "key": "LineGradientSingle",
+      "attr": {
+        "x": 50,
+        "y": 480,
+        "w": 1820,
+        "h": 260,
+        "zIndex": 2
+      },
+      "chartConfig": {
+        "key": "LineGradientSingle",
+        "chartKey": "VLineGradientSingle",
+        "conKey": "VCLineGradientSingle",
+        "title": "Biểu đồ tăng trưởng doanh thu",
+        "package": "Charts",
+        "category": "Lines",
+        "chartFrame": "echarts"
+      },
+      "option": {
+        "xAxis": {
+          "show": true,
+          "type": "category"
+        },
+        "yAxis": {
+          "show": true,
+          "type": "value"
+        },
+        "dataset": {
+          "dimensions": [
+            "product",
+            "Tăng trưởng"
+          ],
+          "source": [
+            {
+              "product": "T1",
+              "Tăng trưởng": 120
+            },
+            {
+              "product": "T2",
+              "Tăng trưởng": 150
+            },
+            {
+              "product": "T3",
+              "Tăng trưởng": 180
+            },
+            {
+              "product": "T4",
+              "Tăng trưởng": 220
+            },
+            {
+              "product": "T5",
+              "Tăng trưởng": 200
+            },
+            {
+              "product": "T6",
+              "Tăng trưởng": 250
+            },
+            {
+              "product": "T7",
+              "Tăng trưởng": 280
+            },
+            {
+              "product": "T8",
+              "Tăng trưởng": 310
+            },
+            {
+              "product": "T9",
+              "Tăng trưởng": 350
+            },
+            {
+              "product": "T10",
+              "Tăng trưởng": 400
+            },
+            {
+              "product": "T11",
+              "Tăng trưởng": 450
+            },
+            {
+              "product": "T12",
+              "Tăng trưởng": 550
+            }
+          ]
+        },
+        "series": [
+          {
+            "type": "line",
+            "smooth": true,
+            "areaStyle": {}
+          }
+        ]
+      }
+    },
+    {
+      "id": "s-bdr-bot-left",
+      "key": "Border01",
+      "attr": {
+        "x": 30,
+        "y": 790,
+        "w": 915,
+        "h": 260,
+        "zIndex": 1
+      },
+      "chartConfig": {
+        "key": "Border01",
+        "chartKey": "VBorder01",
+        "conKey": "VCBorder01",
+        "title": "Khung",
+        "package": "Decorates",
+        "category": "Borders",
+        "chartFrame": "static"
+      },
+      "option": {
+        "colors": [
+          "#ffd700",
+          "#ffa500"
+        ],
+        "backgroundColor": "#00000000"
+      }
+    },
+    {
+      "id": "s-table-sales",
+      "key": "TableList",
+      "attr": {
+        "x": 50,
+        "y": 820,
+        "w": 875,
+        "h": 200,
+        "zIndex": 2
+      },
+      "chartConfig": {
+        "key": "TableList",
+        "chartKey": "VTableList",
+        "conKey": "VCTableList",
+        "title": "Top Best Sellers",
+        "package": "Tables",
+        "category": "Tables",
+        "chartFrame": "common"
+      },
+      "option": {
+        "dataset": [
+          {
+            "name": "Laptop Gaming X",
+            "value": 1200,
+            "id": "p1"
+          },
+          {
+            "name": "Smartphone Elite",
+            "value": 980,
+            "id": "p2"
+          },
+          {
+            "name": "Tablet Pro 11",
+            "value": 750,
+            "id": "p3"
+          },
+          {
+            "name": "Monitor 4K Curved",
+            "value": 540,
+            "id": "p4"
+          },
+          {
+            "name": "Keyboard Mechanical",
+            "value": 320,
+            "id": "p5"
+          }
+        ],
+        "waitTime": 2,
+        "rowNum": 5,
+        "unit": "đơn",
+        "sort": true,
+        "color": "#ffd700",
+        "textColor": "#eee",
+        "borderColor": "#ffd70080",
+        "indexFontSize": 12,
+        "leftFontSize": 12,
+        "rightFontSize": 12,
+        "carousel": "single"
+      }
+    },
+    {
+      "id": "s-bdr-bot-right",
+      "key": "Border01",
+      "attr": {
+        "x": 975,
+        "y": 790,
+        "w": 915,
+        "h": 260,
+        "zIndex": 1
+      },
+      "chartConfig": {
+        "key": "Border01",
+        "chartKey": "VBorder01",
+        "conKey": "VCBorder01",
+        "title": "Khung",
+        "package": "Decorates",
+        "category": "Borders",
+        "chartFrame": "static"
+      },
+      "option": {
+        "colors": [
+          "#ffd700",
+          "#ffa500"
+        ],
+        "backgroundColor": "#00000000"
+      }
+    },
+    {
+      "id": "s-capsule-regions",
+      "key": "CapsuleChart",
+      "attr": {
+        "x": 995,
+        "y": 820,
+        "w": 875,
+        "h": 200,
+        "zIndex": 2
+      },
+      "chartConfig": {
+        "key": "CapsuleChart",
+        "chartKey": "VCapsuleChart",
+        "conKey": "VCCapsuleChart",
+        "title": "Kênh phân phối",
+        "package": "Charts",
+        "category": "Bars",
+        "chartFrame": "common"
+      },
+      "option": {
+        "dataset": [
+          {
+            "name": "Đại lý trực tiếp",
+            "value": 65
+          },
+          {
+            "name": "Website TMĐT",
+            "value": 82
+          },
+          {
+            "name": "Cửa hàng đối tác",
+            "value": 45
+          },
+          {
+            "name": "Showroom chính hãng",
+            "value": 38
+          }
+        ],
+        "colors": [
+          "#ffd700",
+          "#ffa500",
+          "#ff8c00",
+          "#ccaa00"
+        ],
+        "unit": "%",
+        "itemHeight": 12,
+        "valueFontSize": 14,
+        "showValue": true
+      }
+    }
+  ],
+  "geo": {
+    "show": false,
+    "type": "map",
+    "roam": false,
+    "map": "vietnam",
+    "selectedMode": false,
+    "zoom": 1
+  }
+}

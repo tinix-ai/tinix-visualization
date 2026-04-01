@@ -30,18 +30,19 @@
 
 <script setup lang="ts">
 import { PropType, reactive, watch, ref, nextTick, toRefs } from 'vue'
-import config, { includes } from './config'
+import Config, { option as defaultOption, includes } from './config'
 import VChart from 'vue-echarts'
 import { icon } from '@/plugins'
 import { useCanvasInitOptions } from '@/hooks/useCanvasInitOptions.hook'
 import { use, registerMap } from 'echarts/core'
-import { EffectScatterChart, MapChart } from 'echarts/charts'
+import { EffectScatterChart, MapChart, LinesChart } from 'echarts/charts'
 import { CanvasRenderer } from 'echarts/renderers'
 import { useChartDataFetch } from '@/hooks'
 import { mergeTheme, setOption } from '@/packages/public/chart'
 import { useChartEditStore } from '@/store/modules/chartEditStore/chartEditStore'
 import { isPreview } from '@/utils'
 import { DatasetComponent, GridComponent, TooltipComponent, GeoComponent, VisualMapComponent } from 'echarts/components'
+import merge from 'lodash/merge'
 
 const props = defineProps({
   themeSetting: {
@@ -53,7 +54,7 @@ const props = defineProps({
     required: true
   },
   chartConfig: {
-    type: Object as PropType<config>,
+    type: Object as PropType<Config>,
     required: true
   }
 })
@@ -63,10 +64,11 @@ let levelHistory: any = ref([])
 const mapReady = ref(false)
 
 const { backColor, backSize, enter } = toRefs(props.chartConfig.option.mapRegion)
-const initOptions = { ...useCanvasInitOptions(props.chartConfig.option, props.themeSetting), renderer: 'canvas' }
+const initOptions = { ...useCanvasInitOptions(props.chartConfig.option, props.themeSetting), renderer: 'canvas' as const }
 
 use([
   MapChart,
+  LinesChart,
   DatasetComponent,
   CanvasRenderer,
   GridComponent,
@@ -76,6 +78,11 @@ use([
   VisualMapComponent
 ])
 
+// Ensure geo config always exists on the component option (templates may omit it)
+if (!props.chartConfig.option.geo) {
+  props.chartConfig.option.geo = merge({}, defaultOption.geo)
+}
+
 // Cập nhật tên bản đồ trong cấu hình để khớp với adcode trước khi khởi tạo reactive
 const initialAdcode = `${props.chartConfig.option.mapRegion.adcode}`
 props.chartConfig.option.geo.map = initialAdcode
@@ -83,8 +90,13 @@ props.chartConfig.option.series.forEach((item: any) => {
   if (item.type === 'map') item.map = initialAdcode
 })
 
+// Build the fully merged option (defaults + component config + theme)
+const buildMergedOption = () => {
+  return mergeTheme(merge(merge({}, defaultOption), props.chartConfig.option), props.themeSetting, includes)
+}
+
 const option = reactive({
-  value: mergeTheme(props.chartConfig.option, props.themeSetting, includes)
+  value: buildMergedOption()
 })
 const vChartRef = ref<typeof VChart>()
 
@@ -104,8 +116,8 @@ const registerMapInitAsync = async () => {
   const adCode = `${props.chartConfig.option.mapRegion.adcode}`
 
   await getGeojson(adCode)
-  // Reactive update
-  option.value = props.chartConfig.option
+  // Reactive update with merged option (preserving geo)
+  option.value = buildMergedOption()
   mapReady.value = true
   await nextTick()
   vEchartsSetOption()
@@ -114,9 +126,10 @@ registerMapInitAsync()
 
 // Kích hoạt kết xuất theo cách thủ công
 const vEchartsSetOption = () => {
-  option.value = props.chartConfig.option
+  const mergedOption = buildMergedOption()
+  option.value = mergedOption
   if (vChartRef.value) {
-    setOption(vChartRef.value, props.chartConfig.option)
+    setOption(vChartRef.value, mergedOption)
   }
 }
 
@@ -129,7 +142,7 @@ const dataSetHandle = async (dataset: any) => {
         return {
           ...it,
           lineStyle: {
-            color: props.chartConfig.option.series[2]?.lineStyle?.color || props.chartConfig.option.series[2]?.lineStyle?.normal?.color
+            color: props.chartConfig.option.series[2]?.lineStyle?.color
           }
         }
       })
@@ -158,7 +171,9 @@ const backLevel = () => {
 // Chuyển đổi bản đồ
 const checkOrMap = async (newData: string) => {
   await getGeojson(newData)
-  props.chartConfig.option.geo.map = newData
+  if (props.chartConfig.option.geo) {
+    props.chartConfig.option.geo.map = newData
+  }
   props.chartConfig.option.series.forEach((item: any) => {
     if (item.type === 'map') item.map = newData
   })
@@ -180,7 +195,7 @@ watch(
 // Giám sát màu dây
 if (props.chartConfig.option.series[2] && !isPreview()) {
   watch(
-    () => props.chartConfig.option.series[2]?.lineStyle?.color || props.chartConfig.option.series[2]?.lineStyle?.normal?.color,
+    () => props.chartConfig.option.series[2]?.lineStyle?.color,
     () => {
       dataSetHandle(props.chartConfig.option.dataset)
     },

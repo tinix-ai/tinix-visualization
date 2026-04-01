@@ -1,0 +1,492 @@
+{
+  "editCanvasConfig": {
+    "projectName": "Dashboard Sản lượng Bán thành phẩm",
+    "width": 1920,
+    "height": 1080,
+    "background": "#001529",
+    "selectColor": true,
+    "chartThemeColor": "dark",
+    "vChartThemeName": "vScreenVolcanoBlue",
+    "previewScaleType": "fit"
+  },
+  "componentList": [
+    {
+      "id": "f2-title",
+      "key": "TextCommon",
+      "attr": {
+        "x": 610,
+        "y": 20,
+        "w": 700,
+        "h": 55,
+        "zIndex": 10
+      },
+      "chartConfig": {
+        "key": "TextCommon",
+        "chartKey": "VTextCommon",
+        "conKey": "VCTextCommon",
+        "title": "Tiêu đề",
+        "package": "Informations",
+        "category": "Texts",
+        "chartFrame": "common"
+      },
+      "option": {
+        "dataset": "DASHBOARD SẢN LƯỢNG BÁN THÀNH PHẨM",
+        "fontSize": 34,
+        "fontColor": "#ffffff",
+        "textAlign": "center",
+        "fontWeight": "bold",
+        "letterSpacing": 2
+      }
+    },
+    {
+      "id": "f2-deco",
+      "key": "Decorates01",
+      "attr": {
+        "x": 460,
+        "y": 78,
+        "w": 1000,
+        "h": 15,
+        "zIndex": 9
+      },
+      "chartConfig": {
+        "key": "Decorates01",
+        "chartKey": "VDecorates01",
+        "conKey": "VCDecorates01",
+        "title": "Trang trí",
+        "package": "Decorates",
+        "category": "Decorates",
+        "chartFrame": "static"
+      },
+      "option": {
+        "colors": [
+          "#1890ff",
+          "#ffffff"
+        ],
+        "dur": 3
+      }
+    },
+    {
+      "id": "f2-bdr1",
+      "key": "Border01",
+      "attr": {
+        "x": 30,
+        "y": 110,
+        "w": 610,
+        "h": 320,
+        "zIndex": 1
+      },
+      "chartConfig": {
+        "key": "Border01",
+        "chartKey": "VBorder01",
+        "conKey": "VCBorder01",
+        "title": "Khung",
+        "package": "Decorates",
+        "category": "Borders",
+        "chartFrame": "static"
+      },
+      "option": {
+        "colors": [
+          "#1890ff",
+          "#ffffff"
+        ],
+        "backgroundColor": "#00000000"
+      }
+    },
+    {
+      "id": "f2-bar-rev",
+      "key": "BarCommon",
+      "attr": {
+        "x": 50,
+        "y": 140,
+        "w": 570,
+        "h": 260,
+        "zIndex": 2
+      },
+      "chartConfig": {
+        "key": "BarCommon",
+        "chartKey": "VBarCommon",
+        "conKey": "VCBarCommon",
+        "title": "Định biên theo tháng (Tỷ VNĐ)",
+        "package": "Charts",
+        "category": "Bars",
+        "chartFrame": "echarts"
+      },
+      "option": {
+        "xAxis": {
+          "show": true,
+          "type": "category"
+        },
+        "yAxis": {
+          "show": true,
+          "type": "value"
+        },
+        "dataset": {
+          "dimensions": [
+            "product",
+            "Định biên"
+          ],
+          "source": [
+            {
+              "product": "Tháng 4",
+              "Định biên": 85
+            },
+            {
+              "product": "Tháng 5",
+              "Định biên": 120
+            },
+            {
+              "product": "Tháng 6",
+              "Định biên": 145
+            }
+          ]
+        },
+        "series": [
+          {
+            "type": "bar",
+            "itemStyle": {
+              "color": "#1890ff"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "f2-bdr2",
+      "key": "Border01",
+      "attr": {
+        "x": 670,
+        "y": 110,
+        "w": 580,
+        "h": 320,
+        "zIndex": 1
+      },
+      "chartConfig": {
+        "key": "Border01",
+        "chartKey": "VBorder01",
+        "conKey": "VCBorder01",
+        "title": "Khung",
+        "package": "Decorates",
+        "category": "Borders",
+        "chartFrame": "static"
+      },
+      "option": {
+        "colors": [
+          "#1890ff",
+          "#ffffff"
+        ],
+        "backgroundColor": "#00000000"
+      }
+    },
+    {
+      "id": "f2-pie-exp",
+      "key": "PieCircle",
+      "attr": {
+        "x": 690,
+        "y": 140,
+        "w": 540,
+        "h": 260,
+        "zIndex": 2
+      },
+      "chartConfig": {
+        "key": "PieCircle",
+        "chartKey": "VPieCircle",
+        "conKey": "VCPieCircle",
+        "title": "Cơ cấu chi phí",
+        "package": "Charts",
+        "category": "Pies",
+        "chartFrame": "echarts"
+      },
+      "option": {
+        "legend": {
+          "show": true,
+          "bottom": 0,
+          "textStyle": {
+            "color": "#eee"
+          }
+        },
+        "dataset": {
+          "source": [
+            {
+              "product": "Nhân sự",
+              "data": 40
+            },
+            {
+              "product": "Vận hành",
+              "data": 30
+            },
+            {
+              "product": "Marketing",
+              "data": 20
+            },
+            {
+              "product": "Khác",
+              "data": 10
+            }
+          ]
+        },
+        "series": [
+          {
+            "type": "pie",
+            "radius": [
+              "40%",
+              "70%"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "f2-bdr3",
+      "key": "Border01",
+      "attr": {
+        "x": 1280,
+        "y": 110,
+        "w": 610,
+        "h": 320,
+        "zIndex": 1
+      },
+      "chartConfig": {
+        "key": "Border01",
+        "chartKey": "VBorder01",
+        "conKey": "VCBorder01",
+        "title": "Khung",
+        "package": "Decorates",
+        "category": "Borders",
+        "chartFrame": "static"
+      },
+      "option": {
+        "colors": [
+          "#1890ff",
+          "#ffffff"
+        ],
+        "backgroundColor": "#00000000"
+      }
+    },
+    {
+      "id": "f2-water-target",
+      "key": "WaterPolo",
+      "attr": {
+        "x": 1300,
+        "y": 140,
+        "w": 570,
+        "h": 260,
+        "zIndex": 2
+      },
+      "chartConfig": {
+        "key": "WaterPolo",
+        "chartKey": "VWaterPolo",
+        "conKey": "VCWaterPolo",
+        "title": "Tiến độ KPI năm",
+        "package": "Charts",
+        "category": "Mores",
+        "chartFrame": "common"
+      },
+      "option": {
+        "dataset": 0.48,
+        "series": [
+          {
+            "type": "liquidFill",
+            "shape": "circle",
+            "radius": "90%",
+            "data": [
+              0
+            ],
+            "center": [
+              "50%",
+              "50%"
+            ],
+            "color": [
+              {
+                "type": "linear",
+                "x": 0,
+                "y": 0,
+                "x2": 0,
+                "y2": 1,
+                "colorStops": [
+                  {
+                    "offset": 0,
+                    "color": "#1890ff"
+                  },
+                  {
+                    "offset": 1,
+                    "color": "#69c0ff"
+                  }
+                ]
+              }
+            ],
+            "backgroundStyle": {
+              "borderWidth": 1,
+              "color": "rgba(24,144,255,0.1)"
+            },
+            "label": {
+              "fontSize": 32,
+              "color": "#fff"
+            },
+            "outline": {
+              "show": false
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "f2-bdr-bot",
+      "key": "Border01",
+      "attr": {
+        "x": 30,
+        "y": 450,
+        "w": 1860,
+        "h": 600,
+        "zIndex": 1
+      },
+      "chartConfig": {
+        "key": "Border01",
+        "chartKey": "VBorder01",
+        "conKey": "VCBorder01",
+        "title": "Khung",
+        "package": "Decorates",
+        "category": "Borders",
+        "chartFrame": "static"
+      },
+      "option": {
+        "colors": [
+          "#1890ff",
+          "#ffffff"
+        ],
+        "backgroundColor": "#00000000"
+      }
+    },
+    {
+      "id": "f2-table-details",
+      "key": "TableList",
+      "attr": {
+        "x": 50,
+        "y": 480,
+        "w": 600,
+        "h": 540,
+        "zIndex": 2
+      },
+      "chartConfig": {
+        "key": "TableList",
+        "chartKey": "VTableList",
+        "conKey": "VCTableList",
+        "title": "Chi tiết dòng tiền",
+        "package": "Tables",
+        "category": "Tables",
+        "chartFrame": "common"
+      },
+      "option": {
+        "dataset": [
+          {
+            "name": "Định biên Bán hàng",
+            "value": 1500,
+            "id": "t1"
+          },
+          {
+            "name": "Chi phí Nhập hàng",
+            "value": -850,
+            "id": "t2"
+          },
+          {
+            "name": "Lương Nhân viên",
+            "value": -400,
+            "id": "t3"
+          },
+          {
+            "name": "Mặt bằng & Điện nước",
+            "value": -120,
+            "id": "t4"
+          },
+          {
+            "name": "Thực tế ròng",
+            "value": 130,
+            "id": "t5"
+          }
+        ],
+        "waitTime": 2,
+        "rowNum": 5,
+        "unit": "Tr",
+        "sort": false,
+        "color": "#1890ff",
+        "textColor": "#eee",
+        "borderColor": "#1890ff80",
+        "indexFontSize": 12,
+        "leftFontSize": 12,
+        "rightFontSize": 12,
+        "carousel": "single"
+      }
+    },
+    {
+      "id": "f2-line-compare",
+      "key": "LineCommon",
+      "attr": {
+        "x": 680,
+        "y": 480,
+        "w": 1180,
+        "h": 540,
+        "zIndex": 2
+      },
+      "chartConfig": {
+        "key": "LineCommon",
+        "chartKey": "VLineCommon",
+        "conKey": "VCLineCommon",
+        "title": "So sánh doanh thu Q2 2023 vs 2024",
+        "package": "Charts",
+        "category": "Lines",
+        "chartFrame": "echarts"
+      },
+      "option": {
+        "xAxis": {
+          "show": true,
+          "type": "category"
+        },
+        "yAxis": {
+          "show": true,
+          "type": "value"
+        },
+        "dataset": {
+          "dimensions": [
+            "product",
+            "2023",
+            "2024"
+          ],
+          "source": [
+            {
+              "2023": 75,
+              "2024": 85,
+              "product": "T4"
+            },
+            {
+              "2023": 110,
+              "2024": 120,
+              "product": "T5"
+            },
+            {
+              "2023": 130,
+              "2024": 145,
+              "product": "T6"
+            }
+          ]
+        },
+        "series": [
+          {
+            "type": "line",
+            "smooth": true
+          },
+          {
+            "type": "line",
+            "smooth": true
+          }
+        ]
+      }
+    }
+  ],
+  "geo": {
+    "show": false,
+    "type": "map",
+    "roam": false,
+    "map": "vietnam",
+    "selectedMode": false,
+    "zoom": 1
+  }
+}

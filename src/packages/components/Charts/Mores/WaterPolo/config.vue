@@ -24,10 +24,8 @@
         <n-select v-model:value="item.shape" :options="shapes" :placeholder="$t('packages.auto_285')"
  />
       </SettingItem>
-      <SettingItem :name="$t('packages.auto_130')"
->
-        <n-input-number v-model:value="item.label.normal.textStyle.fontSize" :min="0" :step="1" size="small" :placeholder="$t('packages.auto_271')"
->
+      <SettingItem :name="$t('packages.auto_130')">
+        <n-input-number v-model:value="item.label.fontSize" :min="0" :step="1" size="small" :placeholder="$t('packages.auto_271')">
         </n-input-number>
       </SettingItem>
       <SettingItem :name="$t('packages.auto_323')"

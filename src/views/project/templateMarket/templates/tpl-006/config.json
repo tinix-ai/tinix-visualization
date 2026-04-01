@@ -1,115 +1,515 @@
 {
   "editCanvasConfig": {
-    "projectName": "Phân tích Dữ liệu Năng lượng",
-    "width": 1920, "height": 1080,
+    "projectName": "Phân tích Hiệu quả Chi phí",
+    "width": 1920,
+    "height": 1080,
     "background": "#000510",
-    "selectColor": true, "chartThemeColor": "dark",
-    "vChartThemeName": "vScreenVolcanoBlue", "previewScaleType": "fit"
+    "selectColor": true,
+    "chartThemeColor": "dark",
+    "vChartThemeName": "vScreenVolcanoBlue",
+    "previewScaleType": "fit"
   },
   "componentList": [
     {
-      "id": "e-title", "key": "TextCommon",
-      "attr": { "x": 610, "y": 20, "w": 700, "h": 55, "zIndex": 10 },
-      "chartConfig": { "key": "TextCommon", "chartKey": "VTextCommon", "conKey": "VCTextCommon", "title": "Tiêu đề", "package": "Informations", "category": "Texts", "chartFrame": "common" },
-      "option": { "dataset": "HỆ THỐNG GIÁM SÁT NĂNG LƯỢNG QUỐC GIA", "fontSize": 34, "fontColor": "#00ffcc", "textAlign": "center", "fontWeight": "bold", "letterSpacing": 2 }
-    },
-    {
-      "id": "e-deco", "key": "Decorates01",
-      "attr": { "x": 460, "y": 78, "w": 1000, "h": 15, "zIndex": 9 },
-      "chartConfig": { "key": "Decorates01", "chartKey": "VDecorates01", "conKey": "VCDecorates01", "title": "Trang trí", "package": "Decorates", "category": "Decorates", "chartFrame": "static" },
-      "option": { "colors": ["#00ffcc","#0066ff"], "dur": 3 }
-    },
-    {
-      "id": "e-bdr1", "key": "Border01",
-      "attr": { "x": 30, "y": 110, "w": 450, "h": 460, "zIndex": 1 },
-      "chartConfig": { "key": "Border01", "chartKey": "VBorder01", "conKey": "VCBorder01", "title": "Khung", "package": "Decorates", "category": "Borders", "chartFrame": "static" },
-      "option": { "colors": ["#00ffcc","#0066ff"], "backgroundColor": "#00000000" }
-    },
-    {
-      "id": "e-water-temp", "key": "WaterPolo",
-      "attr": { "x": 50, "y": 140, "w": 410, "h": 400, "zIndex": 2 },
-      "chartConfig": { "key": "WaterPolo", "chartKey": "VWaterPolo", "conKey": "VCWaterPolo", "title": "Nhiệt độ lò hơi", "package": "Charts", "category": "Mores", "chartFrame": "common" },
-      "option": { "dataset": 0.72, "series": [{ "type": "liquidFill", "shape": "pin", "radius": "90%", "data": [0], "center": ["50%","50%"],
-        "color": [{ "type": "linear", "x": 0, "y": 0, "x2": 0, "y2": 1, "colorStops": [{ "offset": 0, "color": "#ff4d4f" }, { "offset": 1, "color": "#cf1322" }] }],
-        "backgroundStyle": { "borderWidth": 1, "color": "rgba(207,19,34,0.3)" },
-        "label": { "normal": { "textStyle": { "fontSize": 28, "color": "#fff" } } }, "outline": { "show": false }
-      }] }
-    },
-    {
-      "id": "e-bdr2", "key": "Border01",
-      "attr": { "x": 500, "y": 110, "w": 940, "h": 460, "zIndex": 1 },
-      "chartConfig": { "key": "Border01", "chartKey": "VBorder01", "conKey": "VCBorder01", "title": "Khung", "package": "Decorates", "category": "Borders", "chartFrame": "static" },
-      "option": { "colors": ["#00ffcc","#0066ff"], "backgroundColor": "#00000000" }
-    },
-    {
-      "id": "e-line-power", "key": "LineCommon",
-      "attr": { "x": 520, "y": 140, "w": 900, "h": 400, "zIndex": 2 },
-      "chartConfig": { "key": "LineCommon", "chartKey": "VLineCommon", "conKey": "VCLineCommon", "title": "Sản lượng điện theo giờ (MW)", "package": "Charts", "category": "Lines", "chartFrame": "echarts" },
+      "id": "e-title",
+      "key": "TextCommon",
+      "attr": {
+        "x": 610,
+        "y": 20,
+        "w": 700,
+        "h": 55,
+        "zIndex": 10
+      },
+      "chartConfig": {
+        "key": "TextCommon",
+        "chartKey": "VTextCommon",
+        "conKey": "VCTextCommon",
+        "title": "Tiêu đề",
+        "package": "Informations",
+        "category": "Texts",
+        "chartFrame": "common"
+      },
       "option": {
-        "xAxis": { "show": true, "type": "category" }, "yAxis": { "show": true, "type": "value" },
-        "dataset": { "dimensions": ["product","Nhiệt điện","Thủy điện"], "source": [
-          { "product": "00:00", "Nhiệt điện": 450, "Thủy điện": 300 }, { "product": "04:00", "Nhiệt điện": 420, "Thủy điện": 280 },
-          { "product": "08:00", "Nhiệt điện": 600, "Thủy điện": 550 }, { "product": "12:00", "Nhiệt điện": 750, "Thủy điện": 800 },
-          { "product": "16:00", "Nhiệt điện": 700, "Thủy điện": 600 }, { "product": "20:00", "Nhiệt điện": 550, "Thủy điện": 400 }
-        ]},
-        "series": [{ "type": "line", "smooth": true }, { "type": "line", "smooth": true }]
+        "dataset": "PHÂN TÍCH HIỆU QUẢ CHI PHÍ",
+        "fontSize": 34,
+        "fontColor": "#00ffcc",
+        "textAlign": "center",
+        "fontWeight": "bold",
+        "letterSpacing": 2
       }
     },
     {
-      "id": "e-bdr3", "key": "Border01",
-      "attr": { "x": 1460, "y": 110, "w": 430, "h": 460, "zIndex": 1 },
-      "chartConfig": { "key": "Border01", "chartKey": "VBorder01", "conKey": "VCBorder01", "title": "Khung", "package": "Decorates", "category": "Borders", "chartFrame": "static" },
-      "option": { "colors": ["#00ffcc","#0066ff"], "backgroundColor": "#00000000" }
-    },
-    {
-      "id": "e-pie-source", "key": "PieCommon",
-      "attr": { "x": 1480, "y": 140, "w": 390, "h": 400, "zIndex": 2 },
-      "chartConfig": { "key": "PieCommon", "chartKey": "VPieCommon", "conKey": "VCPieCommon", "title": "Cơ cấu nguồn điện", "package": "Charts", "category": "Pies", "chartFrame": "echarts" },
+      "id": "e-deco",
+      "key": "Decorates01",
+      "attr": {
+        "x": 460,
+        "y": 78,
+        "w": 1000,
+        "h": 15,
+        "zIndex": 9
+      },
+      "chartConfig": {
+        "key": "Decorates01",
+        "chartKey": "VDecorates01",
+        "conKey": "VCDecorates01",
+        "title": "Trang trí",
+        "package": "Decorates",
+        "category": "Decorates",
+        "chartFrame": "static"
+      },
       "option": {
-        "legend": { "show": true, "bottom": 0, "textStyle": { "color": "#eee" } },
-        "dataset": { "source": [
-          { "product": "Nhiệt than", "data": 40 }, { "product": "Thủy điện", "data": 35 },
-          { "product": "Điện mặt trời", "data": 15 }, { "product": "Điện gió", "data": 10 }
-        ]},
-        "series": [{ "type": "pie", "radius": ["40%","70%"] }]
+        "colors": [
+          "#00ffcc",
+          "#0066ff"
+        ],
+        "dur": 3
       }
     },
     {
-      "id": "e-bdr-bot", "key": "Border01",
-      "attr": { "x": 30, "y": 590, "w": 1860, "h": 470, "zIndex": 1 },
-      "chartConfig": { "key": "Border01", "chartKey": "VBorder01", "conKey": "VCBorder01", "title": "Khung", "package": "Decorates", "category": "Borders", "chartFrame": "static" },
-      "option": { "colors": ["#00ffcc","#0066ff"], "backgroundColor": "#00000000" }
-    },
-    {
-      "id": "e-bar-consume", "key": "BarCommon",
-      "attr": { "x": 50, "y": 620, "w": 1200, "h": 420, "zIndex": 2 },
-      "chartConfig": { "key": "BarCommon", "chartKey": "VBarCommon", "conKey": "VCBarCommon", "title": "Tiêu thụ năng lượng theo khu vực công nghiệp", "package": "Charts", "category": "Bars", "chartFrame": "echarts" },
+      "id": "e-bdr1",
+      "key": "Border01",
+      "attr": {
+        "x": 30,
+        "y": 110,
+        "w": 450,
+        "h": 460,
+        "zIndex": 1
+      },
+      "chartConfig": {
+        "key": "Border01",
+        "chartKey": "VBorder01",
+        "conKey": "VCBorder01",
+        "title": "Khung",
+        "package": "Decorates",
+        "category": "Borders",
+        "chartFrame": "static"
+      },
       "option": {
-        "xAxis": { "show": true, "type": "category" }, "yAxis": { "show": true, "type": "value" },
-        "dataset": { "dimensions": ["product","Tiêu thụ"], "source": [
-          { "product": "Khu công nghiệp A", "Tiêu thụ": 1200 }, { "product": "Khu công nghiệp B", "Tiêu thụ": 980 },
-          { "product": "Khu công nghiệp C", "Tiêu thụ": 1500 }, { "product": "Cảng biển X", "Tiêu thụ": 450 },
-          { "product": "Thành phố Y", "Tiêu thụ": 2200 }
-        ]},
-        "series": [{ "type": "bar", "itemStyle": { "color": "#00ffcc" } }]
+        "colors": [
+          "#00ffcc",
+          "#0066ff"
+        ],
+        "backgroundColor": "#00000000"
       }
     },
     {
-      "id": "e-table-alerts", "key": "TableList",
-      "attr": { "x": 1280, "y": 620, "w": 580, "h": 420, "zIndex": 2 },
-      "chartConfig": { "key": "TableList", "chartKey": "VTableList", "conKey": "VCTableList", "title": "Cảnh báo hệ thống", "package": "Tables", "category": "Tables", "chartFrame": "common" },
+      "id": "e-water-temp",
+      "key": "WaterPolo",
+      "attr": {
+        "x": 50,
+        "y": 140,
+        "w": 410,
+        "h": 400,
+        "zIndex": 2
+      },
+      "chartConfig": {
+        "key": "WaterPolo",
+        "chartKey": "VWaterPolo",
+        "conKey": "VCWaterPolo",
+        "title": "Nhiệt độ lò hơi",
+        "package": "Charts",
+        "category": "Mores",
+        "chartFrame": "common"
+      },
+      "option": {
+        "dataset": 0.72,
+        "series": [
+          {
+            "type": "liquidFill",
+            "shape": "pin",
+            "radius": "90%",
+            "data": [
+              0
+            ],
+            "center": [
+              "50%",
+              "50%"
+            ],
+            "color": [
+              {
+                "type": "linear",
+                "x": 0,
+                "y": 0,
+                "x2": 0,
+                "y2": 1,
+                "colorStops": [
+                  {
+                    "offset": 0,
+                    "color": "#ff4d4f"
+                  },
+                  {
+                    "offset": 1,
+                    "color": "#cf1322"
+                  }
+                ]
+              }
+            ],
+            "backgroundStyle": {
+              "borderWidth": 1,
+              "color": "rgba(207,19,34,0.3)"
+            },
+            "label": {
+              "fontSize": 28,
+              "color": "#fff"
+            },
+            "outline": {
+              "show": false
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "e-bdr2",
+      "key": "Border01",
+      "attr": {
+        "x": 500,
+        "y": 110,
+        "w": 940,
+        "h": 460,
+        "zIndex": 1
+      },
+      "chartConfig": {
+        "key": "Border01",
+        "chartKey": "VBorder01",
+        "conKey": "VCBorder01",
+        "title": "Khung",
+        "package": "Decorates",
+        "category": "Borders",
+        "chartFrame": "static"
+      },
+      "option": {
+        "colors": [
+          "#00ffcc",
+          "#0066ff"
+        ],
+        "backgroundColor": "#00000000"
+      }
+    },
+    {
+      "id": "e-line-power",
+      "key": "LineCommon",
+      "attr": {
+        "x": 520,
+        "y": 140,
+        "w": 900,
+        "h": 400,
+        "zIndex": 2
+      },
+      "chartConfig": {
+        "key": "LineCommon",
+        "chartKey": "VLineCommon",
+        "conKey": "VCLineCommon",
+        "title": "Sản lượng điện theo giờ (MW)",
+        "package": "Charts",
+        "category": "Lines",
+        "chartFrame": "echarts"
+      },
+      "option": {
+        "xAxis": {
+          "show": true,
+          "type": "category"
+        },
+        "yAxis": {
+          "show": true,
+          "type": "value"
+        },
+        "dataset": {
+          "dimensions": [
+            "product",
+            "Nhiệt điện",
+            "Thủy điện"
+          ],
+          "source": [
+            {
+              "product": "00:00",
+              "Nhiệt điện": 450,
+              "Thủy điện": 300
+            },
+            {
+              "product": "04:00",
+              "Nhiệt điện": 420,
+              "Thủy điện": 280
+            },
+            {
+              "product": "08:00",
+              "Nhiệt điện": 600,
+              "Thủy điện": 550
+            },
+            {
+              "product": "12:00",
+              "Nhiệt điện": 750,
+              "Thủy điện": 800
+            },
+            {
+              "product": "16:00",
+              "Nhiệt điện": 700,
+              "Thủy điện": 600
+            },
+            {
+              "product": "20:00",
+              "Nhiệt điện": 550,
+              "Thủy điện": 400
+            }
+          ]
+        },
+        "series": [
+          {
+            "type": "line",
+            "smooth": true
+          },
+          {
+            "type": "line",
+            "smooth": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "e-bdr3",
+      "key": "Border01",
+      "attr": {
+        "x": 1460,
+        "y": 110,
+        "w": 430,
+        "h": 460,
+        "zIndex": 1
+      },
+      "chartConfig": {
+        "key": "Border01",
+        "chartKey": "VBorder01",
+        "conKey": "VCBorder01",
+        "title": "Khung",
+        "package": "Decorates",
+        "category": "Borders",
+        "chartFrame": "static"
+      },
+      "option": {
+        "colors": [
+          "#00ffcc",
+          "#0066ff"
+        ],
+        "backgroundColor": "#00000000"
+      }
+    },
+    {
+      "id": "e-pie-source",
+      "key": "PieCommon",
+      "attr": {
+        "x": 1480,
+        "y": 140,
+        "w": 390,
+        "h": 400,
+        "zIndex": 2
+      },
+      "chartConfig": {
+        "key": "PieCommon",
+        "chartKey": "VPieCommon",
+        "conKey": "VCPieCommon",
+        "title": "Cơ cấu nguồn điện",
+        "package": "Charts",
+        "category": "Pies",
+        "chartFrame": "echarts"
+      },
+      "option": {
+        "legend": {
+          "show": true,
+          "bottom": 0,
+          "textStyle": {
+            "color": "#eee"
+          }
+        },
+        "dataset": {
+          "source": [
+            {
+              "product": "Nhiệt than",
+              "data": 40
+            },
+            {
+              "product": "Thủy điện",
+              "data": 35
+            },
+            {
+              "product": "Điện mặt trời",
+              "data": 15
+            },
+            {
+              "product": "Điện gió",
+              "data": 10
+            }
+          ]
+        },
+        "series": [
+          {
+            "type": "pie",
+            "radius": [
+              "40%",
+              "70%"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "e-bdr-bot",
+      "key": "Border01",
+      "attr": {
+        "x": 30,
+        "y": 590,
+        "w": 1860,
+        "h": 470,
+        "zIndex": 1
+      },
+      "chartConfig": {
+        "key": "Border01",
+        "chartKey": "VBorder01",
+        "conKey": "VCBorder01",
+        "title": "Khung",
+        "package": "Decorates",
+        "category": "Borders",
+        "chartFrame": "static"
+      },
+      "option": {
+        "colors": [
+          "#00ffcc",
+          "#0066ff"
+        ],
+        "backgroundColor": "#00000000"
+      }
+    },
+    {
+      "id": "e-bar-consume",
+      "key": "BarCommon",
+      "attr": {
+        "x": 50,
+        "y": 620,
+        "w": 1200,
+        "h": 420,
+        "zIndex": 2
+      },
+      "chartConfig": {
+        "key": "BarCommon",
+        "chartKey": "VBarCommon",
+        "conKey": "VCBarCommon",
+        "title": "Tiêu thụ năng lượng theo khu vực công nghiệp",
+        "package": "Charts",
+        "category": "Bars",
+        "chartFrame": "echarts"
+      },
+      "option": {
+        "xAxis": {
+          "show": true,
+          "type": "category"
+        },
+        "yAxis": {
+          "show": true,
+          "type": "value"
+        },
+        "dataset": {
+          "dimensions": [
+            "product",
+            "Tiêu thụ"
+          ],
+          "source": [
+            {
+              "product": "Khu công nghiệp A",
+              "Tiêu thụ": 1200
+            },
+            {
+              "product": "Khu công nghiệp B",
+              "Tiêu thụ": 980
+            },
+            {
+              "product": "Khu công nghiệp C",
+              "Tiêu thụ": 1500
+            },
+            {
+              "product": "Cảng biển X",
+              "Tiêu thụ": 450
+            },
+            {
+              "product": "Thành phố Y",
+              "Tiêu thụ": 2200
+            }
+          ]
+        },
+        "series": [
+          {
+            "type": "bar",
+            "itemStyle": {
+              "color": "#00ffcc"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "e-table-alerts",
+      "key": "TableList",
+      "attr": {
+        "x": 1280,
+        "y": 620,
+        "w": 580,
+        "h": 420,
+        "zIndex": 2
+      },
+      "chartConfig": {
+        "key": "TableList",
+        "chartKey": "VTableList",
+        "conKey": "VCTableList",
+        "title": "Cảnh báo hệ thống",
+        "package": "Tables",
+        "category": "Tables",
+        "chartFrame": "common"
+      },
       "option": {
         "dataset": [
-          { "name": "Trạm 110kV A - Quá tải", "value": "Cao", "id": "a1" },
-          { "name": "Lò hơi số 3 - Nhiệt độ cao", "value": "Max", "id": "a2" },
-          { "name": "Tổ máy số 2 - Bảo trì", "value": "Sắp", "id": "a3" },
-          { "name": "Đường dây 500kV - Ổn định", "value": "OK", "id": "a4" },
-          { "name": "Hệ thống làm mát - Lỗi nhẹ", "value": "TB", "id": "a5" }
+          {
+            "name": "Trạm 110kV A - Quá tải",
+            "value": "Cao",
+            "id": "a1"
+          },
+          {
+            "name": "Lò hơi số 3 - Nhiệt độ cao",
+            "value": "Max",
+            "id": "a2"
+          },
+          {
+            "name": "Tổ máy số 2 - Bảo trì",
+            "value": "Sắp",
+            "id": "a3"
+          },
+          {
+            "name": "Đường dây 500kV - Ổn định",
+            "value": "OK",
+            "id": "a4"
+          },
+          {
+            "name": "Hệ thống làm mát - Lỗi nhẹ",
+            "value": "TB",
+            "id": "a5"
+          }
         ],
-        "waitTime": 2, "rowNum": 5, "unit": "", "sort": false,
-        "color": "#ff4d4f", "textColor": "#eee", "borderColor": "#ff4d4f80",
-        "indexFontSize": 12, "leftFontSize": 12, "rightFontSize": 12, "carousel": "single"
+        "waitTime": 2,
+        "rowNum": 5,
+        "unit": "",
+        "sort": false,
+        "color": "#ff4d4f",
+        "textColor": "#eee",
+        "borderColor": "#ff4d4f80",
+        "indexFontSize": 12,
+        "leftFontSize": 12,
+        "rightFontSize": 12,
+        "carousel": "single"
       }
     }
-  ]
+  ],
+  "geo": {
+    "show": false,
+    "type": "map",
+    "roam": false,
+    "map": "vietnam",
+    "selectedMode": false,
+    "zoom": 1
+  }
 }

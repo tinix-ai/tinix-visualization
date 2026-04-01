@@ -1,0 +1,487 @@
+{
+  "editCanvasConfig": {
+    "projectName": "Dashboard E-Learning Engagement",
+    "width": 1920,
+    "height": 1080,
+    "background": "#001a1a",
+    "selectColor": true,
+    "chartThemeColor": "dark",
+    "vChartThemeName": "vScreenVolcanoBlue",
+    "previewScaleType": "fit"
+  },
+  "componentList": [
+    {
+      "id": "v-title",
+      "key": "TextCommon",
+      "attr": {
+        "x": 610,
+        "y": 20,
+        "w": 700,
+        "h": 55,
+        "zIndex": 10
+      },
+      "chartConfig": {
+        "key": "TextCommon",
+        "chartKey": "VTextCommon",
+        "conKey": "VCTextCommon",
+        "title": "Tiêu đề",
+        "package": "Informations",
+        "category": "Texts",
+        "chartFrame": "common"
+      },
+      "option": {
+        "dataset": "DASHBOARD E-LEARNING ENGAGEMENT",
+        "fontSize": 34,
+        "fontColor": "#00f5ff",
+        "textAlign": "center",
+        "fontWeight": "bold",
+        "letterSpacing": 2
+      }
+    },
+    {
+      "id": "v-deco",
+      "key": "Decorates01",
+      "attr": {
+        "x": 460,
+        "y": 78,
+        "w": 1000,
+        "h": 15,
+        "zIndex": 9
+      },
+      "chartConfig": {
+        "key": "Decorates01",
+        "chartKey": "VDecorates01",
+        "conKey": "VCDecorates01",
+        "title": "Trang trí",
+        "package": "Decorates",
+        "category": "Decorates",
+        "chartFrame": "static"
+      },
+      "option": {
+        "colors": [
+          "#00f5ff",
+          "#00ced1"
+        ],
+        "dur": 3
+      }
+    },
+    {
+      "id": "v-bdr1",
+      "key": "Border01",
+      "attr": {
+        "x": 30,
+        "y": 110,
+        "w": 450,
+        "h": 460,
+        "zIndex": 1
+      },
+      "chartConfig": {
+        "key": "Border01",
+        "chartKey": "VBorder01",
+        "conKey": "VCBorder01",
+        "title": "Khung",
+        "package": "Decorates",
+        "category": "Borders",
+        "chartFrame": "static"
+      },
+      "option": {
+        "colors": [
+          "#00f5ff",
+          "#00ced1"
+        ],
+        "backgroundColor": "#00000000"
+      }
+    },
+    {
+      "id": "v-radar-air",
+      "key": "Radar",
+      "attr": {
+        "x": 50,
+        "y": 140,
+        "w": 410,
+        "h": 400,
+        "zIndex": 2
+      },
+      "chartConfig": {
+        "key": "Radar",
+        "chartKey": "VRadar",
+        "conKey": "VCRadar",
+        "title": "Chỉ số không khí AQI",
+        "package": "Charts",
+        "category": "Mores",
+        "chartFrame": "common"
+      },
+      "option": {
+        "dataset": {
+          "dimensions": [
+            "product",
+            "PM2.5",
+            "PM10",
+            "O3",
+            "NO2",
+            "CO",
+            "SO2"
+          ],
+          "source": [
+            {
+              "product": "Trung tâm",
+              "PM2.5": 45,
+              "PM10": 60,
+              "O3": 35,
+              "NO2": 25,
+              "CO": 15,
+              "SO2": 10
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "v-bdr2",
+      "key": "Border01",
+      "attr": {
+        "x": 500,
+        "y": 110,
+        "w": 940,
+        "h": 460,
+        "zIndex": 1
+      },
+      "chartConfig": {
+        "key": "Border01",
+        "chartKey": "VBorder01",
+        "conKey": "VCBorder01",
+        "title": "Khung",
+        "package": "Decorates",
+        "category": "Borders",
+        "chartFrame": "static"
+      },
+      "option": {
+        "colors": [
+          "#00f5ff",
+          "#00ced1"
+        ],
+        "backgroundColor": "#00000000"
+      }
+    },
+    {
+      "id": "v-line-water",
+      "key": "LineCommon",
+      "attr": {
+        "x": 520,
+        "y": 140,
+        "w": 900,
+        "h": 400,
+        "zIndex": 2
+      },
+      "chartConfig": {
+        "key": "LineCommon",
+        "chartKey": "VLineCommon",
+        "conKey": "VCLineCommon",
+        "title": "ChỈ số chất lượng nước 24h",
+        "package": "Charts",
+        "category": "Lines",
+        "chartFrame": "echarts"
+      },
+      "option": {
+        "xAxis": {
+          "show": true,
+          "type": "category"
+        },
+        "yAxis": {
+          "show": true,
+          "type": "value"
+        },
+        "dataset": {
+          "dimensions": [
+            "product",
+            "pH",
+            "Độ đục"
+          ],
+          "source": [
+            {
+              "product": "00:00",
+              "pH": 7.2,
+              "Độ đục": 1.5
+            },
+            {
+              "product": "06:00",
+              "pH": 7,
+              "Độ đục": 1.2
+            },
+            {
+              "product": "12:00",
+              "pH": 7.5,
+              "Độ đục": 2
+            },
+            {
+              "product": "18:00",
+              "pH": 7.3,
+              "Độ đục": 1.8
+            }
+          ]
+        },
+        "series": [
+          {
+            "type": "line",
+            "smooth": true
+          },
+          {
+            "type": "line",
+            "smooth": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "v-bdr3",
+      "key": "Border01",
+      "attr": {
+        "x": 1460,
+        "y": 110,
+        "w": 430,
+        "h": 460,
+        "zIndex": 1
+      },
+      "chartConfig": {
+        "key": "Border01",
+        "chartKey": "VBorder01",
+        "conKey": "VCBorder01",
+        "title": "Khung",
+        "package": "Decorates",
+        "category": "Borders",
+        "chartFrame": "static"
+      },
+      "option": {
+        "colors": [
+          "#00f5ff",
+          "#00ced1"
+        ],
+        "backgroundColor": "#00000000"
+      }
+    },
+    {
+      "id": "v-water-humid",
+      "key": "WaterPolo",
+      "attr": {
+        "x": 1520,
+        "y": 130,
+        "w": 310,
+        "h": 400,
+        "zIndex": 2
+      },
+      "chartConfig": {
+        "key": "WaterPolo",
+        "chartKey": "VWaterPolo",
+        "conKey": "VCWaterPolo",
+        "title": "Độ ẩm trung bình",
+        "package": "Charts",
+        "category": "Mores",
+        "chartFrame": "common"
+      },
+      "option": {
+        "dataset": 0.65,
+        "series": [
+          {
+            "type": "liquidFill",
+            "shape": "roundRect",
+            "radius": "90%",
+            "data": [
+              0
+            ],
+            "center": [
+              "50%",
+              "50%"
+            ],
+            "color": [
+              {
+                "type": "linear",
+                "x": 0,
+                "y": 0,
+                "x2": 0,
+                "y2": 1,
+                "colorStops": [
+                  {
+                    "offset": 0,
+                    "color": "#00f5ff"
+                  },
+                  {
+                    "offset": 1,
+                    "color": "#20b2aa"
+                  }
+                ]
+              }
+            ],
+            "backgroundStyle": {
+              "borderWidth": 1,
+              "color": "rgba(32,178,170,0.2)"
+            },
+            "label": {
+              "fontSize": 28,
+              "color": "#fff"
+            },
+            "outline": {
+              "show": false
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "v-bdr-bot",
+      "key": "Border01",
+      "attr": {
+        "x": 30,
+        "y": 590,
+        "w": 1860,
+        "h": 470,
+        "zIndex": 1
+      },
+      "chartConfig": {
+        "key": "Border01",
+        "chartKey": "VBorder01",
+        "conKey": "VCBorder01",
+        "title": "Khung",
+        "package": "Decorates",
+        "category": "Borders",
+        "chartFrame": "static"
+      },
+      "option": {
+        "colors": [
+          "#00f5ff",
+          "#00ced1"
+        ],
+        "backgroundColor": "#00000000"
+      }
+    },
+    {
+      "id": "v-bar-noise",
+      "key": "BarCommon",
+      "attr": {
+        "x": 50,
+        "y": 620,
+        "w": 1200,
+        "h": 420,
+        "zIndex": 2
+      },
+      "chartConfig": {
+        "key": "BarCommon",
+        "chartKey": "VBarCommon",
+        "conKey": "VCBarCommon",
+        "title": "Độ ồn tại các trạm quan trắc (dB)",
+        "package": "Charts",
+        "category": "Bars",
+        "chartFrame": "echarts"
+      },
+      "option": {
+        "xAxis": {
+          "show": true,
+          "type": "category"
+        },
+        "yAxis": {
+          "show": true,
+          "type": "value"
+        },
+        "dataset": {
+          "dimensions": [
+            "product",
+            "Độ ồn"
+          ],
+          "source": [
+            {
+              "product": "Trạm A (KCN)",
+              "Độ ồn": 75
+            },
+            {
+              "product": "Trạm B (Cư dân)",
+              "Độ ồn": 45
+            },
+            {
+              "product": "Trạm C (Giao thông)",
+              "Độ ồn": 82
+            },
+            {
+              "product": "Trạm D (Công viên)",
+              "Độ ồn": 35
+            }
+          ]
+        },
+        "series": [
+          {
+            "type": "bar",
+            "itemStyle": {
+              "color": "#00f5ff"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "v-table-stations",
+      "key": "TableList",
+      "attr": {
+        "x": 1280,
+        "y": 620,
+        "w": 580,
+        "h": 420,
+        "zIndex": 2
+      },
+      "chartConfig": {
+        "key": "TableList",
+        "chartKey": "VTableList",
+        "conKey": "VCTableList",
+        "title": "Trạng thái trạm quan trắc",
+        "package": "Tables",
+        "category": "Tables",
+        "chartFrame": "common"
+      },
+      "option": {
+        "dataset": [
+          {
+            "name": "Trạm Quan trắc Hoàn Kiếm",
+            "value": "Tốt",
+            "id": "s1"
+          },
+          {
+            "name": "Trạm Quan trắc Cầu Giấy",
+            "value": "Kém",
+            "id": "s2"
+          },
+          {
+            "name": "Trạm Quan trắc Hà Đông",
+            "value": "TB",
+            "id": "s3"
+          },
+          {
+            "name": "Trạm Quan trắc Long Biên",
+            "value": "Tốt",
+            "id": "s4"
+          },
+          {
+            "name": "Trạm Quan trắc Tây Hồ",
+            "value": "Tốt",
+            "id": "s5"
+          }
+        ],
+        "waitTime": 2,
+        "rowNum": 5,
+        "unit": "",
+        "sort": false,
+        "color": "#00f5ff",
+        "textColor": "#eee",
+        "borderColor": "#00f5ff80",
+        "indexFontSize": 12,
+        "leftFontSize": 12,
+        "rightFontSize": 12,
+        "carousel": "single"
+      }
+    }
+  ],
+  "geo": {
+    "show": false,
+    "type": "map",
+    "roam": false,
+    "map": "vietnam",
+    "selectedMode": false,
+    "zoom": 1
+  }
+}

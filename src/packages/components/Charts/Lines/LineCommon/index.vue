@@ -85,15 +85,6 @@ const { vChartRef } = useChartDataFetch(props.chartConfig, useChartEditStore, (n
 
 let timer: any = null
 onMounted(() => {
-  if (isPreview()) {
-    console.log(`[DEBUG_MOUNT] LineCommon ${props.chartConfig.chartConfig.key} mounted.`)
-    timer = setTimeout(() => {
-       if (vChartRef.value) {
-         console.log(`[DEBUG_FORCE] Triggering setOption for LineCommon ${props.chartConfig.chartConfig.key}`)
-         setOption(vChartRef.value as any, { dataset: props.chartConfig.option.dataset }, false)
-       }
-    }, 1000)
-  }
 })
 
 onUnmounted(() => {

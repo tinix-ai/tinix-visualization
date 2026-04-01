@@ -1,97 +1,92 @@
 {
   "point": [
     {
-      "name": "Bắc Kinh",
-      "value": [116.405285, 39.904989, 200]
+      "name": "Hà Nội",
+      "value": [105.854444, 21.028511, 950]
     },
     {
-      "name": "Trịnh Châu",
-      "value": [113.665412, 34.757975, 888]
+      "name": "London",
+      "value": [-0.127758, 51.507351, 820]
     },
     {
-      "name": "Thanh Hải",
-      "value": [101.778916, 36.623178, 666]
+      "name": "New York",
+      "value": [-74.005973, 40.712775, 888]
     },
     {
-      "name": "Khu tự trị Ninh Hạ Hồi",
-      "value": [106.278179, 38.46637, 66]
+      "name": "Tokyo",
+      "value": [139.691706, 35.689487, 750]
     },
     {
-      "name": "Thành phố Cáp Nhĩ Tân",
-      "value": [126.642464, 45.756967, 101]
+      "name": "Sydney",
+      "value": [151.209296, -33.868820, 660]
+    },
+    {
+      "name": "Paris",
+      "value": [2.352222, 48.856614, 780]
     }
   ],
   "line": [
     {
       "coords": [
-        [113.665412, 34.757975],
-        [116.405285, 39.904989]
+        [105.854444, 21.028511],
+        [-0.127758, 51.507351]
       ]
     },
     {
       "coords": [
-        [101.778916, 36.623178],
-        [116.405285, 39.904989]
+        [105.854444, 21.028511],
+        [-74.005973, 40.712775]
       ]
     },
     {
       "coords": [
-        [106.278179, 38.46637],
-        [116.405285, 39.904989]
+        [105.854444, 21.028511],
+        [139.691706, 35.689487]
       ]
     },
     {
       "coords": [
-        [126.642464, 45.756967],
-        [116.405285, 39.904989]
+        [105.854444, 21.028511],
+        [151.209296, -33.868820]
       ]
     }
   ],
   "map": [
     {
-      "name": "Bắc Kinh",
-      "value": 666
+      "name": "Vietnam",
+      "value": 1100
     },
     {
-      "name": "tỉnh Hà Bắc",
-      "value": 98
-    },
-
-    {
-      "name": "Tỉnh Giang Tô",
-      "value": 300
-    },
-    {
-      "name": "Tỉnh Phúc Kiến",
-      "value": 1199
-    },
-    {
-      "name": "Tỉnh Sơn Đông",
-      "value": 86
-    },
-    {
-      "name": "Tỉnh Hà Nam",
+      "name": "China",
       "value": 850
     },
     {
-      "name": "tỉnh hồ bắc",
-      "value": 84
+      "name": "USA",
+      "value": 1200
     },
     {
-      "name": "Khu tự trị dân tộc Choang Quảng Tây",
-      "value": 81
+      "name": "Russia",
+      "value": 700
     },
     {
-      "name": "tỉnh Hải Nam",
-      "value": 900
+      "name": "Brazil",
+      "value": 600
     },
     {
-      "name": "Tỉnh Thanh Hải",
-      "value": 800
+      "name": "Australia",
+      "value": 500
     },
     {
-      "name": "Khu tự trị Duy Ngô Nhĩ Tân Cương",
-      "value": 7
+      "name": "Canada",
+      "value": 400
+    },
+    {
+      "name": "France",
+      "value": 300
+    },
+    {
+      "name": "Germany",
+      "value": 200
     }
   ],
   "pieces": [

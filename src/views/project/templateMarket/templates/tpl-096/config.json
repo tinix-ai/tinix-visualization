@@ -1,0 +1,494 @@
+{
+  "editCanvasConfig": {
+    "projectName": "Báo cáo Xử lý Khiếu nại Khách hàng",
+    "width": 1920,
+    "height": 1080,
+    "background": "#000000",
+    "selectColor": true,
+    "chartThemeColor": "dark",
+    "vChartThemeName": "vScreenVolcanoBlue",
+    "previewScaleType": "fit"
+  },
+  "componentList": [
+    {
+      "id": "h-title",
+      "key": "TextCommon",
+      "attr": {
+        "x": 610,
+        "y": 20,
+        "w": 700,
+        "h": 55,
+        "zIndex": 10
+      },
+      "chartConfig": {
+        "key": "TextCommon",
+        "chartKey": "VTextCommon",
+        "conKey": "VCTextCommon",
+        "title": "Tiêu đề",
+        "package": "Informations",
+        "category": "Texts",
+        "chartFrame": "common"
+      },
+      "option": {
+        "dataset": "BÁO CÁO XỬ LÝ KHIẾU NẠI KHÁCH HÀNG",
+        "fontSize": 34,
+        "fontColor": "#00ff00",
+        "textAlign": "center",
+        "fontWeight": "bold",
+        "letterSpacing": 2
+      }
+    },
+    {
+      "id": "h-deco",
+      "key": "Decorates01",
+      "attr": {
+        "x": 460,
+        "y": 78,
+        "w": 1000,
+        "h": 15,
+        "zIndex": 9
+      },
+      "chartConfig": {
+        "key": "Decorates01",
+        "chartKey": "VDecorates01",
+        "conKey": "VCDecorates01",
+        "title": "Trang trí",
+        "package": "Decorates",
+        "category": "Decorates",
+        "chartFrame": "static"
+      },
+      "option": {
+        "colors": [
+          "#00ff00",
+          "#003300"
+        ],
+        "dur": 3
+      }
+    },
+    {
+      "id": "h-bdr1",
+      "key": "Border01",
+      "attr": {
+        "x": 30,
+        "y": 110,
+        "w": 450,
+        "h": 460,
+        "zIndex": 1
+      },
+      "chartConfig": {
+        "key": "Border01",
+        "chartKey": "VBorder01",
+        "conKey": "VCBorder01",
+        "title": "Khung",
+        "package": "Decorates",
+        "category": "Borders",
+        "chartFrame": "static"
+      },
+      "option": {
+        "colors": [
+          "#00ff00",
+          "#003300"
+        ],
+        "backgroundColor": "#00000000"
+      }
+    },
+    {
+      "id": "h-radar-sec",
+      "key": "Radar",
+      "attr": {
+        "x": 50,
+        "y": 140,
+        "w": 410,
+        "h": 400,
+        "zIndex": 2
+      },
+      "chartConfig": {
+        "key": "Radar",
+        "chartKey": "VRadar",
+        "conKey": "VCRadar",
+        "title": "Chỉ số an ninh",
+        "package": "Charts",
+        "category": "Mores",
+        "chartFrame": "common"
+      },
+      "option": {
+        "dataset": {
+          "dimensions": [
+            "product",
+            "Camera",
+            "Báo động",
+            "Khóa cửa",
+            "Cảm biến",
+            "Tường lửa"
+          ],
+          "source": [
+            {
+              "product": "Trạng thái",
+              "Camera": 100,
+              "Báo động": 95,
+              "Khóa cửa": 100,
+              "Cảm biến": 88,
+              "Tường lửa": 92
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "h-bdr2",
+      "key": "Border01",
+      "attr": {
+        "x": 500,
+        "y": 110,
+        "w": 940,
+        "h": 460,
+        "zIndex": 1
+      },
+      "chartConfig": {
+        "key": "Border01",
+        "chartKey": "VBorder01",
+        "conKey": "VCBorder01",
+        "title": "Khung",
+        "package": "Decorates",
+        "category": "Borders",
+        "chartFrame": "static"
+      },
+      "option": {
+        "colors": [
+          "#00ff00",
+          "#003300"
+        ],
+        "backgroundColor": "#00000000"
+      }
+    },
+    {
+      "id": "h-line-temp",
+      "key": "LineCommon",
+      "attr": {
+        "x": 520,
+        "y": 140,
+        "w": 900,
+        "h": 400,
+        "zIndex": 2
+      },
+      "chartConfig": {
+        "key": "LineCommon",
+        "chartKey": "VLineCommon",
+        "conKey": "VCLineCommon",
+        "title": "Nhiệt độ phòng (°C)",
+        "package": "Charts",
+        "category": "Lines",
+        "chartFrame": "echarts"
+      },
+      "option": {
+        "xAxis": {
+          "show": true,
+          "type": "category"
+        },
+        "yAxis": {
+          "show": true,
+          "type": "value"
+        },
+        "dataset": {
+          "dimensions": [
+            "product",
+            "Phòng khách",
+            "Phòng ngủ"
+          ],
+          "source": [
+            {
+              "product": "08:00",
+              "Phòng khách": 24,
+              "Phòng ngủ": 22
+            },
+            {
+              "product": "12:00",
+              "Phòng khách": 28,
+              "Phòng ngủ": 25
+            },
+            {
+              "product": "16:00",
+              "Phòng khách": 26,
+              "Phòng ngủ": 24
+            },
+            {
+              "product": "20:00",
+              "Phòng khách": 25,
+              "Phòng ngủ": 23
+            },
+            {
+              "product": "24:00",
+              "Phòng khách": 24,
+              "Phòng ngủ": 22
+            }
+          ]
+        },
+        "series": [
+          {
+            "type": "line",
+            "smooth": true
+          },
+          {
+            "type": "line",
+            "smooth": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "h-bdr3",
+      "key": "Border01",
+      "attr": {
+        "x": 1460,
+        "y": 110,
+        "w": 430,
+        "h": 460,
+        "zIndex": 1
+      },
+      "chartConfig": {
+        "key": "Border01",
+        "chartKey": "VBorder01",
+        "conKey": "VCBorder01",
+        "title": "Khung",
+        "package": "Decorates",
+        "category": "Borders",
+        "chartFrame": "static"
+      },
+      "option": {
+        "colors": [
+          "#00ff00",
+          "#003300"
+        ],
+        "backgroundColor": "#00000000"
+      }
+    },
+    {
+      "id": "h-water-power",
+      "key": "WaterPolo",
+      "attr": {
+        "x": 1520,
+        "y": 130,
+        "w": 310,
+        "h": 400,
+        "zIndex": 2
+      },
+      "chartConfig": {
+        "key": "WaterPolo",
+        "chartKey": "VWaterPolo",
+        "conKey": "VCWaterPolo",
+        "title": "Năng lượng tiêu thụ",
+        "package": "Charts",
+        "category": "Mores",
+        "chartFrame": "common"
+      },
+      "option": {
+        "dataset": 0.35,
+        "series": [
+          {
+            "type": "liquidFill",
+            "shape": "circle",
+            "radius": "90%",
+            "data": [
+              0
+            ],
+            "center": [
+              "50%",
+              "50%"
+            ],
+            "color": [
+              {
+                "type": "linear",
+                "x": 0,
+                "y": 0,
+                "x2": 0,
+                "y2": 1,
+                "colorStops": [
+                  {
+                    "offset": 0,
+                    "color": "#00ff00"
+                  },
+                  {
+                    "offset": 1,
+                    "color": "#003300"
+                  }
+                ]
+              }
+            ],
+            "backgroundStyle": {
+              "borderWidth": 1,
+              "color": "rgba(0,255,0,0.1)"
+            },
+            "label": {
+              "fontSize": 28,
+              "color": "#fff"
+            },
+            "outline": {
+              "show": false
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "h-bdr-bot",
+      "key": "Border01",
+      "attr": {
+        "x": 30,
+        "y": 590,
+        "w": 1860,
+        "h": 470,
+        "zIndex": 1
+      },
+      "chartConfig": {
+        "key": "Border01",
+        "chartKey": "VBorder01",
+        "conKey": "VCBorder01",
+        "title": "Khung",
+        "package": "Decorates",
+        "category": "Borders",
+        "chartFrame": "static"
+      },
+      "option": {
+        "colors": [
+          "#00ff00",
+          "#003300"
+        ],
+        "backgroundColor": "#00000000"
+      }
+    },
+    {
+      "id": "h-table-devices",
+      "key": "TableList",
+      "attr": {
+        "x": 1280,
+        "y": 620,
+        "w": 580,
+        "h": 420,
+        "zIndex": 2
+      },
+      "chartConfig": {
+        "key": "TableList",
+        "chartKey": "VTableList",
+        "conKey": "VCTableList",
+        "title": "Trạng thái thiết bị",
+        "package": "Tables",
+        "category": "Tables",
+        "chartFrame": "common"
+      },
+      "option": {
+        "dataset": [
+          {
+            "name": "Điều hòa Phòng khách",
+            "value": "On",
+            "id": "d1"
+          },
+          {
+            "name": "Đèn Chiếu sáng Sân vườn",
+            "value": "Off",
+            "id": "d2"
+          },
+          {
+            "name": "Robot hút bụi",
+            "value": "Sạc",
+            "id": "d3"
+          },
+          {
+            "name": "Bình nóng lạnh",
+            "value": "On",
+            "id": "d4"
+          },
+          {
+            "name": "Rèm cửa Tự động",
+            "value": "Đóng",
+            "id": "d5"
+          }
+        ],
+        "waitTime": 2,
+        "rowNum": 5,
+        "unit": "",
+        "sort": false,
+        "color": "#00ff00",
+        "textColor": "#eee",
+        "borderColor": "#00ff0080",
+        "indexFontSize": 12,
+        "leftFontSize": 12,
+        "rightFontSize": 12,
+        "carousel": "single"
+      }
+    },
+    {
+      "id": "h-bar-usage",
+      "key": "BarCommon",
+      "attr": {
+        "x": 50,
+        "y": 620,
+        "w": 1200,
+        "h": 420,
+        "zIndex": 2
+      },
+      "chartConfig": {
+        "key": "BarCommon",
+        "chartKey": "VBarCommon",
+        "conKey": "VCBarCommon",
+        "title": "Thời gian sử dụng thiết bị (h)",
+        "package": "Charts",
+        "category": "Bars",
+        "chartFrame": "echarts"
+      },
+      "option": {
+        "xAxis": {
+          "show": true,
+          "type": "category"
+        },
+        "yAxis": {
+          "show": true,
+          "type": "value"
+        },
+        "dataset": {
+          "dimensions": [
+            "product",
+            "Thời gian"
+          ],
+          "source": [
+            {
+              "product": "TV",
+              "Thời gian": 4.5
+            },
+            {
+              "product": "Đèn",
+              "Thời gian": 8
+            },
+            {
+              "product": "Máy lạnh",
+              "Thời gian": 12
+            },
+            {
+              "product": "Tủ lạnh",
+              "Thời gian": 24
+            },
+            {
+              "product": "Máy giặt",
+              "Thời gian": 1.5
+            }
+          ]
+        },
+        "series": [
+          {
+            "type": "bar",
+            "itemStyle": {
+              "color": "#00ff00"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "geo": {
+    "show": false,
+    "type": "map",
+    "roam": false,
+    "map": "vietnam",
+    "selectedMode": false,
+    "zoom": 1
+  }
+}

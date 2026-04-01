@@ -1,0 +1,498 @@
+{
+  "editCanvasConfig": {
+    "projectName": "Báo cáo Chuyển đổi Khách hàng Tiềm năng",
+    "width": 1920,
+    "height": 1080,
+    "background": "#f0f2f5",
+    "selectColor": false,
+    "chartThemeColor": "light",
+    "vChartThemeName": "vScreenVolcanoBlue",
+    "previewScaleType": "fit"
+  },
+  "componentList": [
+    {
+      "id": "m-title",
+      "key": "TextCommon",
+      "attr": {
+        "x": 610,
+        "y": 20,
+        "w": 700,
+        "h": 55,
+        "zIndex": 10
+      },
+      "chartConfig": {
+        "key": "TextCommon",
+        "chartKey": "VTextCommon",
+        "conKey": "VCTextCommon",
+        "title": "Tiêu đề",
+        "package": "Informations",
+        "category": "Texts",
+        "chartFrame": "common"
+      },
+      "option": {
+        "dataset": "BÁO CÁO CHUYỂN ĐỔI KHÁCH HÀNG TIỀM NĂNG",
+        "fontSize": 34,
+        "fontColor": "#1890ff",
+        "textAlign": "center",
+        "fontWeight": "bold",
+        "letterSpacing": 1
+      }
+    },
+    {
+      "id": "m-deco",
+      "key": "Decorates01",
+      "attr": {
+        "x": 460,
+        "y": 78,
+        "w": 1000,
+        "h": 15,
+        "zIndex": 9
+      },
+      "chartConfig": {
+        "key": "Decorates01",
+        "chartKey": "VDecorates01",
+        "conKey": "VCDecorates01",
+        "title": "Trang trí",
+        "package": "Decorates",
+        "category": "Decorates",
+        "chartFrame": "static"
+      },
+      "option": {
+        "colors": [
+          "#1890ff",
+          "#69c0ff"
+        ],
+        "dur": 3
+      }
+    },
+    {
+      "id": "m-bdr1",
+      "key": "Border01",
+      "attr": {
+        "x": 30,
+        "y": 110,
+        "w": 450,
+        "h": 320,
+        "zIndex": 1
+      },
+      "chartConfig": {
+        "key": "Border01",
+        "chartKey": "VBorder01",
+        "conKey": "VCBorder01",
+        "title": "Khung",
+        "package": "Decorates",
+        "category": "Borders",
+        "chartFrame": "static"
+      },
+      "option": {
+        "colors": [
+          "#1890ff",
+          "#d9d9d9"
+        ],
+        "backgroundColor": "#ffffff"
+      }
+    },
+    {
+      "id": "m-radar-disease",
+      "key": "Radar",
+      "attr": {
+        "x": 50,
+        "y": 140,
+        "w": 410,
+        "h": 260,
+        "zIndex": 2
+      },
+      "chartConfig": {
+        "key": "Radar",
+        "chartKey": "VRadar",
+        "conKey": "VCRadar",
+        "title": "Phân bổ bệnh lý",
+        "package": "Charts",
+        "category": "Mores",
+        "chartFrame": "common"
+      },
+      "option": {
+        "dataset": {
+          "dimensions": [
+            "product",
+            "Tim mạch",
+            "Hô hấp",
+            "Tiêu hóa",
+            "Nội tiết",
+            "Khác"
+          ],
+          "source": [
+            {
+              "product": "Tháng này",
+              "Tim mạch": 82,
+              "Hô hấp": 65,
+              "Tiêu hóa": 45,
+              "Nội tiết": 30,
+              "Khác": 55
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "m-bdr2",
+      "key": "Border01",
+      "attr": {
+        "x": 500,
+        "y": 110,
+        "w": 940,
+        "h": 320,
+        "zIndex": 1
+      },
+      "chartConfig": {
+        "key": "Border01",
+        "chartKey": "VBorder01",
+        "conKey": "VCBorder01",
+        "title": "Khung",
+        "package": "Decorates",
+        "category": "Borders",
+        "chartFrame": "static"
+      },
+      "option": {
+        "colors": [
+          "#1890ff",
+          "#d9d9d9"
+        ],
+        "backgroundColor": "#ffffff"
+      }
+    },
+    {
+      "id": "m-line-patients",
+      "key": "LineCommon",
+      "attr": {
+        "x": 520,
+        "y": 140,
+        "w": 900,
+        "h": 260,
+        "zIndex": 2
+      },
+      "chartConfig": {
+        "key": "LineCommon",
+        "chartKey": "VLineCommon",
+        "conKey": "VCLineCommon",
+        "title": "Lượt khám bệnh theo ngày",
+        "package": "Charts",
+        "category": "Lines",
+        "chartFrame": "echarts"
+      },
+      "option": {
+        "xAxis": {
+          "show": true,
+          "type": "category"
+        },
+        "yAxis": {
+          "show": true,
+          "type": "value"
+        },
+        "dataset": {
+          "dimensions": [
+            "product",
+            "Phòng khám",
+            "Cấp cứu"
+          ],
+          "source": [
+            {
+              "product": "01/03",
+              "Phòng khám": 120,
+              "Cấp cứu": 25
+            },
+            {
+              "product": "02/03",
+              "Phòng khám": 145,
+              "Cấp cứu": 32
+            },
+            {
+              "product": "03/03",
+              "Phòng khám": 110,
+              "Cấp cứu": 28
+            },
+            {
+              "product": "04/03",
+              "Phòng khám": 160,
+              "Cấp cứu": 40
+            },
+            {
+              "product": "05/03",
+              "Phòng khám": 180,
+              "Cấp cứu": 45
+            }
+          ]
+        },
+        "series": [
+          {
+            "type": "line",
+            "smooth": true
+          },
+          {
+            "type": "line",
+            "smooth": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "m-bdr3",
+      "key": "Border01",
+      "attr": {
+        "x": 1460,
+        "y": 110,
+        "w": 430,
+        "h": 320,
+        "zIndex": 1
+      },
+      "chartConfig": {
+        "key": "Border01",
+        "chartKey": "VBorder01",
+        "conKey": "VCBorder01",
+        "title": "Khung",
+        "package": "Decorates",
+        "category": "Borders",
+        "chartFrame": "static"
+      },
+      "option": {
+        "colors": [
+          "#1890ff",
+          "#d9d9d9"
+        ],
+        "backgroundColor": "#ffffff"
+      }
+    },
+    {
+      "id": "m-water-occupancy",
+      "key": "WaterPolo",
+      "attr": {
+        "x": 1520,
+        "y": 130,
+        "w": 310,
+        "h": 260,
+        "zIndex": 2
+      },
+      "chartConfig": {
+        "key": "WaterPolo",
+        "chartKey": "VWaterPolo",
+        "conKey": "VCWaterPolo",
+        "title": "Công suất giường bệnh",
+        "package": "Charts",
+        "category": "Mores",
+        "chartFrame": "common"
+      },
+      "option": {
+        "dataset": 0.85,
+        "series": [
+          {
+            "type": "liquidFill",
+            "shape": "circle",
+            "radius": "90%",
+            "data": [
+              0
+            ],
+            "center": [
+              "50%",
+              "50%"
+            ],
+            "color": [
+              {
+                "type": "linear",
+                "x": 0,
+                "y": 0,
+                "x2": 0,
+                "y2": 1,
+                "colorStops": [
+                  {
+                    "offset": 0,
+                    "color": "#1890ff"
+                  },
+                  {
+                    "offset": 1,
+                    "color": "#69c0ff"
+                  }
+                ]
+              }
+            ],
+            "backgroundStyle": {
+              "borderWidth": 1,
+              "color": "rgba(24,144,255,0.1)"
+            },
+            "label": {
+              "fontSize": 32,
+              "color": "#1890ff"
+            },
+            "outline": {
+              "show": false
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "m-bdr-bot",
+      "key": "Border01",
+      "attr": {
+        "x": 30,
+        "y": 450,
+        "w": 1860,
+        "h": 600,
+        "zIndex": 1
+      },
+      "chartConfig": {
+        "key": "Border01",
+        "chartKey": "VBorder01",
+        "conKey": "VCBorder01",
+        "title": "Khung",
+        "package": "Decorates",
+        "category": "Borders",
+        "chartFrame": "static"
+      },
+      "option": {
+        "colors": [
+          "#1890ff",
+          "#d9d9d9"
+        ],
+        "backgroundColor": "#ffffff"
+      }
+    },
+    {
+      "id": "m-table-docs",
+      "key": "TableList",
+      "attr": {
+        "x": 50,
+        "y": 480,
+        "w": 600,
+        "h": 540,
+        "zIndex": 2
+      },
+      "chartConfig": {
+        "key": "TableList",
+        "chartKey": "VTableList",
+        "conKey": "VCTableList",
+        "title": "Bác sĩ trực ca đêm",
+        "package": "Tables",
+        "category": "Tables",
+        "chartFrame": "common"
+      },
+      "option": {
+        "dataset": [
+          {
+            "name": "BS. Nguyễn Tuấn Anh (Nội)",
+            "value": "Trực",
+            "id": "d1"
+          },
+          {
+            "name": "BS. Trần Phương Hoa (Sản)",
+            "value": "Nghỉ",
+            "id": "d2"
+          },
+          {
+            "name": "BS. Lê Minh Hoàng (Ngoại)",
+            "value": "Trực",
+            "id": "d3"
+          },
+          {
+            "name": "BS. Phạm Thu Hương (Nhi)",
+            "value": "Trực",
+            "id": "d4"
+          },
+          {
+            "name": "BS. Vũ Quang Vinh (Tim)",
+            "value": "Trực",
+            "id": "d5"
+          }
+        ],
+        "waitTime": 2,
+        "rowNum": 5,
+        "unit": "",
+        "sort": false,
+        "color": "#1890ff",
+        "textColor": "#333",
+        "borderColor": "#1890ff",
+        "indexFontSize": 12,
+        "leftFontSize": 12,
+        "rightFontSize": 12,
+        "carousel": "single"
+      }
+    },
+    {
+      "id": "m-bar-dept",
+      "key": "BarCommon",
+      "attr": {
+        "x": 680,
+        "y": 480,
+        "w": 1180,
+        "h": 540,
+        "zIndex": 2
+      },
+      "chartConfig": {
+        "key": "BarCommon",
+        "chartKey": "VBarCommon",
+        "conKey": "VCBarCommon",
+        "title": "Bệnh nhân theo chuyên khoa",
+        "package": "Charts",
+        "category": "Bars",
+        "chartFrame": "echarts"
+      },
+      "option": {
+        "xAxis": {
+          "show": true,
+          "type": "category"
+        },
+        "yAxis": {
+          "show": true,
+          "type": "value"
+        },
+        "dataset": {
+          "dimensions": [
+            "product",
+            "Số bệnh nhân"
+          ],
+          "source": [
+            {
+              "product": "Nội khoa",
+              "Số bệnh nhân": 120
+            },
+            {
+              "product": "Ngoại khoa",
+              "Số bệnh nhân": 85
+            },
+            {
+              "product": "Sản khoa",
+              "Số bệnh nhân": 60
+            },
+            {
+              "product": "Nhi khoa",
+              "Số bệnh nhân": 95
+            },
+            {
+              "product": "X-Quang",
+              "Số bệnh nhân": 45
+            },
+            {
+              "product": "Xét nghiệm",
+              "Số bệnh nhân": 110
+            }
+          ]
+        },
+        "series": [
+          {
+            "type": "bar",
+            "itemStyle": {
+              "color": "#1890ff"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "geo": {
+    "show": false,
+    "type": "map",
+    "roam": false,
+    "map": "vietnam",
+    "selectedMode": false,
+    "zoom": 1
+  }
+}
