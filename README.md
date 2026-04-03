@@ -1,12 +1,11 @@
-<div align="center">
-  <h1>📊 TiniX Visualization (v0.1)</h1>
+  <h1>📊 TiniX Visualization (v0.2)</h1>
   <p><strong>Nền tảng Trực quan hóa Dữ liệu Thông minh, Bảo mật Cục bộ và Tự động hóa bằng AI</strong></p>
   <p>
+    <img src="https://img.shields.io/badge/Version-0.2.0-blue" alt="Version 0.2.0" />
     <img src="https://img.shields.io/badge/Vue-3.x-brightgreen" alt="Vue 3" />
     <img src="https://img.shields.io/badge/Vite-4.x-blue" alt="Vite 4" />
     <img src="https://img.shields.io/badge/ECharts-5.x-red" alt="ECharts 5" />
     <img src="https://img.shields.io/badge/AI-Auto--BI-orange" alt="Auto-BI" />
-    <img src="https://img.shields.io/badge/License-MIT-lightgrey" alt="License MIT" />
   </p>
 </div>
 
@@ -32,13 +31,28 @@ TiniX không chỉ là công cụ vẽ biểu đồ, mà là một cộng sự p
 
 - **Virtual Metrics:** AI có khả năng tự đề xuất các công thức tính toán mới dựa trên dữ liệu hiện có (ví dụ: Tỷ lệ chuyển đổi, Tăng trưởng doanh thu) và nhúng trực tiếp vào biểu đồ.
 
-### 2. 📊 Thư viện Thành phần Trực quan hóa Đa dạng
+### 2. 🏪 Chợ Mẫu (Template Market) - *Mới ở v0.2*
+
+TiniX v0.2 ra mắt kho tàng Dashboard mẫu chuyên sâu cho đa dạng lĩnh vực:
+
+- **100+ Bản mẫu chuyên nghiệp**: Đủ các ngành nghề từ Tài chính, Nhân sự (HRM), Marketing, Logistics đến Y tế và Giáo dục.
+- **Dễ dàng Tùy chỉnh**: Một click để sử dụng, tự động ánh xạ dữ liệu mẫu sang lĩnh vực thực tế của bạn qua hệ thống Semantic Mapping.
+
+### 3. 🌐 Hệ thống Phát hành & Nhúng (Cloud Publishing) - *Mới ở v0.2*
+
+Cho phép Dashboard thoát khỏi trình biên tập và tiếp cận người xem thực thụ:
+
+- **Cloud Publishing**: Lưu trữ trực tiếp Dashboard lên Server SQLite để chia sẻ link công khai.
+- **Mã nhúng Iframe**: Cung cấp đoạn mã nhúng chuyên nghiệp để hiển thị biểu đồ trên các website bên thứ ba (Webflow, WordPress, website nội bộ).
+- **Trình xem Xem trước gọn nhẹ**: Dashboard hiển thị mượt mà trên Tab ẩn danh mà không yêu cầu phiên làm việc của Editor.
+
+### 4. 📊 Thư viện Thành phần Trực quan hóa Đa dạng
 
 TiniX sở hữu kho linh kiện (components) đồ sộ, được tối ưu hóa cho hiệu suất cao:
 
 - **Nhóm Biểu đồ Phân tích (ECharts 5.x):** Đầy đủ các loại từ Bar (Cột), Line (Đường), Pie (Tròn), Radar (Radar), Funnel (Phễu), Heatmap (Nhiệt độ), TreeMap (Cấu trúc cây) đến Scatter (Phân tán).
 
-- **Trực quan hóa Địa lý (Maps):** Bản đồ Thế Giới và Việt Nam (63 tỉnh thành) với khả năng ánh xạ dữ liệu theo tên tỉnh/quốc gia bằng Tiếng Việt. Biên giới được chuẩn hóa pháp lý, loại bỏ các yếu tố nhạy cảm.
+- **Trực quan hóa Địa lý (Global Maps):** Bản đồ Thế Giới và Việt Nam (63 tỉnh thành) với khả năng ánh xạ dữ liệu theo tên tỉnh/quốc gia bằng Tiếng Việt. Biên giới được chuẩn hóa pháp lý, loại bỏ các yếu tố nhạy cảm.
 
 - **Thành phần Trang trí & Media:** Hỗ trợ nhúng Video, Hình ảnh, Văn bản nghệ thuật, Đồng hồ thời gian thực và các đường Border trang trí Hi-tech.
 
@@ -158,10 +172,9 @@ npm run dev:all
 
 TiniX Visualization đang liên tục được cải tiến với mục tiêu trở thành nền tảng BI tự động hàng đầu cho doanh nghiệp Việt:
 
-- **Chợ Mẫu (Template Market):** Hệ thống chia sẻ và tải xuống các mẫu Dashboard chuyên sâu cho từng ngành nghề (Bất động sản, Kho vận, Y tế, Giáo dục).
-- **Giao diện Tích hợp (Embedded Analytics):** Cung cấp các công cụ (SDK/Iframe) để nhúng trực tiếp biểu đồ TiniX vào các website hoặc ứng dụng nội bộ hiện có của doanh nghiệp.
 - **Trợ lý Ảo Hỏi đáp Số liệu (AI Data Assistant):** Tích hợp Chatbot thông minh cho phép người dùng đặt câu hỏi trực tiếp về số liệu (ví dụ: "Doanh thu tháng này tăng bao nhiêu % so với tháng trước?") và nhận câu trả lời tức thì kèm biểu đồ minh họa.
 - **Data Connector Mở rộng:** Hỗ trợ kết nối trực tiếp với các cơ sở dữ liệu phổ biến như SQL Server, MySQL, PostgreSQL và MongoDB.
+- **Giao diện Tích hợp Nâng cao**: Cung cấp SDK riêng để tích hợp sâu Dashboard vào các ứng dụng SaaS.
 
 ---
 
